@@ -5,56 +5,63 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class TTRMainActivity extends edu.up.cs301.game.GameMainActivity {
+import ttr.up.edu.game.GameConfig;
+import ttr.up.edu.game.GameMainActivity;
+import ttr.up.edu.game.GamePlayer;
+import ttr.up.edu.game.GamePlayerType;
+import ttr.up.edu.game.LocalGame;
+import ttr.up.edu.tickettoridegame.R;
+
+public class TTRMainActivity extends GameMainActivity {
 
     public static final int PORT_NUMBER = 5213;
 
     /**
-     * a tic-tac-toe game is for two players. The default is human vs. computer
+     * a Ticket To Ride game
      */
     @Override
-    public edu.up.cs301.game.config.GameConfig createDefaultConfig() {
+    public GameConfig createDefaultConfig() {
 
         // Define the allowed player types
-        ArrayList<edu.up.cs301.game.config.GamePlayerType> playerTypes = new ArrayList<edu.up.cs301.game.config.GamePlayerType>();
+        ArrayList<GamePlayerType> playerTypes = new ArrayList<edu.up.cs301.game.config.GamePlayerType>();
 
         // yellow-on-blue GUI
-        playerTypes.add(new edu.up.cs301.game.config.GamePlayerType("Local Human Player (blue-yellow)") {
-            public edu.up.cs301.game.GamePlayer createPlayer(String name) {
+        playerTypes.add(new GamePlayerType("Local Human Player (blue-yellow)") {
+            public GamePlayer createPlayer(String name) {
                 return new TTTHumanPlayer1(name, R.layout.ttt_human_player1);
             }
         });
 
         // red-on-yellow GUI
-        playerTypes.add(new edu.up.cs301.game.config.GamePlayerType("Local Human Player (yellow-red)") {
-            public edu.up.cs301.game.GamePlayer createPlayer(String name) {
+        playerTypes.add(new GamePlayerType("Local Human Player (yellow-red)") {
+            public GamePlayer createPlayer(String name) {
                 return new TTTHumanPlayer1(name, R.layout.ttt_human_player1_flipped);
             }
         });
 
         // game of 33
-        playerTypes.add(new edu.up.cs301.game.config.GamePlayerType("Local Human Player (game of 33)") {
-            public edu.up.cs301.game.GamePlayer createPlayer(String name) {
+        playerTypes.add(new GamePlayerType("Local Human Player (game of 33)") {
+            public GamePlayer createPlayer(String name) {
                 return new TTTHumanPlayer2(name);
             }
         });
 
         // dumb computer player
-        playerTypes.add(new edu.up.cs301.game.config.GamePlayerType("Computer Player (dumb)") {
-            public edu.up.cs301.game.GamePlayer createPlayer(String name) {
+        playerTypes.add(new GamePlayerType("Computer Player (dumb)") {
+            public GamePlayer createPlayer(String name) {
                 return new TTTComputerPlayer1(name);
             }
         });
 
         // smarter computer player
-        playerTypes.add(new edu.up.cs301.game.config.GamePlayerType("Computer Player (smart)") {
-            public edu.up.cs301.game.GamePlayer createPlayer(String name) {
+        playerTypes.add(new GamePlayerType("Computer Player (smart)") {
+            public GamePlayer createPlayer(String name) {
                 return new TTTComputerPlayer2(name);
             }
         });
 
         // Create a game configuration class for Tic-tac-toe
-        edu.up.cs301.game.config.GameConfig defaultConfig = new edu.up.cs301.game.config.GameConfig(playerTypes, 2,2, "Tic-Tac-Toe", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2,2, "Tic-Tac-Toe", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0); // yellow-on-blue GUI
@@ -78,7 +85,7 @@ public class TTRMainActivity extends edu.up.cs301.game.GameMainActivity {
      *         class.
      */
     @Override
-    public edu.up.cs301.game.LocalGame createLocalGame() {
+    public LocalGame createLocalGame() {
         return new TTTLocalGame();
     }
 }
