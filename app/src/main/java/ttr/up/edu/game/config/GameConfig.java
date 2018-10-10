@@ -1,4 +1,4 @@
-package edu.up.cs301.game.config;
+package ttr.up.edu.game.config;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

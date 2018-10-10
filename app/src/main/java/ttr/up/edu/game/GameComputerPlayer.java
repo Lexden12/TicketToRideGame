@@ -1,4 +1,4 @@
-package edu.up.cs301.game;
+package ttr.up.edu.game;
 
 import edu.up.cs301.game.actionMsg.GameOverAckAction;
 import edu.up.cs301.game.actionMsg.MyNameIsAction;
@@ -11,6 +11,8 @@ import edu.up.cs301.game.infoMsg.TimerInfo;
 import edu.up.cs301.game.util.GameTimer;
 import edu.up.cs301.game.util.MessageBox;
 import edu.up.cs301.game.util.Tickable;
+import ttr.up.edu.game.Game;
+import ttr.up.edu.game.GameMainActivity;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -24,7 +26,7 @@ import android.os.Looper;
  * @author Andrew Nuxoll
  * @version July 2013
  */
-public abstract class GameComputerPlayer implements GamePlayer, Tickable {
+public abstract class GameComputerPlayer implements edu.up.cs301.game.GamePlayer, Tickable {
 	/**
 	 * the current game state
 	 */

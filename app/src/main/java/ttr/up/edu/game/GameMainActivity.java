@@ -1,4 +1,4 @@
-package edu.up.cs301.game;
+package ttr.up.edu.game;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
 import edu.up.cs301.game.util.IPCoder;
 import edu.up.cs301.game.util.MessageBox;
+import ttr.up.edu.tickettoridegame.R;
 
 /**
  * class GameMainActivity
@@ -52,13 +53,13 @@ View.OnClickListener {
 	// A reference to the object representing the game itself. This is the
 	// object that knows the rules of the game. This variable is initialized in
 	// launchGame.
-	private Game game = null;
+	private edu.up.cs301.game.Game game = null;
 
 	// an array containing references to all the players that are playing the game
-	private GamePlayer[] players = null;
+	private edu.up.cs301.game.GamePlayer[] players = null;
 
 	// tells which player, if any, is running in the GUI
-	private GamePlayer guiPlayer = null;
+	private edu.up.cs301.game.GamePlayer guiPlayer = null;
 
 	// whether the game is over
 	private boolean gameIsOver = false;
@@ -105,12 +106,12 @@ View.OnClickListener {
 	 * Creates a new game that runs on the server tablet. For example, if
 	 * you were creating tic-tac-toe, you would implement this method to return
 	 * an instance of your TTTLocalGame class which, in turn, would be a
-	 * subclass of {@link LocalGame}.
+	 * subclass of {@link ttr.up.edu.game.LocalGame}.
 	 * 
 	 * @return a new, game-specific instance of a sub-class of the LocalGame
 	 *         class.
 	 */
-	public abstract LocalGame createLocalGame();
+	public abstract edu.up.cs301.game.LocalGame createLocalGame();
 
 	/**
 	 * Creates a "proxy" game that acts as an intermediary between a local
@@ -121,9 +122,9 @@ View.OnClickListener {
 	 *            "upibmg.egr.up.edu")
 	 * @return the ProxyGame object that was created
 	 */
-	private ProxyGame createRemoteGame(String hostName) {
+	private edu.up.cs301.game.ProxyGame createRemoteGame(String hostName) {
 		int portNum = getPortNumber();
-		return ProxyGame.create(portNum, hostName);
+		return edu.up.cs301.game.ProxyGame.create(portNum, hostName);
 	}
 
 	/*
@@ -275,7 +276,7 @@ View.OnClickListener {
 		//////////////////////////////////////
 		int requiresGuiCount = 0; // the number of players that require a GUI
 		guiPlayer = null; // the player that will be our GUI player
-		players = new GamePlayer[config.getNumPlayers()]; // the array to contains our players
+		players = new edu.up.cs301.game.GamePlayer[config.getNumPlayers()]; // the array to contains our players
 
 		// loop through each player
 		for (int i = 0; i < players.length; i++) {

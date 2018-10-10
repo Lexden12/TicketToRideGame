@@ -1,4 +1,4 @@
-package edu.up.cs301.game.infoMsg;
+package ttr.up.edu.game.infoMsg;
 
 import java.io.Serializable;
 

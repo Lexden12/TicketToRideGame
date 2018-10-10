@@ -1,4 +1,4 @@
-package edu.up.cs301.game;
+package ttr.up.edu.game;
 
 import java.util.LinkedList;
 import java.util.Queue;

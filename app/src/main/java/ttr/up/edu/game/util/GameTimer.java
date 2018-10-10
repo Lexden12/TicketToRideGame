@@ -1,4 +1,4 @@
-package edu.up.cs301.game.util;
+package ttr.up.edu.game.util;
 
 /**
  * A GameTimer is an object that sends a GameTimerAction to a Game or a

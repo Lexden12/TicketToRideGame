@@ -1,4 +1,4 @@
-package edu.up.cs301.game;
+package ttr.up.edu.game;
 
 import edu.up.cs301.game.actionMsg.GameOverAckAction;
 import edu.up.cs301.game.actionMsg.MyNameIsAction;

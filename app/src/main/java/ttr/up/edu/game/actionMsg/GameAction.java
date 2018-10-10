@@ -1,4 +1,4 @@
-package edu.up.cs301.game.actionMsg;
+package ttr.up.edu.game.actionMsg;
 
 import java.io.Serializable;
 

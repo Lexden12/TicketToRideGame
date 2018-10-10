@@ -1,4 +1,4 @@
-package edu.up.cs301.game.infoMsg;
+package ttr.up.edu.game.infoMsg;
 
 import edu.up.cs301.game.Game;
 
@@ -10,7 +10,7 @@ import edu.up.cs301.game.Game;
  * @author Steven R. Vegdahl 
  * @version July 2013
  */
-public class BindGameInfo extends GameInfo {
+public class BindGameInfo extends edu.up.cs301.game.infoMsg.GameInfo {
 	
 	// to satisfy the Serializable interface
 	private static final long serialVersionUID = 8819385408185187694L;
