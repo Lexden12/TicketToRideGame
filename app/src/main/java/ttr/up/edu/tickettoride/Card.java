@@ -15,6 +15,11 @@ public class Card {
         this.name = name;
     }
 
+    public Card clone(){
+        Card c = new Card(getName());
+        return c;
+    }
+
     /**
      * Construct a new card by using an existing card
      * @param c the card whose instance variables we will copy from

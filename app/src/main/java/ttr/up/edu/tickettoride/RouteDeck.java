@@ -43,7 +43,7 @@ public class RouteDeck extends Deck {
         shuffle();
     }
 
-    public RouteDeck(RouteDeck deck) throws CloneNotSupportedException {
+    public RouteDeck(RouteDeck deck) {
         super(deck);
     }
 }

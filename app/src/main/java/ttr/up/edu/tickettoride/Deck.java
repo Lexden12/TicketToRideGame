@@ -13,9 +13,11 @@ public abstract class Deck {
         discard = new ArrayList<>();
     }
 
-    public Deck(Deck deck) throws CloneNotSupportedException {
-        cards = (ArrayList<Card>) deck.clone();
-        discard = (ArrayList<Card>) discard.clone();
+    public Deck(Deck deck) {
+        for(Card c:deck.cards)
+            cards.add(c.clone());
+        for(Card c:deck.discard)
+            cards.add(c.clone());
     }
 
     /**

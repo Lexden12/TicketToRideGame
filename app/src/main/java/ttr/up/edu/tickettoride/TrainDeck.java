@@ -25,7 +25,7 @@ public class TrainDeck extends Deck {
         shuffle();
     }
 
-    public TrainDeck(TrainDeck deck) throws CloneNotSupportedException {
+    public TrainDeck(TrainDeck deck) {
         super(deck);
     }
 }

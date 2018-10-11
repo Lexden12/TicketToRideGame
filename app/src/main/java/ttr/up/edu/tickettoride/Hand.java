@@ -17,6 +17,14 @@ public class Hand {
         routeCards = new ArrayList<>();
     }
 
+    public Hand clone(){
+        Hand hand = new Hand();
+        for(Card c:trainCards)
+            hand.addTrainCards(c.clone());
+        for(Card c:routeCards)
+            hand.addRouteCards(c.clone());
+        return hand;
+    }
 
     public ArrayList<Card> getRouteCards() {
         return routeCards;

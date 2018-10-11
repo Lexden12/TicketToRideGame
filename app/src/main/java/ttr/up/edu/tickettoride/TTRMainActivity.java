@@ -23,40 +23,24 @@ public class TTRMainActivity extends GameMainActivity {
     public GameConfig createDefaultConfig() {
 
         // Define the allowed player types
-        ArrayList<GamePlayerType> playerTypes = new ArrayList<edu.up.cs301.game.config.GamePlayerType>();
+        ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        // yellow-on-blue GUI
-        playerTypes.add(new GamePlayerType("Local Human Player (blue-yellow)") {
-            public GamePlayer createPlayer(String name) {
-                return new TTTHumanPlayer1(name, R.layout.ttt_human_player1);
-            }
-        });
-
-        // red-on-yellow GUI
-        playerTypes.add(new GamePlayerType("Local Human Player (yellow-red)") {
-            public GamePlayer createPlayer(String name) {
-                return new TTTHumanPlayer1(name, R.layout.ttt_human_player1_flipped);
-            }
-        });
-
-        // game of 33
-        playerTypes.add(new GamePlayerType("Local Human Player (game of 33)") {
-            public GamePlayer createPlayer(String name) {
-                return new TTTHumanPlayer2(name);
-            }
+        // human player
+        playerTypes.add(new GamePlayerType() {
+            public GamePlayer createPlayer(String name) { return new TTRHumanPlayer(name); }
         });
 
         // dumb computer player
         playerTypes.add(new GamePlayerType("Computer Player (dumb)") {
             public GamePlayer createPlayer(String name) {
-                return new TTTComputerPlayer1(name);
+                return new TTRComputerPlayer1(name);
             }
         });
 
         // smarter computer player
         playerTypes.add(new GamePlayerType("Computer Player (smart)") {
             public GamePlayer createPlayer(String name) {
-                return new TTTComputerPlayer2(name);
+                return new TTRComputerPlayer2(name);
             }
         });
 

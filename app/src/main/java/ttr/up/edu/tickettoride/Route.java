@@ -51,6 +51,28 @@ public class Route {
             player = 0;
     }
 
+    public Route clone(){
+        Route route = new Route(getCity1(), getCity2(), isDual());
+        route.setPlayer(getPlayer());
+        return route;
+    }
+
+    public City getCity1() {
+        return city1;
+    }
+
+    public City getCity2() {
+        return city2;
+    }
+
+    public int getPlayer() {
+        return player;
+    }
+
+    public boolean isDual() {
+        return isDual;
+    }
+
     public void setPlayer(int player) {
         this.player = player;
     }

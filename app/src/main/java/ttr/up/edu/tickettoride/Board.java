@@ -12,7 +12,8 @@ public class Board {
     }
 
     public Board(Board board){
-        routes = board.routes.clone();
+        for(int i=0; i<board.routes.length; i++)
+            routes[i] = board.routes[i].clone();
     }
 
     @Override
