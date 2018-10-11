@@ -39,20 +39,33 @@ public class Route {
         Charleston,
         Miami
     }
+    public enum Color{
+        Red,
+        Yellow,
+        Green,
+        Blue,
+        Orange,
+        Purple,
+        White,
+        Black,
+        Grey
+    }
 
     private City city1, city2;
+    private Color color;
     private boolean isDual;
     private int player;
 
-    public Route(City c1, City c2, boolean dual){
+    public Route(City c1, City c2, Color c, boolean dual){
             city1 = c1;
             city2 = c2;
+            color = c;
             isDual = dual;
             player = 0;
     }
 
     public Route clone(){
-        Route route = new Route(getCity1(), getCity2(), isDual());
+        Route route = new Route(getCity1(), getCity2(), getColor(), isDual());
         route.setPlayer(getPlayer());
         return route;
     }
@@ -63,6 +76,10 @@ public class Route {
 
     public City getCity2() {
         return city2;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public int getPlayer() {

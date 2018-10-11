@@ -276,7 +276,7 @@ public class GameConfig {
 			oos.close();
 		} catch (IOException e) {
 			// return false if there was a problem
-			Log.i("TTRMainActivity", "File writing problem.");
+			Log.i("TTR_MainActivity", "File writing problem.");
 			return false;
 		}
 		
@@ -379,13 +379,13 @@ public class GameConfig {
 		}
 		catch (IOException e) {
 			// abort if I/O exception
-			Log.i("TTRMainActivity", "File reading problem.");
+			Log.i("TTR_MainActivity", "File reading problem.");
 			return false;
 		}
 		catch (ClassNotFoundException cnfx) {
 			// abort of there if one of the serialized objects somehow was (or contained)
 			// an object in a class that we do not know about.
-			Log.i("TTRMainActivity", "Object/class reading problem.");
+			Log.i("TTR_MainActivity", "Object/class reading problem.");
 			return false;
 		}
 		finally {
