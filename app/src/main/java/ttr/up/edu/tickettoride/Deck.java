@@ -5,8 +5,18 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 
 public abstract class Deck {
-    protected ArrayList<Card> cards = new ArrayList<>();
-    protected ArrayList<Card> discard = new ArrayList<>();
+    protected ArrayList<Card> cards;
+    protected ArrayList<Card> discard;
+
+    public Deck(){
+        cards = new ArrayList<>();
+        discard = new ArrayList<>();
+    }
+
+    public Deck(Deck deck) throws CloneNotSupportedException {
+        cards = (ArrayList<Card>) deck.clone();
+        discard = (ArrayList<Card>) discard.clone();
+    }
 
     /**
      * shuffles the deck randomly
@@ -31,22 +41,30 @@ public abstract class Deck {
 
     /**
      * draw cards from the deck (removes cards from the deck)
-     * @param i the number of cards to draw
      * @return the list of the cards that were drawn
      */
-    public ArrayList<Card> draw(int i){
-        ArrayList<Card> drawn = new ArrayList<>();
-        for (int j = 0; j < i; j++){
-            drawn.add(cards.remove(cards.size()-1));
-        }
-        return drawn;
+    public Card draw(){
+        return cards.remove(cards.size()-1);
     }
 
     /**
      * add the given cards to the discard pile (when a player claims a route)
-     * @param cards the cards which will be discarded
+     * @param card the cards which will be discarded
      */
-    public void discard(ArrayList<Card> cards){
-        discard.addAll(cards);
+    public void discard(Card card){
+        discard.add(card);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append("Cards: ");
+        for (Card c:cards)
+            out.append(c.getName()+", ");
+        out.append("\nDiscards: ");
+        for(Card c:discard)
+            out.append(c.getName()+", ");
+        out.append("\n");
+        return out.toString();
     }
 }

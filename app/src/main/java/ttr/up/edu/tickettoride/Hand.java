@@ -36,18 +36,18 @@ public class Hand {
 
     /**
      * In the event that we draw a train card, this will add the cards to our hand
-     * @param cards the arraylist of cards to add to our hand
+     * @param card the arraylist of cards to add to our hand
      */
-    public void addTrainCards(ArrayList<Card> cards){
-        trainCards.addAll(cards);
+    public void addTrainCards(Card card){
+        trainCards.add(card);
     }
 
     /**
      * In the event that we draw a route card, this will add the cards to our hand
-     * @param cards the arraylist of cards to add to our hand
+     * @param card the arraylist of cards to add to our hand
      */
-    public void addRouteCards(ArrayList<Card> cards){
-        routeCards.addAll(cards);
+    public void addRouteCards(Card card){
+        routeCards.add(card);
     }
 
     /**
@@ -117,16 +117,16 @@ public class Hand {
         cards.set(index2, c);
     }
 
-    /**
-     * draw the train cards and route cards in our hand
-     * @param c canvas on which to draw these cards
-     */
-    public void draw(Canvas c){
-        for (Card card:trainCards) {
-            card.draw(c);
-        }
-        for (Card card:routeCards) {
-            card.draw(c);
-        }
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append("Train Cards: ");
+        for (Card c:trainCards)
+            out.append(c.getName()+", ");
+        out.append("Route Cards: ");
+        for (Card c:routeCards)
+            out.append(c.getName()+", ");
+        out.append("\n");
+        return out.toString();
     }
 }
