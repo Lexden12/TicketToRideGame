@@ -13,6 +13,8 @@ public class TTR_GameState extends GameState{
     private Board board;
     private int currentPlayer;
     private int cardsDrawn;
+    private Card[] routeCards;
+    private int routeCardsDrawn;
 
     /**
      * Default GameState ctor
@@ -29,6 +31,8 @@ public class TTR_GameState extends GameState{
         board = new Board();
         currentPlayer = 0;
         cardsDrawn = 0;
+        routeCards = new Card[3];
+        routeCardsDrawn = 0;
     }
 
     /**
@@ -56,7 +60,7 @@ public class TTR_GameState extends GameState{
      * @return true if valid and completed turn. False otherwise.
      */
     public boolean drawFaceUp(int player, int card){
-        if(currentPlayer != player)
+        if(currentPlayer != player || routeCardsDrawn > 0)
             return false;
 
         if(publicCards[card].getName().equals("Rainbow Train")) {
@@ -96,13 +100,27 @@ public class TTR_GameState extends GameState{
      * @return successful completion of draw
      */
     public boolean drawRouteCards(int player){
-        if (currentPlayer != player || cardsDrawn != 0)
+        if (currentPlayer != player || cardsDrawn != 0 || routeCardsDrawn>0)
             return false;
-        
+        for (int i=0; i<3; i++)
+            routeCards[i] = routeDeck.draw();
+        return true;
+    }
+
+    public boolean discardRouteCard(int player, int idx){
+        if (currentPlayer != player || cardsDrawn != 0 || routeCardsDrawn<2)
+            return false;
+        routeDeck.discard(routeCards[idx]);
+        routeCards[idx] = null;
+        return true;
     }
 
     public void endTurn(){
+        if(routeCardsDrawn>0)
+
         currentPlayer = (currentPlayer+1)%hands.size();
+        routeCards = new Card[3];
+        cardsDrawn = 0;
     }
 
     @Override
