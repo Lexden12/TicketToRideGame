@@ -1,4 +1,4 @@
-package ttr.up.edu.tickettoridegame;
+package ttr.up.edu.tickettoride;
 
 import org.junit.Test;
 

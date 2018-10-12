@@ -3,6 +3,19 @@ package ttr.up.edu.tickettoride;
 import static ttr.up.edu.tickettoride.BoardRoute.Color.Black;
 import static ttr.up.edu.tickettoride.BoardRoute.Color.White;
 
+/**
+ * class Board
+ *
+ * is a class to store all the routes which exist on a Ticket To Ride board.
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class Board {
     private BoardRoute[] boardRoutes;
 

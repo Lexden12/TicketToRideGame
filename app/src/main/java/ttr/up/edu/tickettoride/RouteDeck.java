@@ -1,7 +1,17 @@
 package ttr.up.edu.tickettoride;
 
-import android.content.Context;
-import android.graphics.BitmapFactory;
+/**
+ * class RouteDeck
+ *
+ * is a class to implement Deck for the Route Cards (default ctor creates the full deck of Route Cards)
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
 
 import java.util.Arrays;
 

@@ -1,5 +1,18 @@
 package ttr.up.edu.tickettoride;
 
+/**
+ * class RouteDeck
+ *
+ * is a class to implement Deck for the Train Cards (default ctor creates the full deck of Train Cards)
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class TrainDeck extends Deck {
 
     /**

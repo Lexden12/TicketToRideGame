@@ -5,6 +5,19 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
+/**
+ * class TrainPieceButton
+ *
+ * is a class to handle route claiming clicks.
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class TrainPieceButton {
 
     Point topLeft;

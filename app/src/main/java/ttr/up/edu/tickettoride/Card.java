@@ -1,8 +1,17 @@
 package ttr.up.edu.tickettoride;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
+/**
+ * class Card
+ *
+ * is a class to represent a card (either train or route)
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
 
 public class Card {
     private String name;

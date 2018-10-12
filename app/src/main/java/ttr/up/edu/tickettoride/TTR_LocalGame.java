@@ -1,10 +1,21 @@
 package ttr.up.edu.tickettoride;
 
-import ttr.up.edu.game.GameComputerPlayer;
-import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GamePlayer;
 import ttr.up.edu.game.LocalGame;
 import ttr.up.edu.game.actionMsg.GameAction;
+
+/**
+ * class TTR_LocalGame
+ *
+ * is a class to extend LocalGame to implement a playable action-based game in the future.
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
 
 public class TTR_LocalGame extends LocalGame {
 

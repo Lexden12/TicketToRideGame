@@ -4,6 +4,19 @@ import java.util.ArrayList;
 
 import ttr.up.edu.game.infoMsg.GameState;
 
+/**
+ * class TTR_GameState
+ *
+ * is a class to extend GameState to store the current state of the Ticket To Ride Game.
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class TTR_GameState extends GameState{
 
 

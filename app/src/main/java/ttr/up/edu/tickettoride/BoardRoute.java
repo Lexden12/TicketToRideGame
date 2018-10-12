@@ -1,5 +1,18 @@
 package ttr.up.edu.tickettoride;
 
+/**
+ * class BoardRoute
+ *
+ * is a class to represent a route on the board.
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class BoardRoute {
     public enum City{
         Vancouver,

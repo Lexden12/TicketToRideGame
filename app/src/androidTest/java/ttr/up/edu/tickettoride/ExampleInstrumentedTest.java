@@ -1,4 +1,4 @@
-package ttr.up.edu.tickettoridegame;
+package ttr.up.edu.tickettoride;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

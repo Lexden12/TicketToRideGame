@@ -28,7 +28,7 @@ import ttr.up.edu.game.config.GameConfig;
 import ttr.up.edu.game.config.GamePlayerType;
 import ttr.up.edu.game.util.IPCoder;
 import ttr.up.edu.game.util.MessageBox;
-import ttr.up.edu.tickettoridegame.R;
+import ttr.up.edu.tickettoride.R;
 
 /**
  * class GameMainActivity

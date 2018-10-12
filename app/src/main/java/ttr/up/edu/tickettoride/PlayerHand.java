@@ -2,6 +2,19 @@ package ttr.up.edu.tickettoride;
 
 import java.util.ArrayList;
 
+/**
+ * class PlayerHand
+ *
+ * is a class to represent a player's cards, containing both trainCards and routeCards
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
+
 public class PlayerHand {
     private ArrayList<Card> trainCards;
     private ArrayList<Card> routeCards;

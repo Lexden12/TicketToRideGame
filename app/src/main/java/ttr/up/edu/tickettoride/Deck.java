@@ -1,6 +1,17 @@
 package ttr.up.edu.tickettoride;
 
-import android.graphics.Canvas;
+/**
+ * class Deck
+ *
+ * is a class to store all the cards in a particular deck (either train or route)
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
 
 import java.util.ArrayList;
 
