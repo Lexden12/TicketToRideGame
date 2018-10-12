@@ -72,7 +72,7 @@ public class TTR_GameState extends GameState{
      */
     public boolean drawFaceUp(int player, int card){
         //modified here
-        if(currentPlayer != player || numRouteCardsDrawn > 2)
+        if(currentPlayer != player || numRouteCardsDrawn > 0)
             return false;
 
         if(faceUpTrainCards[card].getName().equals("Rainbow Train")) {
@@ -92,9 +92,11 @@ public class TTR_GameState extends GameState{
 
     public void endTurn(){
         if(numRouteCardsDrawn>0)
-
-            currentPlayer = (currentPlayer+1)% playerHands.size();
+            for (Card c:routeCards)
+                playerHands.get(currentPlayer).addRouteCards(c);
+        currentPlayer = (currentPlayer+1)% playerHands.size();
         routeCards = new Card[3];
+        numRouteCardsDrawn = 0;
         numTrainCardsDrawn = 0;
     }
 
@@ -124,6 +126,14 @@ public class TTR_GameState extends GameState{
             return false;
         for (int i=0; i<3; i++)
             routeCards[i] = routeDeck.draw();
+        return true;
+    }
+
+    public boolean discardRouteCard(int player, int idx){
+        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn<2)
+            return false;
+        routeDeck.discard(routeCards[idx]);
+        routeCards[idx] = null;
         return true;
     }
 
