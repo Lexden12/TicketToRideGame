@@ -1,11 +1,14 @@
 package ttr.up.edu.tickettoride;
 
+import static ttr.up.edu.tickettoride.BoardRoute.Color.Black;
+import static ttr.up.edu.tickettoride.BoardRoute.Color.White;
+
 public class Board {
     private BoardRoute[] boardRoutes;
 
     public Board(){
-        boardRoutes = new BoardRoute[]{new BoardRoute(BoardRoute.City.Vancouver, BoardRoute.City.Calgary, false),
-            new BoardRoute(BoardRoute.City.Calgary, BoardRoute.City.Winnipeg, false),
+        boardRoutes = new BoardRoute[]{new BoardRoute(BoardRoute.City.Vancouver, BoardRoute.City.Calgary, White, false),
+            new BoardRoute(BoardRoute.City.Calgary, BoardRoute.City.Winnipeg, Black, false),
         };/*TO-DO Finish adding all the boardRoutes.*/
     }
 

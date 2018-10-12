@@ -23,7 +23,6 @@ import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import ttr.up.edu.game.config.GameConfig;
 import ttr.up.edu.game.config.GamePlayerType;
