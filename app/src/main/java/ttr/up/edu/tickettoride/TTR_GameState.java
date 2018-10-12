@@ -63,6 +63,70 @@ public class TTR_GameState extends GameState{
         currentPlayer = state.currentPlayer;
     }
 
+    /**
+     * Methods to perform actions
+     * Draws a card from the public, face up cards
+     * @param player id of the player who is performing the action
+     * @param card card the player is drawing
+     * @return true if valid and completed turn. False otherwise.
+     */
+    public boolean drawFaceUp(int player, int card){
+        //modified here
+        if(currentPlayer != player || numRouteCardsDrawn > 2)
+            return false;
+
+        if(faceUpTrainCards[card].getName().equals("Rainbow Train")) {
+            if (numTrainCardsDrawn == 1)
+                return false;
+            numTrainCardsDrawn += 2;
+        }
+        else
+            numTrainCardsDrawn++;
+        playerHands.get(player).addTrainCards(faceUpTrainCards[card]);
+        faceUpTrainCards[card] = trainDeck.draw();
+        if(numTrainCardsDrawn == 2) {
+            endTurn();
+        }
+        return true;
+    }
+
+    public void endTurn(){
+        if(numRouteCardsDrawn>0)
+
+            currentPlayer = (currentPlayer+1)% playerHands.size();
+        routeCards = new Card[3];
+        numTrainCardsDrawn = 0;
+    }
+
+    /**
+     * Draw from the deck
+     * @param player player that is drawing from the deck
+     * @return successful completion of the draw
+     */
+    public boolean drawDeck(int player){
+        if(currentPlayer != player)
+            return false;
+        numTrainCardsDrawn++;
+        playerHands.get(player).addTrainCards(trainDeck.draw());
+        if(numTrainCardsDrawn == 2){
+            endTurn();
+        }
+        return true;
+    }
+
+    /**
+     * Pick new route cards
+     * @param player player drawing route cards
+     * @return successful completion of draw
+     */
+    public boolean drawRouteCards(int player){
+        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
+            return false;
+        for (int i=0; i<3; i++)
+            routeCards[i] = routeDeck.draw();
+        return true;
+    }
+
     public TrainDeck getTrainDeck() {
         return trainDeck;
     }

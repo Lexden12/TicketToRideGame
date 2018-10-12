@@ -14,48 +14,7 @@ public class TTR_LocalGame extends LocalGame {
         gameState = new TTR_GameState();
     }
 
-    /**
-     * Methods to perform actions
-     * Draws a card from the public, face up cards
-     * @param player id of the player who is performing the action
-     * @param card card the player is drawing
-     * @return true if valid and completed turn. False otherwise.
-     */
-    public boolean drawFaceUp(int player, int card){
-        //modified here
-        if(gameState.getCurrentPlayer() != player || gameState.numRouteCardsDrawn > 2)
-            return false;
 
-        if(faceupTrainCards[card].getName().equals("Rainbow Train")) {
-            if (numTrainCardsDrawn == 1)
-                return false;
-            numTrainCardsDrawn += 2;
-        }
-        else
-            numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(faceupTrainCards[card]);
-        faceupTrainCards[card] = trainDeck.draw();
-        if(numTrainCardsDrawn == 2) {
-            endTurn();
-        }
-        return true;
-    }
-
-    /**
-     * Draw from the deck
-     * @param player player that is drawing from the deck
-     * @return successful completion of the draw
-     */
-    public boolean drawDeck(int player){
-        if(currentPlayer != player)
-            return false;
-        numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(trainDeck.draw());
-        if(numTrainCardsDrawn == 2){
-            endTurn();
-        }
-        return true;
-    }
 
     /**
      * Pick new route cards
@@ -78,13 +37,7 @@ public class TTR_LocalGame extends LocalGame {
         return true;
     }
 
-    public void endTurn(){
-        if(numRouteCardsDrawn>0)
 
-            currentPlayer = (currentPlayer+1)% playerHands.size();
-        routeCards = new Card[3];
-        numTrainCardsDrawn = 0;
-    }
 
     @Override
     public String toString() {
@@ -120,26 +73,25 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       if (action instanceof DrawTrainFaceUpGameAction) return drawFaceUp(action);
+       if (action instanceof DrawTrainFaceUpGameAction) return drawTrainFaceUp(action);
        else if (action instanceof DrawTrainDeckGameAction) return false;
        else if (action instanceof DrawRouteDeckGameAction) return false;
        else return false;
 
     }
 
-    private boolean drawFaceUp(GameAction action){
+    private boolean drawTrainFaceUp(GameAction action){
 
+        DrawTrainFaceUpGameAction drawAction = (DrawTrainFaceUpGameAction) action;
 
         //check if current player can move
         if (!canMove(getPlayerIdx(action.getPlayer()))) return false;
 
-        if (gameState.getCurrentPlayer() != playerNum)
-            return false;
 
-        if(faceupTrainCards[card].getName().equals("Rainbow Train")) {
+        if(faceupTrainCards[drawAction.getCard()].getName().equals("Rainbow Train")) {
             if (numTrainCardsDrawn == 1)
                 return false;
-            numTrainCardsDrawn += 2;
+            numTrainCardsDrawn += 1;
         }
         else
             numTrainCardsDrawn++;
