@@ -21,6 +21,7 @@ public class TTR_LocalGame extends LocalGame {
      * @param player player drawing route cards
      * @return successful completion of draw
      */
+    /*
     public boolean drawRouteCards(int player){
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
             return false;
@@ -36,11 +37,12 @@ public class TTR_LocalGame extends LocalGame {
         routeCards[idx] = null;
         return true;
     }
-
+    */
 
 
     @Override
     public String toString() {
+        /*
         StringBuilder out = new StringBuilder();
         out.append("Train Deck: \n");
         out.append(trainDeck.toString());
@@ -53,6 +55,9 @@ public class TTR_LocalGame extends LocalGame {
         out.append(board.toString());
         out.append("Current player: "+ currentPlayer + "\n");
         return out.toString();
+        */
+        String str = "";
+        return str;
     }
 
     @Override
@@ -73,14 +78,15 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       if (action instanceof DrawTrainFaceUpGameAction) return drawTrainFaceUp(action);
+       /*if (action instanceof DrawTrainFaceUpGameAction) return drawTrainFaceUp(action);
        else if (action instanceof DrawTrainDeckGameAction) return false;
        else if (action instanceof DrawRouteDeckGameAction) return false;
-       else return false;
+       else return false;*/
+       return false;
 
     }
 
-    private boolean drawTrainFaceUp(GameAction action){
+    /*private boolean drawTrainFaceUp(GameAction action){
 
         DrawTrainFaceUpGameAction drawAction = (DrawTrainFaceUpGameAction) action;
 
@@ -110,5 +116,5 @@ public class TTR_LocalGame extends LocalGame {
         } else {
             gameState.setCurrentPlayer(gameState.getCurrentPlayer()+1);
         }
-    }
+    }*/
 }
