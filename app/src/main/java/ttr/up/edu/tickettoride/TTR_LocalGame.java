@@ -1,5 +1,7 @@
 package ttr.up.edu.tickettoride;
 
+import ttr.up.edu.game.GameComputerPlayer;
+import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GamePlayer;
 import ttr.up.edu.game.LocalGame;
 import ttr.up.edu.game.actionMsg.GameAction;
@@ -118,31 +120,43 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       if (action instanceof DrawTrainFaceUpGameAction){
+       if (action instanceof DrawTrainFaceUpGameAction) return drawFaceUp(action);
+       else if (action instanceof DrawTrainDeckGameAction) return false;
+       else if (action instanceof DrawRouteDeckGameAction) return false;
+       else return false;
 
-           if(gameState.getCurrentPlayer() != action.getPlayer() || gameState.numRouteCardsDrawn > 2)
-               return false;
+    }
 
-           if(faceupTrainCards[card].getName().equals("Rainbow Train")) {
-               if (numTrainCardsDrawn == 1)
-                   return false;
-               numTrainCardsDrawn += 2;
-           }
-           else
-               numTrainCardsDrawn++;
-           playerHands.get(player).addTrainCards(faceupTrainCards[card]);
-           faceupTrainCards[card] = trainDeck.draw();
-           if(numTrainCardsDrawn == 2) {
-               endTurn();
-           }
-           return true;
+    private boolean drawFaceUp(GameAction action){
 
-       } else if (action instanceof DrawTrainDeckGameAction){
 
-       } else if (action instanceof DrawRouteDeckGameAction){
+        //check if current player can move
+        if (!canMove(getPlayerIdx(action.getPlayer()))) return false;
 
-       }
+        if (gameState.getCurrentPlayer() != playerNum)
+            return false;
 
-       return false;
+        if(faceupTrainCards[card].getName().equals("Rainbow Train")) {
+            if (numTrainCardsDrawn == 1)
+                return false;
+            numTrainCardsDrawn += 2;
+        }
+        else
+            numTrainCardsDrawn++;
+        playerHands.get(player).addTrainCards(faceupTrainCards[card]);
+        faceupTrainCards[card] = trainDeck.draw();
+        if(numTrainCardsDrawn == 2) {
+            endTurn();
+        }
+        return true;
+    }
+
+
+    private void nextTurn(){
+        if (gameState.getCurrentPlayer() >= gameState.getPlayerHands().size()){
+            gameState.setCurrentPlayer(0);
+        } else {
+            gameState.setCurrentPlayer(gameState.getCurrentPlayer()+1);
+        }
     }
 }
