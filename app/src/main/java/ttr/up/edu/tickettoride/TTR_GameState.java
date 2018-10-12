@@ -9,7 +9,7 @@ public class TTR_GameState extends GameState{
 
     //cards and trains available for use
     private TrainDeck trainDeck;
-    private Card[] faceupTrainCards;
+    private Card[] faceUpTrainCards;
     private RouteDeck routeDeck;
     private TrainPieceStash trainPieceStash;
     private Board board;
@@ -20,7 +20,7 @@ public class TTR_GameState extends GameState{
     //turn specific information
     private int currentPlayer;
 
-    private boolean drawTrainCardsFaceup;
+    private boolean drawTrainCardsFaceUp;
     private int numTrainCardsDrawn;
 
     private Card[] routeCards;
@@ -31,9 +31,9 @@ public class TTR_GameState extends GameState{
      */
     public TTR_GameState(){
         trainDeck = new TrainDeck();
-        faceupTrainCards = new Card[5];
+        faceUpTrainCards = new Card[5];
         for(int i=0; i<5; i++){
-            faceupTrainCards[i] = trainDeck.draw();
+            faceUpTrainCards[i] = trainDeck.draw();
         }
         routeDeck = new RouteDeck();
         playerHands = new ArrayList<PlayerHand>();
@@ -43,7 +43,7 @@ public class TTR_GameState extends GameState{
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
         routeCards = new Card[3];
-        drawTrainCardsFaceup = false;
+        drawTrainCardsFaceUp = false;
     }
 
     /**
@@ -63,91 +63,91 @@ public class TTR_GameState extends GameState{
         currentPlayer = state.currentPlayer;
     }
 
-    /**
-     * Methods to perform actions
-     * Draws a card from the public, face up cards
-     * @param player id of the player who is performing the action
-     * @param card card the player is drawing
-     * @return true if valid and completed turn. False otherwise.
-     */
-    public boolean drawFaceUp(int player, int card){
-        //modified here
-        if(currentPlayer != player || numRouteCardsDrawn > 2)
-            return false;
-
-        if(faceupTrainCards[card].getName().equals("Rainbow Train")) {
-            if (numTrainCardsDrawn == 1)
-                return false;
-            numTrainCardsDrawn += 2;
-        }
-        else
-            numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(faceupTrainCards[card]);
-        faceupTrainCards[card] = trainDeck.draw();
-        if(numTrainCardsDrawn == 2) {
-            endTurn();
-        }
-        return true;
+    public TrainDeck getTrainDeck() {
+        return trainDeck;
     }
 
-    /**
-     * Draw from the deck
-     * @param player player that is drawing from the deck
-     * @return successful completion of the draw
-     */
-    public boolean drawDeck(int player){
-        if(currentPlayer != player)
-            return false;
-        numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(trainDeck.draw());
-        if(numTrainCardsDrawn == 2){
-            endTurn();
-        }
-        return true;
+    public void setTrainDeck(TrainDeck trainDeck) {
+        this.trainDeck = trainDeck;
     }
 
-    /**
-     * Pick new route cards
-     * @param player player drawing route cards
-     * @return successful completion of draw
-     */
-    public boolean drawRouteCards(int player){
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
-            return false;
-        for (int i=0; i<3; i++)
-            routeCards[i] = routeDeck.draw();
-        return true;
+    public Card[] getFaceUpTrainCards() {
+        return faceUpTrainCards;
     }
 
-    public boolean discardRouteCard(int player, int idx){
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn<2)
-            return false;
-        routeDeck.discard(routeCards[idx]);
-        routeCards[idx] = null;
-        return true;
+    public void setFaceUpTrainCards(Card[] faceUpTrainCards) {
+        this.faceUpTrainCards = faceUpTrainCards;
     }
 
-    public void endTurn(){
-        if(numRouteCardsDrawn>0)
-
-        currentPlayer = (currentPlayer+1)% playerHands.size();
-        routeCards = new Card[3];
-        numTrainCardsDrawn = 0;
+    public RouteDeck getRouteDeck() {
+        return routeDeck;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder out = new StringBuilder();
-        out.append("Train Deck: \n");
-        out.append(trainDeck.toString());
-        out.append("BoardRoute Deck: \n");
-        for (int i = 0; i< playerHands.size(); i++) {
-            out.append("PlayerHand "+i+": ");
-            out.append(playerHands.toString());
-        }
-        out.append("Board: \n");
-        out.append(board.toString());
-        out.append("Current player: "+ currentPlayer + "\n");
-        return out.toString();
+    public void setRouteDeck(RouteDeck routeDeck) {
+        this.routeDeck = routeDeck;
+    }
+
+    public TrainPieceStash getTrainPieceStash() {
+        return trainPieceStash;
+    }
+
+    public void setTrainPieceStash(TrainPieceStash trainPieceStash) {
+        this.trainPieceStash = trainPieceStash;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public ArrayList<PlayerHand> getPlayerHands() {
+        return playerHands;
+    }
+
+    public void setPlayerHands(ArrayList<PlayerHand> playerHands) {
+        this.playerHands = playerHands;
+    }
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public boolean isDrawTrainCardsFaceup() {
+        return drawTrainCardsFaceUp;
+    }
+
+    public void setDrawTrainCardsFaceUp(boolean drawTrainCardsFaceUp) {
+        this.drawTrainCardsFaceUp = drawTrainCardsFaceUp;
+    }
+
+    public int getNumTrainCardsDrawn() {
+        return numTrainCardsDrawn;
+    }
+
+    public void setNumTrainCardsDrawn(int numTrainCardsDrawn) {
+        this.numTrainCardsDrawn = numTrainCardsDrawn;
+    }
+
+    public Card[] getRouteCards() {
+        return routeCards;
+    }
+
+    public void setRouteCards(Card[] routeCards) {
+        this.routeCards = routeCards;
+    }
+
+    public int getNumRouteCardsDrawn() {
+        return numRouteCardsDrawn;
+    }
+
+    public void setNumRouteCardsDrawn(int numRouteCardsDrawn) {
+        this.numRouteCardsDrawn = numRouteCardsDrawn;
     }
 }
