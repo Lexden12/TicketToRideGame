@@ -3,6 +3,8 @@ package ttr.up.edu.tickettoride;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
@@ -49,6 +51,8 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
 
         // Load the layout resource for the new configuration
         activity.setContentView(layoutId);
+        View v = myActivity.findViewById(R.id.runTestButton);
+        v.setOnClickListener((View.OnClickListener)myActivity);
     }
 
     public int getPlayerNum(){

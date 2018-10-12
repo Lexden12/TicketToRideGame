@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class PlayerHand {
     private ArrayList<Card> trainCards;
     private ArrayList<Card> routeCards;
+    //Add score and train pieces to store all player accessible data here.
 
     /**
      * Create a new PlayerHand with an arraylist to keep track of the trainCards in our hand

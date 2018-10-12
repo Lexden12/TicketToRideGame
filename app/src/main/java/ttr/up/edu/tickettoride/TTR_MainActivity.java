@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -30,13 +29,11 @@ import ttr.up.edu.game.config.GamePlayerType;
 public class TTR_MainActivity extends GameMainActivity {
 
     public static final int PORT_NUMBER = 5213;
-    EditText editText;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-
-
     }
 
     @Override
@@ -73,9 +70,7 @@ public class TTR_MainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        editText = findViewById(R.id.editText);
         return new TTR_LocalGame();
-
     }
 
     public void onClick(View button) { //connect to RunTest button

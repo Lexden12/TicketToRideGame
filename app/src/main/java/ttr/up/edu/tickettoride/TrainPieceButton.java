@@ -27,6 +27,7 @@ public class TrainPieceButton {
     Color color;
     boolean highlight;
     boolean visible;
+    //need to store if the route is claimed on board
 
     public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color trainColor){
         this.topLeft = topLeft;
