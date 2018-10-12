@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 
 import java.util.Arrays;
 
-public class RouteDeck extends Deck {
+public class RouteDeck extends Deck implements Cloneable{
 
     /**
      * Create a new Route Card Deck with all thirty destination cards.
@@ -46,5 +46,10 @@ public class RouteDeck extends Deck {
         };
         cards.addAll(Arrays.asList(routeCards));
         shuffle();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
-public abstract class Deck {
+public abstract class Deck implements Cloneable{
     protected ArrayList<Card> cards = new ArrayList<>();
     protected ArrayList<Card> discard = new ArrayList<>();
 
@@ -48,5 +48,10 @@ public abstract class Deck {
      */
     public void discard(ArrayList<Card> cards){
         discard.addAll(cards);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -3,7 +3,7 @@ package ttr.up.edu.tickettoride;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 
-public class TrainDeck extends Deck {
+public class TrainDeck extends Deck implements Cloneable{
 
     /**
      * create a new Train Card Deck with the proper amounts of each type of card
@@ -25,5 +25,10 @@ public class TrainDeck extends Deck {
         for (int i = 0; i < 14; i++)
             cards.add(new Card(trainCards[8]));//add the rainbow cards
         shuffle();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
