@@ -40,7 +40,6 @@ public class RouteDeck extends Deck {
             new Card("Calgary - Salt Lake City")
         };
         cards.addAll(Arrays.asList(routeCards));
-        shuffle();
     }
 
     public RouteDeck(RouteDeck deck) {

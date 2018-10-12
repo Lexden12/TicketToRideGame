@@ -1,7 +1,5 @@
 package ttr.up.edu.tickettoride;
 
-import java.util.ArrayList;
-
 public class TrainDeck extends Deck {
 
     /**
@@ -22,7 +20,6 @@ public class TrainDeck extends Deck {
                 cards.add(new Card(trainCards[i]));//add the regular cards
         for (int i = 0; i < 14; i++)
             cards.add(new Card(trainCards[8]));//add the rainbow cards
-        shuffle();
     }
 
     public TrainDeck(TrainDeck deck) {
