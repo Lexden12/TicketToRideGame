@@ -1,29 +1,27 @@
 package ttr.up.edu.tickettoride;
 
-import android.graphics.Canvas;
-
 import java.util.ArrayList;
 
-public class Hand {
+public class PlayerHand {
     private ArrayList<Card> trainCards;
     private ArrayList<Card> routeCards;
 
     /**
-     * Create a new Hand with an arraylist to keep track of the trainCards in our hand
+     * Create a new PlayerHand with an arraylist to keep track of the trainCards in our hand
      * and the routecards in our hand
      */
-    public Hand(){
+    public PlayerHand(){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
     }
 
-    public Hand clone(){
-        Hand hand = new Hand();
+    public PlayerHand clone(){
+        PlayerHand playerHand = new PlayerHand();
         for(Card c:trainCards)
-            hand.addTrainCards(c.clone());
+            playerHand.addTrainCards(c.clone());
         for(Card c:routeCards)
-            hand.addRouteCards(c.clone());
-        return hand;
+            playerHand.addRouteCards(c.clone());
+        return playerHand;
     }
 
     public ArrayList<Card> getRouteCards() {
@@ -131,7 +129,7 @@ public class Hand {
         out.append("Train Cards: ");
         for (Card c:trainCards)
             out.append(c.getName()+", ");
-        out.append("Route Cards: ");
+        out.append("BoardRoute Cards: ");
         for (Card c:routeCards)
             out.append(c.getName()+", ");
         out.append("\n");

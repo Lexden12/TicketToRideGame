@@ -1,5 +1,7 @@
 package ttr.up.edu.game.infoMsg;
 
+import ttr.up.edu.game.util.GameTimer;
+
 /**
  * The a message from to a player (typically sent by a timer) that the timer's
  * clock has "ticked".

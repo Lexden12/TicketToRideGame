@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-public class TrainButton {
+public class TrainPieceButton {
 
     Point topLeft;
     Point topRight;
@@ -15,7 +15,7 @@ public class TrainButton {
     boolean highlight;
     boolean visible;
 
-    public TrainButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color trainColor){
+    public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color trainColor){
         this.topLeft = topLeft;
         this.topRight = topRight;
         this.bottomLeft = bottomLeft;

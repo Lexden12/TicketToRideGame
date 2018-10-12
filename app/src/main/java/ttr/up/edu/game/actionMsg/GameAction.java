@@ -2,7 +2,7 @@ package ttr.up.edu.game.actionMsg;
 
 import java.io.Serializable;
 
-import edu.up.cs301.game.GamePlayer;
+import ttr.up.edu.game.GamePlayer;
 
 /**
  * An action for a generic game.  A game action is something that a player

@@ -1,16 +1,16 @@
 package ttr.up.edu.game;
 
-import edu.up.cs301.game.actionMsg.GameOverAckAction;
-import edu.up.cs301.game.actionMsg.MyNameIsAction;
-import edu.up.cs301.game.actionMsg.ReadyAction;
-import edu.up.cs301.game.infoMsg.BindGameInfo;
-import edu.up.cs301.game.infoMsg.GameInfo;
-import edu.up.cs301.game.infoMsg.GameOverInfo;
-import edu.up.cs301.game.infoMsg.StartGameInfo;
-import edu.up.cs301.game.infoMsg.TimerInfo;
-import edu.up.cs301.game.util.GameTimer;
-import edu.up.cs301.game.util.MessageBox;
-import edu.up.cs301.game.util.Tickable;
+import ttr.up.edu.game.actionMsg.GameOverAckAction;
+import ttr.up.edu.game.actionMsg.MyNameIsAction;
+import ttr.up.edu.game.actionMsg.ReadyAction;
+import ttr.up.edu.game.infoMsg.BindGameInfo;
+import ttr.up.edu.game.infoMsg.GameInfo;
+import ttr.up.edu.game.infoMsg.GameOverInfo;
+import ttr.up.edu.game.infoMsg.StartGameInfo;
+import ttr.up.edu.game.infoMsg.TimerInfo;
+import ttr.up.edu.game.util.GameTimer;
+import ttr.up.edu.game.util.MessageBox;
+import ttr.up.edu.game.util.Tickable;
 import ttr.up.edu.game.Game;
 import ttr.up.edu.game.GameMainActivity;
 
@@ -26,7 +26,7 @@ import android.os.Looper;
  * @author Andrew Nuxoll
  * @version July 2013
  */
-public abstract class GameComputerPlayer implements edu.up.cs301.game.GamePlayer, Tickable {
+public abstract class GameComputerPlayer implements ttr.up.edu.game.GamePlayer, Tickable {
 	/**
 	 * the current game state
 	 */

@@ -1,17 +1,17 @@
 package ttr.up.edu.game;
 
-import edu.up.cs301.game.actionMsg.GameAction;
-import edu.up.cs301.game.actionMsg.GameOverAckAction;
-import edu.up.cs301.game.actionMsg.MyNameIsAction;
-import edu.up.cs301.game.actionMsg.ReadyAction;
-import edu.up.cs301.game.actionMsg.TimerAction;
-import edu.up.cs301.game.infoMsg.BindGameInfo;
-import edu.up.cs301.game.infoMsg.GameOverInfo;
-import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
-import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
-import edu.up.cs301.game.infoMsg.StartGameInfo;
-import edu.up.cs301.game.util.GameTimer;
-import edu.up.cs301.game.util.Tickable;
+import ttr.up.edu.game.actionMsg.GameAction;
+import ttr.up.edu.game.actionMsg.GameOverAckAction;
+import ttr.up.edu.game.actionMsg.MyNameIsAction;
+import ttr.up.edu.game.actionMsg.ReadyAction;
+import ttr.up.edu.game.actionMsg.TimerAction;
+import ttr.up.edu.game.infoMsg.BindGameInfo;
+import ttr.up.edu.game.infoMsg.GameOverInfo;
+import ttr.up.edu.game.infoMsg.IllegalMoveInfo;
+import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
+import ttr.up.edu.game.infoMsg.StartGameInfo;
+import ttr.up.edu.game.util.GameTimer;
+import ttr.up.edu.game.util.Tickable;
 
 import android.os.Handler;
 import android.os.Looper;

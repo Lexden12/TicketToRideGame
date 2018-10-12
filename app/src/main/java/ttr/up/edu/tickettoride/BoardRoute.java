@@ -1,6 +1,6 @@
 package ttr.up.edu.tickettoride;
 
-public class Route {
+public class BoardRoute {
     public enum City{
         Vancouver,
         Calgary,
@@ -56,7 +56,7 @@ public class Route {
     private boolean isDual;
     private int player;
 
-    public Route(City c1, City c2, Color c, boolean dual){
+    public BoardRoute(City c1, City c2, Color c, boolean dual){
             city1 = c1;
             city2 = c2;
             color = c;
@@ -64,10 +64,10 @@ public class Route {
             player = 0;
     }
 
-    public Route clone(){
-        Route route = new Route(getCity1(), getCity2(), getColor(), isDual());
-        route.setPlayer(getPlayer());
-        return route;
+    public BoardRoute clone(){
+        BoardRoute boardRoute = new BoardRoute(getCity1(), getCity2(), getColor(), isDual());
+        boardRoute.setPlayer(getPlayer());
+        return boardRoute;
     }
 
     public City getCity1() {

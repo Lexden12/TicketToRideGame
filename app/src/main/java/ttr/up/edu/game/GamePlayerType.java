@@ -1,7 +1,7 @@
 package ttr.up.edu.game;
 
-import edu.up.cs301.game.GamePlayer;
-import edu.up.cs301.game.config.*;
+import ttr.up.edu.game.GamePlayer;
+import ttr.up.edu.game.config.*;
 
 /**
  * class GamePlayerType
@@ -12,7 +12,7 @@ import edu.up.cs301.game.config.*;
  * 
  * @author Andrew Nuxoll
  * @version July 2012
- * @see edu.up.cs301.game.config.GameConfig
+ * @see ttr.up.edu.game.config.GameConfig
  */
 
 public abstract class GamePlayerType implements Cloneable /*, Serializable*/ {

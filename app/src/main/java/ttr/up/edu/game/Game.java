@@ -1,6 +1,6 @@
 package ttr.up.edu.game;
 
-import edu.up.cs301.game.actionMsg.GameAction;
+import ttr.up.edu.game.actionMsg.GameAction;
 
 /**
  * To support remote play, this game framework has two types of Games: local

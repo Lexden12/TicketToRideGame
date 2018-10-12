@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class RouteDeck extends Deck {
 
     /**
-     * Create a new Route Card Deck with all thirty destination cards.
+     * Create a new BoardRoute Card Deck with all thirty destination cards.
      */
     public RouteDeck() {
         Card[] routeCards = {

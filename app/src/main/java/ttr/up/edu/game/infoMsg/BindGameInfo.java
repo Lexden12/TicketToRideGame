@@ -1,6 +1,6 @@
 package ttr.up.edu.game.infoMsg;
 
-import edu.up.cs301.game.Game;
+import ttr.up.edu.game.Game;
 
 /**
  * A message from the game to a player that tells the player:
@@ -10,7 +10,7 @@ import edu.up.cs301.game.Game;
  * @author Steven R. Vegdahl 
  * @version July 2013
  */
-public class BindGameInfo extends edu.up.cs301.game.infoMsg.GameInfo {
+public class BindGameInfo extends ttr.up.edu.game.infoMsg.GameInfo {
 	
 	// to satisfy the Serializable interface
 	private static final long serialVersionUID = 8819385408185187694L;
