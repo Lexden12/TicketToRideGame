@@ -95,7 +95,7 @@ public class TTR_MainActivity extends GameMainActivity implements View.OnClickLi
             }
 
 
-
+            //////test game state actions
             if (firstInstance.drawFaceUp(0, 3)) {
                 editText.append("\nPlayer 0 drew the third face-up card");
             }
