@@ -11,6 +11,7 @@ import ttr.up.edu.game.infoMsg.TimerInfo;
 import ttr.up.edu.game.util.GameTimer;
 import ttr.up.edu.game.util.MessageBox;
 import ttr.up.edu.game.util.Tickable;
+import ttr.up.edu.tickettoride.TTR_MainActivity;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -40,7 +41,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	protected String name; // my player's name
 	protected String[] allPlayerNames; // the names of all the player
 	private Handler myHandler; // my thread's handler
-	private GameMainActivity myActivity; // the current activity
+	private TTR_MainActivity myActivity; // the current activity
 	private GameTimer myTimer = new GameTimer(this); // my player's timer
 	private boolean gameOver; // whether the game is over
 
@@ -109,7 +110,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	 */
 	public final void gameSetAsGui(GameMainActivity a) {
 
-			myActivity = a;
+			myActivity = (TTR_MainActivity) a;
 			setAsGui(a);
 
 	}

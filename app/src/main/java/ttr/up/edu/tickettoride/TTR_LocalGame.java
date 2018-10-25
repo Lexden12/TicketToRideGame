@@ -21,7 +21,8 @@ public class TTR_LocalGame extends LocalGame {
 
     TTR_GameState gameState;
 
-    public TTR_LocalGame() {
+    public TTR_LocalGame()  {
+        super();
         gameState = new TTR_GameState();
     }
 

@@ -22,10 +22,11 @@ public class Board {
     public Board(){
         boardRoutes = new BoardRoute[]{new BoardRoute(BoardRoute.City.Vancouver, BoardRoute.City.Calgary, White, false),
             new BoardRoute(BoardRoute.City.Calgary, BoardRoute.City.Winnipeg, Black, false),
-        };/*TO-DO Finish adding all the boardRoutes.*/
+        };/*todo Finish adding all the boardRoutes.*/
     }
 
     public Board(Board board){
+        boardRoutes = new BoardRoute[board.boardRoutes.length];
         for(int i = 0; i<board.boardRoutes.length; i++)
             boardRoutes[i] = board.boardRoutes[i].clone();
     }

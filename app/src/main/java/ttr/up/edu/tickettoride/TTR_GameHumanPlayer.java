@@ -23,7 +23,7 @@ import ttr.up.edu.game.infoMsg.GameInfo;
  *
  */
 
-public class TTR_GameHumanPlayer extends GameHumanPlayer {
+public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClickListener{
 
     private Activity myActivity;
 
@@ -52,10 +52,15 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
         // Load the layout resource for the new configuration
         activity.setContentView(layoutId);
         View v = myActivity.findViewById(R.id.runTestButton);
-        v.setOnClickListener((View.OnClickListener)myActivity);
+        v.setOnClickListener(activity);
     }
 
     public int getPlayerNum(){
         return this.playerNum;
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

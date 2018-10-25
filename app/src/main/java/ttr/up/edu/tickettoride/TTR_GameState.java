@@ -50,6 +50,7 @@ public class TTR_GameState extends GameState{
         }
         routeDeck = new RouteDeck();
         playerHands = new ArrayList<PlayerHand>();
+        for (int i=0; i<4; i++) playerHands.add(new PlayerHand());
         trainPieceStash = new TrainPieceStash();
         board = new Board();
         currentPlayer = 0;
@@ -65,15 +66,15 @@ public class TTR_GameState extends GameState{
      * @throws CloneNotSupportedException if it cannot copy the ArrayList of playerHands
      */
     public TTR_GameState(TTR_GameState state) throws CloneNotSupportedException {
-        trainDeck = new TrainDeck(state.trainDeck);
-        routeDeck = new RouteDeck(state.routeDeck);
+        trainDeck = new TrainDeck(state.getTrainDeck());
+        routeDeck = new RouteDeck(state.getRouteDeck());
         playerHands = new ArrayList<>();
-        for(PlayerHand h: state.playerHands)
+        for(PlayerHand h: state.getPlayerHands())
             playerHands.add(h.clone());
         trainPieceStash = new TrainPieceStash();
-        board = new Board(state.board);
+        board = new Board(state.getBoard());
 
-        currentPlayer = state.currentPlayer;
+        currentPlayer = state.getCurrentPlayer();
     }
 
     /**
@@ -98,12 +99,14 @@ public class TTR_GameState extends GameState{
         playerHands.get(player).addTrainCards(faceUpTrainCards[card]);
         faceUpTrainCards[card] = trainDeck.draw();
         if(numTrainCardsDrawn == 2) {
-            endTurn();
+            endTurn(player);
         }
         return true;
     }
 
-    public void endTurn(){
+    public boolean endTurn(int player){
+        if (currentPlayer != player) return false;
+
         if(numRouteCardsDrawn>0)
             for (Card c:routeCards)
                 playerHands.get(currentPlayer).addRouteCards(c);
@@ -111,6 +114,7 @@ public class TTR_GameState extends GameState{
         routeCards = new Card[3];
         numRouteCardsDrawn = 0;
         numTrainCardsDrawn = 0;
+        return true;
     }
 
     /**
@@ -124,7 +128,7 @@ public class TTR_GameState extends GameState{
         numTrainCardsDrawn++;
         playerHands.get(player).addTrainCards(trainDeck.draw());
         if(numTrainCardsDrawn == 2){
-            endTurn();
+            endTurn(player);
         }
         return true;
     }
@@ -150,6 +154,7 @@ public class TTR_GameState extends GameState{
         return true;
     }
 
+    /*getters and setters*/
     public TrainDeck getTrainDeck() {
         return trainDeck;
     }

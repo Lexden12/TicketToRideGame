@@ -1,9 +1,8 @@
 package ttr.up.edu.tickettoride;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -26,15 +25,10 @@ import ttr.up.edu.game.config.GamePlayerType;
  *
  */
 
-public class TTR_MainActivity extends GameMainActivity {
+public class TTR_MainActivity extends GameMainActivity implements View.OnClickListener{
 
     public static final int PORT_NUMBER = 5213;
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-    }
+    EditText editText;
 
     @Override
     public ttr.up.edu.game.config.GameConfig createDefaultConfig() {
@@ -44,7 +38,7 @@ public class TTR_MainActivity extends GameMainActivity {
 
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
-                return new TTR_GameHumanPlayer(name, R.layout.activity_main);
+                return new TTR_GameHumanPlayer(name, R.layout.human_player_display);
             }
         });
         playerTypes.add(new GamePlayerType("Local Computer Player") {
@@ -59,7 +53,7 @@ public class TTR_MainActivity extends GameMainActivity {
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0); // yellow-on-blue GUI
-        defaultConfig.addPlayer("Computer", 3); // dumb computer player
+        defaultConfig.addPlayer("Computer", 1); // dumb computer player
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Remote Player", "", 1); // red-on-yellow GUI
@@ -73,8 +67,11 @@ public class TTR_MainActivity extends GameMainActivity {
         return new TTR_LocalGame();
     }
 
+    @Override
     public void onClick(View button) { //connect to RunTest button
         super.onClick(button);
+        editText = (EditText) findViewById(R.id.testText);
+
         if(button.getId() == R.id.runTestButton) {
             editText.setText("");
             TTR_GameState firstInstance = new TTR_GameState();
@@ -98,28 +95,50 @@ public class TTR_MainActivity extends GameMainActivity {
             }
 
 
-            /////instructions say to add to existing text rather than replace
-            /////which EditText method does that?
 
-            firstInstance.drawFaceUp(0, 3);
-            editText.setText(editText.getText() + "Player 0 drew the third face-up card");
+            if (firstInstance.drawFaceUp(0, 3)) {
+                editText.append("\nPlayer 0 drew the third face-up card");
+            }
+            else{
+                editText.append("\nNOT: Player 0 drew the third face-up card");
+            }
 
-            firstInstance.drawDeck(0);
-            editText.setText(editText.getText() + "Player 0 drew from the random deck");
+            if (firstInstance.drawDeck(0)) {
+                editText.append("\nPlayer 0 drew from the random deck");
+            }
+            else{
+                editText.append("\nNOT: Player 0 drew from the random deck");
+            }
 
-            firstInstance.drawFaceUp(0, 1);
-            editText.setText(editText.getText() + "Player 0 is trying to draw the first face-up card.");
+            if (firstInstance.drawFaceUp(0, 1)) {
+                editText.append("\nPlayer 0 is trying to draw the first face-up card.");
+            }
+            else{
+                editText.append("\nNOT: Player 0 is trying to draw the first face-up card.");
+            }
 
-            firstInstance.drawRouteCards(1);
-            editText.setText(editText.getText() + "Player 1 drew 3 route cards");
+            if (firstInstance.drawRouteCards(1)) {
+                editText.append("\nPlayer 1 drew 3 route cards");
+            }
+            else{
+                editText.append("\nNOT: Player 1 drew 3 route cards");
+            }
 
-            firstInstance.discardRouteCard(1, 1);
-            editText.setText(editText.getText() + "Player 1 discarded the second route card");
+            if (firstInstance.discardRouteCard(1, 1)) {
+                editText.append("\nPlayer 1 discarded the second route card");
+            }
+            else{
+                editText.append("\nNOT: Player 1 discarded the second route card");
+            }
 
-            firstInstance.endTurn();
-            editText.setText(editText.getText() + "Player 1 has confirmed their route cards.");
+            if (firstInstance.endTurn(1)) {
+                editText.append("\nPlayer 1 has confirmed their route cards.");
+            }
+            else{
+                editText.append("\nNOT: Player 1 has confirmed their route cards.");
+            }
 
-            assert secondInstance.toString().equals(fourthInstance.toString());
+            //assert secondInstance.toString().equals(fourthInstance.toString());
         }
     }
 }

@@ -25,7 +25,7 @@ public class Card {
     }
 
     public Card clone(){
-        Card c = new Card(getName().substring(0));
+        Card c = new Card(getName());
         return c;
     }
 
