@@ -42,14 +42,16 @@ public class TTR_GameState extends GameState{
     /**
      * Default GameState ctor
      */
-    public TTR_GameState(){
+    public TTR_GameState(int numPlayers){
         trainDeck = new TrainDeck();
         faceUpTrainCards = new Card[5];
         for(int i=0; i<5; i++){
             faceUpTrainCards[i] = trainDeck.draw();
         }
         routeDeck = new RouteDeck();
-        playerHands = new ArrayList<PlayerHand>();
+        playerHands = new ArrayList<>();
+        for(int i=0;i<numPlayers;i++)
+            playerHands.add(new PlayerHand());
         trainPieceStash = new TrainPieceStash();
         board = new Board();
         currentPlayer = 0;
@@ -66,6 +68,9 @@ public class TTR_GameState extends GameState{
      */
     public TTR_GameState(TTR_GameState state) throws CloneNotSupportedException {
         trainDeck = new TrainDeck(state.trainDeck);
+        faceUpTrainCards = new Card[5];
+        for(int i=0;i<5;i++)
+            faceUpTrainCards[i] = state.faceUpTrainCards[i];
         routeDeck = new RouteDeck(state.routeDeck);
         playerHands = new ArrayList<>();
         for(PlayerHand h: state.playerHands)
@@ -83,24 +88,25 @@ public class TTR_GameState extends GameState{
      * @param card card the player is drawing
      * @return true if valid and completed turn. False otherwise.
      */
-    public boolean drawFaceUp(int player, int card){
+    public Card drawFaceUp(int player, int card){
         //modified here
         if(currentPlayer != player || numRouteCardsDrawn > 0)
-            return false;
+            return null;
 
         if(faceUpTrainCards[card].getName().equals("Rainbow Train")) {
             if (numTrainCardsDrawn == 1)
-                return false;
+                return null;
             numTrainCardsDrawn += 2;
         }
         else
             numTrainCardsDrawn++;
         playerHands.get(player).addTrainCards(faceUpTrainCards[card]);
+        Card c = faceUpTrainCards[card];
         faceUpTrainCards[card] = trainDeck.draw();
         if(numTrainCardsDrawn == 2) {
             endTurn();
         }
-        return true;
+        return c;
     }
 
     public void endTurn(){
@@ -118,15 +124,16 @@ public class TTR_GameState extends GameState{
      * @param player player that is drawing from the deck
      * @return successful completion of the draw
      */
-    public boolean drawDeck(int player){
+    public Card drawDeck(int player){
         if(currentPlayer != player)
-            return false;
+            return null;
         numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(trainDeck.draw());
+        Card c = trainDeck.draw();
+        playerHands.get(player).addTrainCards(c);
         if(numTrainCardsDrawn == 2){
             endTurn();
         }
-        return true;
+        return c;
     }
 
     /**
@@ -134,20 +141,26 @@ public class TTR_GameState extends GameState{
      * @param player player drawing route cards
      * @return successful completion of draw
      */
-    public boolean drawRouteCards(int player){
+    public Card[] drawRouteCards(int player){
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
-            return false;
+            return null;
         for (int i=0; i<3; i++)
             routeCards[i] = routeDeck.draw();
-        return true;
+        return routeCards;
     }
 
-    public boolean discardRouteCard(int player, int idx){
+    public Card discardRouteCard(int player, int idx){
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn<2)
-            return false;
+            return null;
         routeDeck.discard(routeCards[idx]);
+        Card c = new Card(routeCards[idx]);
         routeCards[idx] = null;
-        return true;
+        return c;
+    }
+
+    public void shuffle(){
+        trainDeck.shuffle();
+        routeDeck.shuffle();
     }
 
     public TrainDeck getTrainDeck() {
@@ -236,5 +249,27 @@ public class TTR_GameState extends GameState{
 
     public void setNumRouteCardsDrawn(int numRouteCardsDrawn) {
         this.numRouteCardsDrawn = numRouteCardsDrawn;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TrainDeck:\n");
+        sb.append(trainDeck.toString());
+        sb.append("FaceUp Cards:\n");
+        for(Card c:faceUpTrainCards)
+            sb.append(c.getName()+", ");
+        sb.append("\nRoute Deck:\n");
+        sb.append(routeDeck.toString());
+        sb.append("Board:\n");
+        sb.append(board.toString());
+        sb.append("Player Hand:\n");
+        for(PlayerHand hand:playerHands)
+            sb.append(hand.toString());
+        sb.append("Current Player: "+currentPlayer);
+        sb.append("\nNumber of Train Cards Drawn this turn: "+numTrainCardsDrawn);
+        sb.append("\nNumber of Route Cards drawn this turn: "+numRouteCardsDrawn);
+        sb.append("\n");
+        return sb.toString();
     }
 }

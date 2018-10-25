@@ -26,6 +26,7 @@ public class Board {
     }
 
     public Board(Board board){
+        boardRoutes = new BoardRoute[board.boardRoutes.length];
         for(int i = 0; i<board.boardRoutes.length; i++)
             boardRoutes[i] = board.boardRoutes[i].clone();
     }

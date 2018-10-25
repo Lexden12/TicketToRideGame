@@ -143,7 +143,8 @@ public class PlayerHand {
         out.append("Train Cards: ");
         for (Card c:trainCards)
             out.append(c.getName()+", ");
-        out.append("BoardRoute Cards: ");
+        out.append("\n");
+        out.append("Route Cards: ");
         for (Card c:routeCards)
             out.append(c.getName()+", ");
         out.append("\n");

@@ -20,12 +20,17 @@ import ttr.up.edu.game.actionMsg.GameAction;
 public class TTR_LocalGame extends LocalGame {
 
     TTR_GameState gameState;
+    int numPlayers;
 
     public TTR_LocalGame() {
-        gameState = new TTR_GameState();
+        //gameState = new TTR_GameState(players.length);
     }
 
-
+    @Override
+    public void start(GamePlayer[] players) {
+        numPlayers = players.length;
+        super.start(players);
+    }
 
     /**
      * Pick new route cards

@@ -25,6 +25,8 @@ public abstract class Deck {
     }
 
     public Deck(Deck deck) {
+        cards = new ArrayList<>();
+        discard = new ArrayList<>();
         for(Card c:deck.cards)
             cards.add(c.clone());
         for(Card c:deck.discard)
