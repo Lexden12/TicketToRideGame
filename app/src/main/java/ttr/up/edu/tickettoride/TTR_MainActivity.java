@@ -50,6 +50,7 @@ public class TTR_MainActivity extends GameMainActivity {
                 return new TTR_GameHumanPlayer(name, R.layout.activity_main);
             }
         });
+
         playerTypes.add(new GamePlayerType("Local Computer Player") {
             public GamePlayer createPlayer(String name) {
                 return new TTR_GameComputerPlayer(name);
