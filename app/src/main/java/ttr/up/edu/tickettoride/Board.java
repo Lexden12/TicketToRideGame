@@ -16,6 +16,8 @@ import static ttr.up.edu.tickettoride.BoardRoute.Color.White;
  *
  */
 
+
+//todo remove this class as boardroutes are unnecessary (all the encoding needed is in TrainPieceButton)
 public class Board {
     private BoardRoute[] boardRoutes;
 

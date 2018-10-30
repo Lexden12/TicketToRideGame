@@ -94,7 +94,7 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       /*if (action instanceof DrawTrainFaceUpGameAction) return drawTrainFaceUp(action);
+       /*if (action instanceof DrawTrainDeckFaceUpGameAction) return drawTrainFaceUp(action);
        else if (action instanceof DrawTrainDeckGameAction) return false;
        else if (action instanceof DrawRouteDeckGameAction) return false;
        else return false;*/
@@ -104,7 +104,7 @@ public class TTR_LocalGame extends LocalGame {
 
     /*private boolean drawTrainFaceUp(GameAction action){
 
-        DrawTrainFaceUpGameAction drawAction = (DrawTrainFaceUpGameAction) action;
+        DrawTrainDeckFaceUpGameAction drawAction = (DrawTrainDeckFaceUpGameAction) action;
 
         //check if current player can move
         if (!canMove(getPlayerIdx(action.getPlayer()))) return false;

@@ -77,6 +77,7 @@ public class BoardRoute {
             player = 0;
     }
 
+    //todo update clone type
     public BoardRoute clone(){
         BoardRoute boardRoute = new BoardRoute(getCity1(), getCity2(), getColor(), isDual());
         boardRoute.setPlayer(getPlayer());

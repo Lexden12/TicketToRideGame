@@ -100,7 +100,7 @@ public class TTR_GameState extends GameState{
         }
         else
             numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(faceUpTrainCards[card]);
+        playerHands.get(player).addTrainCard(faceUpTrainCards[card]);
         Card c = faceUpTrainCards[card];
         faceUpTrainCards[card] = trainDeck.draw();
         if(numTrainCardsDrawn == 2) {
@@ -112,7 +112,7 @@ public class TTR_GameState extends GameState{
     public void endTurn(){
         if(numRouteCardsDrawn>0)
             for (Card c:routeCards)
-                playerHands.get(currentPlayer).addRouteCards(c);
+                playerHands.get(currentPlayer).addRouteCard(c);
         currentPlayer = (currentPlayer+1)% playerHands.size();
         routeCards = new Card[3];
         numRouteCardsDrawn = 0;
@@ -129,7 +129,7 @@ public class TTR_GameState extends GameState{
             return null;
         numTrainCardsDrawn++;
         Card c = trainDeck.draw();
-        playerHands.get(player).addTrainCards(c);
+        playerHands.get(player).addTrainCard(c);
         if(numTrainCardsDrawn == 2){
             endTurn();
         }

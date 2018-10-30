@@ -29,12 +29,13 @@ public class PlayerHand {
         routeCards = new ArrayList<>();
     }
 
+    //todo either change this to constructor format or change other classes to use clone method format
     public PlayerHand clone(){
         PlayerHand playerHand = new PlayerHand();
         for(Card c:trainCards)
-            playerHand.addTrainCards(c.clone());
+            playerHand.addTrainCard(c.clone());
         for(Card c:routeCards)
-            playerHand.addRouteCards(c.clone());
+            playerHand.addRouteCard(c.clone());
         return playerHand;
     }
 
@@ -58,7 +59,7 @@ public class PlayerHand {
      * In the event that we draw a train card, this will add the cards to our hand
      * @param card the arraylist of cards to add to our hand
      */
-    public void addTrainCards(Card card){
+    public void addTrainCard(Card card){
         trainCards.add(card);
     }
 
@@ -66,7 +67,7 @@ public class PlayerHand {
      * In the event that we draw a route card, this will add the cards to our hand
      * @param card the arraylist of cards to add to our hand
      */
-    public void addRouteCards(Card card){
+    public void addRouteCard(Card card){
         routeCards.add(card);
     }
 

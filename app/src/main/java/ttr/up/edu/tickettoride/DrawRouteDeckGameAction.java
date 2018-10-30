@@ -25,4 +25,7 @@ public class DrawRouteDeckGameAction extends GameAction {
     public DrawRouteDeckGameAction(GamePlayer player) {
         super(player);
     }
+
+    //todo implement discard functionality
+    //todo gameover action
 }

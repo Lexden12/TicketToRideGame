@@ -48,6 +48,7 @@ public abstract class Deck {
      * @param j index of the card to switch with the first card
      * @param list list containing the cards we want to swap
      */
+    //todo modify so arraylist doesn't need to be passed; access instance variable
     public void swap(int i, int j, ArrayList<Card> list){
         Card c = list.get(i);
         list.set(i, list.get(j));

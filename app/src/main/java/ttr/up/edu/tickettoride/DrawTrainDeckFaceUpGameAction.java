@@ -4,7 +4,7 @@ import ttr.up.edu.game.GamePlayer;
 import ttr.up.edu.game.actionMsg.GameAction;
 
 /**
- * class DrawTrainFaceUpGameAction
+ * class DrawTrainDeckFaceUpGameAction
  *
  * is a class to represent a player drawing from the face up train cards (unimplemented)
  *
@@ -16,7 +16,7 @@ import ttr.up.edu.game.actionMsg.GameAction;
  *
  */
 
-public class DrawTrainFaceUpGameAction extends GameAction {
+public class DrawTrainDeckFaceUpGameAction extends GameAction {
 
     private int card;
 
@@ -25,7 +25,7 @@ public class DrawTrainFaceUpGameAction extends GameAction {
      *
      * @param player the player who created the action
      */
-    public DrawTrainFaceUpGameAction(GamePlayer player, int card) {
+    public DrawTrainDeckFaceUpGameAction(GamePlayer player, int card) {
         super(player);
         this.card = card;
     }

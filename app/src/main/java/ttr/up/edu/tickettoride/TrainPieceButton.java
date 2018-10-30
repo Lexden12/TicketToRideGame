@@ -20,13 +20,15 @@ import android.graphics.Point;
 
 public class TrainPieceButton {
 
-    Point topLeft;
-    Point topRight;
-    Point bottomLeft;
-    Point bottomRight;
-    Color color;
-    boolean highlight;
-    boolean visible;
+    //todo finish update instance variable usage
+    protected Point topLeft;
+    protected Point topRight;
+    protected Point bottomLeft;
+    protected Point bottomRight;
+    protected Color color;
+    protected boolean selected;
+    protected boolean visible;
+    protected BoardRoute route;
     //need to store if the route is claimed on board
 
     public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color trainColor){
@@ -38,16 +40,21 @@ public class TrainPieceButton {
         this.visible = true;
     }
 
-    public void drawTrain(Canvas canvas){
+    //todo remove after implementation complete
+    /*public void drawTrain(Canvas canvas){
 
-    }
+    }*/
 
-    public boolean isClicked(int c1, int c2, int c3, int c4){
+    public boolean checkClicked(Point c1, Point c2, Point c3, Point c4){
         return false;
     }
 
-    public void setHighlight(boolean highlight){
-        this.highlight = highlight;
+    public void setSelected(boolean selected){
+        this.selected = selected;
+    }
+
+    public boolean getSelected(){
+        return this.selected;
     }
 
     public void draw(Canvas c){
