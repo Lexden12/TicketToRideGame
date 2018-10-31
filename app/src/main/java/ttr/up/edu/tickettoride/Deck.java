@@ -60,6 +60,10 @@ public abstract class Deck {
      * @return the list of the cards that were drawn
      */
     public Card draw(){
+        if(cards.size()==0) {
+            cards.addAll(discard);
+            discard.clear();
+        }
         return cards.remove(cards.size()-1);
     }
 

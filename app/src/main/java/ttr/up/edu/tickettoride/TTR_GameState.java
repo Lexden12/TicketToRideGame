@@ -33,11 +33,11 @@ public class TTR_GameState extends GameState{
     //turn specific information
     private int currentPlayer;
 
-    private boolean drawTrainCardsFaceUp;
     private int numTrainCardsDrawn;
 
-    private Card[] routeCards;
     private int numRouteCardsDrawn;
+
+    private Card[] routeCards;
 
     /**
      * Default GameState ctor
@@ -58,7 +58,6 @@ public class TTR_GameState extends GameState{
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
         routeCards = new Card[3];
-        drawTrainCardsFaceUp = false;
     }
 
     /**
@@ -142,10 +141,11 @@ public class TTR_GameState extends GameState{
      * @return successful completion of draw
      */
     public Card[] drawRouteCards(int player){
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
+        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return null;
         for (int i=0; i<3; i++)
             routeCards[i] = routeDeck.draw();
+        numRouteCardsDrawn = 3;
         return routeCards;
     }
 
@@ -153,6 +153,7 @@ public class TTR_GameState extends GameState{
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn<2)
             return null;
         routeDeck.discard(routeCards[idx]);
+        numRouteCardsDrawn--;
         Card c = new Card(routeCards[idx]);
         routeCards[idx] = null;
         return c;
@@ -217,14 +218,6 @@ public class TTR_GameState extends GameState{
 
     public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public boolean isDrawTrainCardsFaceup() {
-        return drawTrainCardsFaceUp;
-    }
-
-    public void setDrawTrainCardsFaceUp(boolean drawTrainCardsFaceUp) {
-        this.drawTrainCardsFaceUp = drawTrainCardsFaceUp;
     }
 
     public int getNumTrainCardsDrawn() {
