@@ -38,7 +38,7 @@ public abstract class Deck {
      */
     public void shuffle(){
         for(int i=0; i<cards.size()-1; i++){
-            swap(i, (int)(Math.random()*(cards.size()-i)+i), cards);
+            swap(i, (int)(Math.random()*(cards.size()-i)+i));
         }
     }
 
@@ -46,13 +46,11 @@ public abstract class Deck {
      * swaps the positions of two cards (used for shuffling)
      * @param i index of the first card
      * @param j index of the card to switch with the first card
-     * @param list list containing the cards we want to swap
      */
-    //todo modify so arraylist doesn't need to be passed; access instance variable
-    public void swap(int i, int j, ArrayList<Card> list){
-        Card c = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, c);
+    private void swap(int i, int j){
+        Card c = cards.get(i);
+        cards.set(i, cards.get(j));
+        cards.set(j, c);
     }
 
     /**
@@ -61,8 +59,11 @@ public abstract class Deck {
      */
     public Card draw(){
         if(cards.size()==0) {
+            if(discard.size()==0)
+                return null;//no cards left in deck
             cards.addAll(discard);
             discard.clear();
+            shuffle();
         }
         return cards.remove(cards.size()-1);
     }
