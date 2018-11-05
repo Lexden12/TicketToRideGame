@@ -159,11 +159,6 @@ public class TTR_GameState extends GameState{
         return c;
     }
 
-    public void shuffle(){
-        trainDeck.shuffle();
-        routeDeck.shuffle();
-    }
-
     public TrainDeck getTrainDeck() {
         return trainDeck;
     }

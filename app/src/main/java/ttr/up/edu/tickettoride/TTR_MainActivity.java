@@ -103,8 +103,6 @@ public class TTR_MainActivity extends GameMainActivity {
                 e.printStackTrace();
             }
 
-
-            firstInstance.shuffle();
             Card c = firstInstance.drawFaceUp(0, 3);
             if(c == null)
                 editText.append("Player 0 attempted to draw the fourth face-up"

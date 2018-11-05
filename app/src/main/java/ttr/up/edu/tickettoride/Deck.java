@@ -22,6 +22,7 @@ public abstract class Deck {
     public Deck(){
         cards = new ArrayList<>();
         discard = new ArrayList<>();
+        shuffle();
     }
 
     public Deck(Deck deck) {
@@ -31,6 +32,7 @@ public abstract class Deck {
             cards.add(c.clone());
         for(Card c:deck.discard)
             cards.add(c.clone());
+        shuffle();
     }
 
     /**
