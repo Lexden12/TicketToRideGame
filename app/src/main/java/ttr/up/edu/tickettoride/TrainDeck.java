@@ -22,6 +22,7 @@ public class TrainDeck extends Deck {
      * create a new Train Card Deck with the proper amounts of each type of card
      */
     public TrainDeck(Context context){
+        this.context = context;
         Card[] trainCards = {new Card("Black Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.black_card)),
                 new Card("Blue Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.blue_card)),
                 new Card("Green Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.green_card)),
@@ -36,6 +37,7 @@ public class TrainDeck extends Deck {
                 cards.add(new Card(trainCards[i]));//add the regular cards
         for (int i = 0; i < 14; i++)
             cards.add(new Card(trainCards[8]));//add the rainbow cards
+        shuffle();
     }
 
     public TrainDeck(TrainDeck deck) {

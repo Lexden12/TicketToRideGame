@@ -28,6 +28,7 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
             TTR_GameState state = (TTR_GameState)info;
             if(!(state.getCurrentPlayer()==getPlayerNum()))
                 return;
+            sleep(500);
             game.sendAction(new DrawTrainDeckGameAction(this));
         }
     }

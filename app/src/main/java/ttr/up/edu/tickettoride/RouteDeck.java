@@ -54,6 +54,7 @@ public class RouteDeck extends Deck {
             new Card("Calgary - Salt Lake City", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest26))
         };
         cards.addAll(Arrays.asList(routeCards));
+        shuffle();
     }
 
     public RouteDeck(RouteDeck deck) {

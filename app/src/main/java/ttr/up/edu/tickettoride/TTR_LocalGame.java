@@ -41,29 +41,6 @@ public class TTR_LocalGame extends LocalGame {
         super.start(players);
     }
 
-    /**
-     * Pick new route cards
-     * @param //player player drawing route cards
-     * @return successful completion of draw
-     */
-    /*
-    public boolean drawRouteCards(int player){
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn>0)
-            return false;
-        for (int i=0; i<3; i++)
-            routeCards[i] = routeDeck.draw();
-        return true;
-    }
-
-    public boolean discardRouteCard(int player, int idx){
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn<2)
-            return false;
-        routeDeck.discard(routeCards[idx]);
-        routeCards[idx] = null;
-        return true;
-    }
-    */
-
 
     @Override
     public String toString() {
@@ -110,36 +87,4 @@ public class TTR_LocalGame extends LocalGame {
        return true;
 
     }
-
-    /*private boolean drawTrainFaceUp(GameAction action){
-
-        DrawTrainDeckFaceUpGameAction drawAction = (DrawTrainDeckFaceUpGameAction) action;
-
-        //check if current player can move
-        if (!canMove(getPlayerIdx(action.getPlayer()))) return false;
-
-
-        if(faceupTrainCards[drawAction.getCard()].getName().equals("Rainbow Train")) {
-            if (numTrainCardsDrawn == 1)
-                return false;
-            numTrainCardsDrawn += 1;
-        }
-        else
-            numTrainCardsDrawn++;
-        playerHands.get(player).addTrainCards(faceupTrainCards[card]);
-        faceupTrainCards[card] = trainDeck.draw();
-        if(numTrainCardsDrawn == 2) {
-            endTurn();
-        }
-        return true;
-    }
-
-
-    private void nextTurn(){
-        if (gameState.getCurrentPlayer() >= gameState.getPlayerHands().size()){
-            gameState.setCurrentPlayer(0);
-        } else {
-            gameState.setCurrentPlayer(gameState.getCurrentPlayer()+1);
-        }
-    }*/
 }

@@ -65,5 +65,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/dest_card_back" />
+
+        <TextView
+            android:id="@+id/trainCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Trains Remaining:"
+            android:textSize="20dp" />
     </LinearLayout>
 </LinearLayout>

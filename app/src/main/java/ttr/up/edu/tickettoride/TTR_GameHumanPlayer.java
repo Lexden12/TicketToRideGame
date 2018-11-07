@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
 import ttr.up.edu.game.infoMsg.GameInfo;
@@ -31,6 +33,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
 
     private int layoutId;
     private ImageButton[] draw;
+    private TextView trainCount;
     private TTR_SurfaceView surfaceView;
     private TTR_GameState state;
 
@@ -58,10 +61,16 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
         else {
             state = (TTR_GameState)info;
             for(int i=1;i<6;i++){
-                draw[i].setImageBitmap(state.faceUpTrainCards[i-1].getBmp());
+                if(state.faceUpTrainCards[i-1]!=null) {
+                    draw[i].setVisibility(View.VISIBLE);
+                    draw[i].setImageBitmap(state.faceUpTrainCards[i - 1].getBmp());
+                }
+                else
+                    draw[i].setVisibility(View.GONE);
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
+            trainCount.setText("Trains Remaining: "+45);
             Log.i("human player", "receiving");
         }
     }
@@ -88,6 +97,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             button.setOnClickListener(drawOnClick);
 
         surfaceView = myActivity.findViewById(R.id.surfaceView);
+        trainCount = myActivity.findViewById(R.id.trainCount);
     }
 
     public int getPlayerNum(){

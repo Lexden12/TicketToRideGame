@@ -38,7 +38,8 @@ public class Card {
      * @param c the card whose instance variables we will copy from
      */
     public Card(Card c){
-        this.name = c.name;
+        this.name = c.getName();
+        this.bmp = c.getBmp();
     }
 
     public String getName() {
