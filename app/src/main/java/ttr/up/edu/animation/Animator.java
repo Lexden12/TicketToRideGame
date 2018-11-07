@@ -26,12 +26,12 @@ public interface Animator {
 	public int interval();
 
 	/**
-	 * The background color with which to paint the canvas before the animation
+	 * The background routeColor with which to paint the canvas before the animation
 	 * frame is drawn. This method is called at each tick, so the background
-	 * color can change dynamically by having this method return different
+	 * routeColor can change dynamically by having this method return different
 	 * values.
 	 * 
-	 * @return the desired background color
+	 * @return the desired background routeColor
 	 */
 	public int backgroundColor();
 

@@ -393,7 +393,7 @@ View.OnClickListener {
 				}
 			}
 
-			// set up our spinner so that when its last element ("Network Player") is selected,
+			// set up our spinner so that when its last element ("Network Player") is pieceSelected,
 			// the corresponding EditText (the player name) is disabled.
 			typeSpinner.setOnItemSelectedListener(new SpinnerListListener(playerName, availTypes.length-1));
 			
@@ -742,7 +742,7 @@ View.OnClickListener {
 
 	/**
 	 * Helper-class so that we disable the name fields in the configuration
-	 * if the user has selected "Network player".
+	 * if the user has pieceSelected "Network player".
 	 */
 	private static class SpinnerListListener implements OnItemSelectedListener {
 		
@@ -766,7 +766,7 @@ View.OnClickListener {
 		}//constructor
 		
 		/**
-		 * callback method when an item is selected
+		 * callback method when an item is pieceSelected
 		 * 
 		 * @param parent
 		 *		the AdapterView where the selection happened
@@ -775,17 +775,17 @@ View.OnClickListener {
 		 * @param position
 		 *		the position in the spinner of the new selection
 		 * @param id
-		 *		the row id of the item that is selected
+		 *		the row id of the item that is pieceSelected
 		 */
 		public void onItemSelected(AdapterView<?> parent, View view, int position,
 				long id) {
 			// enable the corresponding TextView depending on whether the "disabling"
-			// position was selected
+			// position was pieceSelected
 			correspondingTextField.setEnabled(position != disableIndex);
 		}// onItemSelected
 		
 		/**
-		 * callback method when nothing is selected
+		 * callback method when nothing is pieceSelected
 		 * 
 		 * @param parent
 		 *		the AdapterView where the selection happened

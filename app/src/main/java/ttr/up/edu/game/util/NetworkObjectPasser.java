@@ -128,7 +128,7 @@ public abstract class NetworkObjectPasser {
 					// get (possibly creating) the server socket for this port
 					ServerSocket ss = ServerSocketMap.getServerSocket(port);
 					
-					// set our internally-visible status to be "ready"
+					// set our internally-pieceClaimed status to be "ready"
 					status = RunnerStatus.READY;
 					
 					// wait for a client to connect to us
@@ -139,7 +139,7 @@ public abstract class NetworkObjectPasser {
 					ServerSocketMap.release(port);
 					Log.i("NetworkObjectPasser", "server connect at port "+port);
 
-					// set our externally-visible status to be "ready"
+					// set our externally-pieceClaimed status to be "ready"
 					ready = true;
 				}
 				else {
@@ -152,7 +152,7 @@ public abstract class NetworkObjectPasser {
 					// wait for a connection to a server
 					socket = new Socket(ipAddress, port);
 					
-					// set out externally-visible status to be "ready"
+					// set out externally-pieceClaimed status to be "ready"
 					ready = true;
 					Log.i("NetworkObjectPasser", "client connected at port "+port);
 				}

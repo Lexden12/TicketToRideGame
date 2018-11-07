@@ -27,7 +27,7 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 	private AnimationThread animationThread = null; // thread to generate ticks
 	private Paint backgroundPaint = new Paint(); // painter for painting background
 	private int flashCount; // counts down ticks for background-flash
-	private Paint flashPaint; // has color for background flash
+	private Paint flashPaint; // has routeColor for background flash
 	
 	/**
 	 * Constructor for the AnimationSurface class. In order to be useful, an
@@ -87,7 +87,7 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 		this.animationThread = new AnimationThread(getHolder());
 		animationThread.start();
 
-		// Initialize the background color paint as instructed by the animator
+		// Initialize the background routeColor paint as instructed by the animator
 		backgroundPaint.setColor(animator.backgroundColor());
 	}
 	
@@ -118,9 +118,9 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 	}
 
 	/**
-	 * Causes the background color to flash (change color) for the specified amount of time.
+	 * Causes the background routeColor to flash (change routeColor) for the specified amount of time.
 	 * @param color
-	 * 			the color to flash
+	 * 			the routeColor to flash
 	 * @param millis
 	 * 			the number of milliseconds to flash
 	 */
@@ -169,14 +169,14 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 		 * of time.
 		 * 
 		 * @param color
-		 * 			the color to flash
+		 * 			the routeColor to flash
 		 * @param millis
 		 * 			the number of milliseconds for this the flash should occur
 		 */
 		public void flash(int color, int millis) {
 			flashCount = millis; // set the flash count
 			flashPaint = new Paint(); // create painter ...
-			flashPaint.setColor(color); // ... with the appropriate color
+			flashPaint.setColor(color); // ... with the appropriate routeColor
 		}
 
 		/**
@@ -217,7 +217,7 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 					if (canvas != null) {
 						// draw the background
 						if (flashCount > 0) {
-							// we are flashing: draw the "flash" color
+							// we are flashing: draw the "flash" routeColor
 							canvas.drawRect(0,0,getWidth(),getHeight(), flashPaint);
 							
 							// decrement the flash count by the number of milliseconds in
@@ -230,7 +230,7 @@ public class AnimationSurface extends SurfaceView implements OnTouchListener {
 							}
 						}
 						else {
-							// not flashing: draw the normal background color
+							// not flashing: draw the normal background routeColor
 							canvas.drawRect(0, 0, getWidth(), getHeight(), backgroundPaint);
 						}
 

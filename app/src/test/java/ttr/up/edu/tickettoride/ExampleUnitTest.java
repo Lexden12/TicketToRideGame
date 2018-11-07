@@ -2,6 +2,8 @@ package ttr.up.edu.tickettoride;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,4 +16,14 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void testAddTrainCard(){
+        PlayerHand hand = new PlayerHand();
+        assertTrue(0 == hand.getTrainCardsSize());
+
+        hand.addTrainCard(new Card("blue train"));
+        assertTrue(1 == hand.getTrainCardsSize());
+    }
+
 }

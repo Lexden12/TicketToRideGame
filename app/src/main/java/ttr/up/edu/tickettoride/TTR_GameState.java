@@ -25,7 +25,6 @@ public class TTR_GameState extends GameState{
     private Card[] faceUpTrainCards;
     private RouteDeck routeDeck;
     private TrainPieceStash trainPieceStash;
-    private Board board;
 
     //player specific information
     private ArrayList<PlayerHand> playerHands;
@@ -53,7 +52,6 @@ public class TTR_GameState extends GameState{
         for(int i=0;i<numPlayers;i++)
             playerHands.add(new PlayerHand());
         trainPieceStash = new TrainPieceStash();
-        board = new Board();
         currentPlayer = 0;
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
@@ -75,7 +73,7 @@ public class TTR_GameState extends GameState{
         for(PlayerHand h: state.playerHands)
             playerHands.add(h.clone());
         trainPieceStash = new TrainPieceStash();
-        board = new Board(state.board);
+        //board = new Board(state.board);
 
         currentPlayer = state.currentPlayer;
     }
@@ -191,13 +189,7 @@ public class TTR_GameState extends GameState{
         this.trainPieceStash = trainPieceStash;
     }
 
-    public Board getBoard() {
-        return board;
-    }
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
     public ArrayList<PlayerHand> getPlayerHands() {
         return playerHands;
@@ -249,8 +241,6 @@ public class TTR_GameState extends GameState{
             sb.append(c.getName()+", ");
         sb.append("\nRoute Deck:\n");
         sb.append(routeDeck.toString());
-        sb.append("Board:\n");
-        sb.append(board.toString());
         sb.append("Player Hand:\n");
         for(PlayerHand hand:playerHands)
             sb.append(hand.toString());

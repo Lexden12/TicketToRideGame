@@ -48,7 +48,7 @@ public class GameConfig {
 	private ArrayList<GamePlayerType> selTypes = new ArrayList<GamePlayerType>();
 	
 	/**
-	 * The player type selected in the remote player tab.
+	 * The player type pieceSelected in the remote player tab.
 	 */
 	private GamePlayerType remoteSelType;
 
@@ -228,7 +228,7 @@ public class GameConfig {
 	/**
 	 * Saves this configuration data in a file so that it can be later reused. The
 	 * format used is a sequence of serialized objects:
-	 * - a Boolean that denotes whether the "Local Game" tab was selected
+	 * - a Boolean that denotes whether the "Local Game" tab was pieceSelected
 	 * - the name of the remote player (String)
 	 * - the type of the remote player (String, which is the menu-text that denotes the type)
 	 * - the IP code for the remote player (String)
@@ -256,7 +256,7 @@ public class GameConfig {
 			FileOutputStream fos = activity.openFileOutput(fileName, Context.MODE_PRIVATE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
-			// write out whether the local or remote tab is selected
+			// write out whether the local or remote tab is pieceSelected
 			oos.writeObject(isLocal);
 
 			// write out player name, player type and IP code
@@ -533,7 +533,7 @@ public class GameConfig {
 	/**
 	 * @return
 	 * 		an array of GamePlayerType objects that correspond to whether
-	 * 		a local or remote game was selected
+	 * 		a local or remote game was pieceSelected
 	 * 
 	 */
 	public GamePlayerType[] getSelTypes() {

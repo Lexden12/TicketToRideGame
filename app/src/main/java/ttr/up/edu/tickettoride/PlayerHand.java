@@ -29,7 +29,6 @@ public class PlayerHand {
         routeCards = new ArrayList<>();
     }
 
-    //todo either change this to constructor format or change other classes to use clone method format
     public PlayerHand clone(){
         PlayerHand playerHand = new PlayerHand();
         for(Card c:trainCards)
@@ -71,6 +70,7 @@ public class PlayerHand {
         routeCards.add(card);
     }
 
+
     /**
      * When we claim a route, this method will discard our train cards.
      * @param name the name of the card we are using (ex: "Red Train")
@@ -98,7 +98,7 @@ public class PlayerHand {
     }
 
     /**
-     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by color
+     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by routeColor
      */
     public void sort() {
         for(int i = 0; i < trainCards.size(); i++){
@@ -152,5 +152,9 @@ public class PlayerHand {
         }
         out.append("\n");
         return out.toString();
+    }
+
+    public int getTrainCardsSize(){
+        return trainCards.size();
     }
 }

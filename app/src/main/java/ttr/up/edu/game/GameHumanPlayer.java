@@ -136,7 +136,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	 * will take precedence. 
 	 * 
 	 * @param color
-	 * 			the color to flash
+	 * 			the routeColor to flash
 	 * @param duration
 	 * 			the number of milliseconds the flash should last
 	 */
@@ -145,12 +145,12 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 		View top = this.getTopView();
 		if (top == null) return;
 		
-		// save the original background color; set the new background
-		// color
+		// save the original background routeColor; set the new background
+		// routeColor
 		int savedColor = getBackgroundColor(top);
 		top.setBackgroundColor(color);
 		
-		// set up a timer event to set the background color back to
+		// set up a timer event to set the background routeColor back to
 		// the original.
 		myHandler.postDelayed(new Unflasher(savedColor), duration);
 	}
@@ -161,7 +161,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	 */
 	private class Unflasher implements Runnable {
 		
-		// the original color
+		// the original routeColor
 		private int oldColor;
 		
 		// constructor
@@ -169,7 +169,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 			this.oldColor = oldColor;
 		}
 		
-		// method to run at the appropriate time: sets background color
+		// method to run at the appropriate time: sets background routeColor
 		// back to the original
 		public void run() {
 			View top = GameHumanPlayer.this.getTopView();
@@ -179,12 +179,12 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	}
 	
 	/**
-	 * helper-method to get the background color of a view
+	 * helper-method to get the background routeColor of a view
 	 * @param v
 	 * 			the view
 	 * @return
-	 * 			the (int representation) of the background color,
-	 * 			or "transparent" if the color could not be deduced
+	 * 			the (int representation) of the background routeColor,
+	 * 			or "transparent" if the routeColor could not be deduced
 	 */
 	private static int getBackgroundColor(View v) {
 		 int color = Color.TRANSPARENT;

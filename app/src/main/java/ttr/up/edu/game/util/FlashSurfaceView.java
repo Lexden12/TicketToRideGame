@@ -55,7 +55,7 @@ public class FlashSurfaceView extends SurfaceView {
     /**
      * Flashes the SurfaceView.
      *
-     * @param color color to flash
+     * @param color routeColor to flash
      * @param millis duration of flash, in milliseconds
      */
     public void flash(int color, int millis) {

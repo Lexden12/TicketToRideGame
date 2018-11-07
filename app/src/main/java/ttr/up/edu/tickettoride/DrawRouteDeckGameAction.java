@@ -22,10 +22,14 @@ public class DrawRouteDeckGameAction extends GameAction {
      *
      * @param player the player who created the action
      */
+    int discard[];
+
     public DrawRouteDeckGameAction(GamePlayer player) {
         super(player);
+        discard = new int[]{0, 0, 0};
     }
 
-    //todo implement discard functionality
-    //todo gameover action
+    public void setDiscard(int cardIndex){
+        discard[cardIndex] = 1;
+    }
 }

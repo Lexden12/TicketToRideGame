@@ -1,8 +1,6 @@
 package ttr.up.edu.tickettoride;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
 
 /**
@@ -19,50 +17,103 @@ import android.graphics.Point;
  */
 
 public class TrainPieceButton {
+    public enum City{
+        Vancouver,
+        Calgary,
+        Winnipeg,
+        Sault_St_Marie,
+        Montreal,
+        Boston,
+        Toronto,
+        Duluth,
+        Helena,
+        Seattle,
+        Portland,
+        Salt_Lake_City,
+        Denver,
+        Omaha,
+        Chicago,
+        Pittsburgh,
+        New_York,
+        Washington,
+        Raleigh,
+        Nashville,
+        Saint_Louis,
+        Kansas_City,
+        Little_Rock,
+        Oklahoma_City,
+        San_Francisco,
+        Los_Angeles,
+        Phoenix,
+        Las_Vegas,
+        Santa_Fe,
+        El_Paso,
+        Dallas,
+        Houston,
+        New_Orleans,
+        Atlanta,
+        Charleston,
+        Miami,
+        SEEID
+    }
 
-    //todo finish update instance variable usage
+    public enum Color{
+        BLACK,
+        BLUE,
+        RED,
+        GREEN,
+        YELLOW,
+        GRAY
+    }
+
     protected Point topLeft;
     protected Point topRight;
     protected Point bottomLeft;
     protected Point bottomRight;
-    protected Color color;
-    protected boolean selected;
-    protected boolean visible;
-    protected BoardRoute route;
-    //need to store if the route is claimed on board
 
-    public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color trainColor){
+    protected Color routeColor;
+    protected boolean pieceSelected;
+    protected boolean pieceClaimed;
+    private City city1, city2;
+    protected int routeID;
+    //need to store if the route is pieceClaimed on board
+
+    public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color color, City city1, City city2, int routeID) {
         this.topLeft = topLeft;
         this.topRight = topRight;
         this.bottomLeft = bottomLeft;
         this.bottomRight = bottomRight;
-        this.color = trainColor;
-        this.visible = true;
+        this.routeColor = color;
+        this.city1 = city1;
+        this.city2 = city2;
+        this.routeID = routeID;
+        this.pieceClaimed = false;
+        this.pieceSelected = false;
     }
 
-    //todo remove after implementation complete
-    /*public void drawTrain(Canvas canvas){
-
-    }*/
+    public TrainPieceButton(Point topLeft, Point topRight, Point bottomLeft, Point bottomRight, Color color, int routeID) {
+        this.topLeft = topLeft;
+        this.topRight = topRight;
+        this.bottomLeft = bottomLeft;
+        this.bottomRight = bottomRight;
+        this.routeColor = color;
+        this.city1 = City.SEEID;
+        this.city2 = City.SEEID;
+        this.routeID = routeID;
+        this.pieceClaimed = false;
+        this.pieceSelected = false;
+    }
 
     public boolean checkClicked(Point c1, Point c2, Point c3, Point c4){
         return false;
     }
 
-    public void setSelected(boolean selected){
-        this.selected = selected;
+    public void setPieceSelected(boolean pieceSelected){
+        this.pieceSelected = pieceSelected;
     }
 
-    public boolean getSelected(){
-        return this.selected;
+    public boolean getPieceSelected(){
+        return this.pieceSelected;
     }
 
-    public void draw(Canvas c){
-        Paint trainPaint = new Paint();
-        trainPaint.setColor(Color.GREEN); //temporary
-        c.drawLine(topLeft.x, topLeft.y, topRight.x, topRight.y, trainPaint);
-        c.drawLine(topLeft.x, topLeft.y, bottomLeft.x, bottomRight.y, trainPaint);
-        c.drawLine(bottomLeft.x, bottomLeft.y, bottomRight.x, bottomRight.y, trainPaint);
-        c.drawLine(bottomRight.x, bottomRight.y, topRight.x, topRight.y, trainPaint);
-    }
 }
