@@ -7,20 +7,64 @@
     android:orientation="vertical"
     tools:context=".TTR_MainActivity">
 
-    <EditText
-        android:id="@+id/testText"
+    <ttr.up.edu.tickettoride.TTR_SurfaceView
+        android:id="@+id/animationSurface"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_weight="1"
-        android:inputType="textMultiLine" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/runTestButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0"
-        android:text="Run Test" />
+        <ImageButton
+            android:id="@+id/trainDeck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/train_card_back" />
 
+        <ImageButton
+            android:id="@+id/card1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/black_card" />
+
+        <ImageButton
+            android:id="@+id/card2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/blue_card" />
+
+        <ImageButton
+            android:id="@+id/card3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/green_card" />
+
+        <ImageButton
+            android:id="@+id/card4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/orange_card" />
+
+        <ImageButton
+            android:id="@+id/card5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/purple_card" />
+
+        <ImageButton
+            android:id="@+id/routeDeck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/dest_card_back" />
+    </LinearLayout>
 </LinearLayout>

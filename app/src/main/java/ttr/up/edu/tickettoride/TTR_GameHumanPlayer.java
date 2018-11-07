@@ -51,8 +51,8 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // Load the layout resource for the new configuration
         activity.setContentView(layoutId);
-        View v = myActivity.findViewById(R.id.runTestButton);
-        v.setOnClickListener(activity);
+        /*View v = myActivity.findViewById(R.id.runTestButton);
+        v.setOnClickListener(activity);*/
     }
 
     public int getPlayerNum(){
