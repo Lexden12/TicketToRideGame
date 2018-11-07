@@ -24,7 +24,12 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
-
+        if (info instanceof TTR_GameState){
+            TTR_GameState state = (TTR_GameState)info;
+            if(!(state.getCurrentPlayer()==getPlayerNum()))
+                return;
+            game.sendAction(new DrawTrainDeckGameAction(this));
+        }
     }
 
     public int getPlayerNum(){

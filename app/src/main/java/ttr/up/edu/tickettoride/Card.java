@@ -1,5 +1,7 @@
 package ttr.up.edu.tickettoride;
 
+import android.graphics.Bitmap;
+
 /**
  * class Card
  *
@@ -15,17 +17,19 @@ package ttr.up.edu.tickettoride;
 
 public class Card {
     private String name;
+    private Bitmap bmp;
 
     /**
      * Construct a new Card from scratch
      * @param name the name of the card to be used when comparing cards
      */
-    public Card(String name){
+    public Card(String name, Bitmap bmp){
         this.name = name;
+        this.bmp = bmp;
     }
 
     public Card clone(){
-        Card c = new Card(getName());
+        Card c = new Card(getName(), getBmp());
         return c;
     }
 
@@ -39,5 +43,9 @@ public class Card {
 
     public String getName() {
         return name;
+    }
+
+    public Bitmap getBmp() {
+        return bmp;
     }
 }

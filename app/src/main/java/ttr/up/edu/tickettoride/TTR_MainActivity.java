@@ -30,7 +30,6 @@ import ttr.up.edu.game.config.GamePlayerType;
 public class TTR_MainActivity extends GameMainActivity {
 
     public static final int PORT_NUMBER = 5213;
-    EditText editText;
     TTR_LocalGame game;
 
 
@@ -74,13 +73,13 @@ public class TTR_MainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        game = new TTR_LocalGame();
+        game = new TTR_LocalGame(this);
         return game;
     }
 
     public void onClick(View button) { //connect to RunTest button
         super.onClick(button);
-        if(button.getId() == R.id.runTestButton) {
+        /*if(button.getId() == R.id.runTestButton) {
             int numPlayers = game.numPlayers;
             editText = findViewById(R.id.testText);
             editText.setText("");
@@ -158,6 +157,6 @@ public class TTR_MainActivity extends GameMainActivity {
             editText.append(second);
             editText.append("Fourth Instance:\n");
             editText.append(fourth);
-        }
+        }*/
     }
 }

@@ -1,14 +1,16 @@
 package ttr.up.edu.tickettoride;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
+import android.widget.ImageButton;
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
 import ttr.up.edu.game.infoMsg.GameInfo;
+import ttr.up.edu.game.infoMsg.IllegalMoveInfo;
+import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
 
 /**
  * class TTR_GameHumanPlayer
@@ -23,11 +25,14 @@ import ttr.up.edu.game.infoMsg.GameInfo;
  *
  */
 
-public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClickListener{
+public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouchListener{
 
     private Activity myActivity;
 
     private int layoutId;
+    private ImageButton[] draw;
+    private TTR_SurfaceView surfaceView;
+    private TTR_GameState state;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -41,7 +46,24 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     @Override
     public void receiveInfo(GameInfo info) {
+        if (surfaceView == null) return;
 
+        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            // if the move was out of turn or otherwise illegal, flash the screen
+            surfaceView.flash(Color.RED, 50);
+        }
+        else if (!(info instanceof TTR_GameState))
+            // if we do not have a TTTState, ignore
+            return;
+        else {
+            state = (TTR_GameState)info;
+            for(int i=1;i<6;i++){
+                draw[i].setImageBitmap(state.faceUpTrainCards[i].getBmp());
+            }
+            surfaceView.setState(state);
+            surfaceView.invalidate();
+            Log.i("human player", "receiving");
+        }
     }
 
     public void setAsGui(GameMainActivity activity) {
@@ -53,6 +75,19 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClick
         activity.setContentView(layoutId);
         /*View v = myActivity.findViewById(R.id.runTestButton);
         v.setOnClickListener(activity);*/
+        draw = new ImageButton[7];
+        draw[0] = myActivity.findViewById(R.id.trainDeck);
+        draw[1] = myActivity.findViewById(R.id.card1);
+        draw[2] = myActivity.findViewById(R.id.card2);
+        draw[3] = myActivity.findViewById(R.id.card3);
+        draw[4] = myActivity.findViewById(R.id.card4);
+        draw[5] = myActivity.findViewById(R.id.card5);
+        draw[6] = myActivity.findViewById(R.id.routeDeck);
+        DrawOnClick drawOnClick = new DrawOnClick(this);
+        for(ImageButton button:draw)
+            button.setOnClickListener(drawOnClick);
+
+        surfaceView = myActivity.findViewById(R.id.surfaceView);
     }
 
     public int getPlayerNum(){
@@ -60,7 +95,60 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     @Override
-    public void onClick(View view) {
+    public boolean onTouch(View v, MotionEvent event) {
+// ignore if not an "up" event
+        if (event.getAction() != MotionEvent.ACTION_UP) return true;
+        // get the x and y coordinates of the touch-location;
+        // convert them to square coordinates (where both
+        // values are in the range 0..2)
+        int x = (int) event.getX();
+        int y = (int) event.getY();
 
+        // if the location did not map to a legal square, flash
+        // the screen; otherwise, create and send an action to
+        // the game
+        /*if (p == null) {
+            surfaceView.flash(Color.RED, 50);
+        } else {
+            ClaimRouteGameAction action = new ClaimRouteGameAction(this);
+            Log.i("onTouch", "Human player sending CRGA ...");
+            game.sendAction(action);
+            surfaceView.invalidate();
+        }*/
+
+        // register that we have handled the event
+        return true;
+    }
+
+    private class DrawOnClick implements View.OnClickListener{
+        private TTR_GameHumanPlayer player;
+        public DrawOnClick(TTR_GameHumanPlayer player){
+            this.player = player;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId() == R.id.trainDeck){
+                game.sendAction(new DrawTrainDeckGameAction(player));
+            }
+            if(v.getId() == R.id.card1){
+                game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 0));
+            }
+            if(v.getId() == R.id.card2){
+                game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 1));
+            }
+            if(v.getId() == R.id.card3){
+                game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 2));
+            }
+            if(v.getId() == R.id.card4){
+                game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 3));
+            }
+            if(v.getId() == R.id.card5){
+                game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 4));
+            }
+            if(v.getId() == R.id.routeDeck){
+                game.sendAction(new DrawRouteDeckGameAction(player));
+            }
+        }
     }
 }

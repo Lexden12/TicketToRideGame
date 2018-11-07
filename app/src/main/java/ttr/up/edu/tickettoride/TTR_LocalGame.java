@@ -1,5 +1,7 @@
 package ttr.up.edu.tickettoride;
 
+import android.content.Context;
+
 import ttr.up.edu.game.GamePlayer;
 import ttr.up.edu.game.LocalGame;
 import ttr.up.edu.game.actionMsg.GameAction;
@@ -19,11 +21,11 @@ import ttr.up.edu.game.actionMsg.GameAction;
 
 public class TTR_LocalGame extends LocalGame {
 
-    TTR_GameState gameState;
-    int numPlayers;
+    private TTR_GameState gameState;
+    private int numPlayers;
 
-    public TTR_LocalGame() {
-        //gameState = new TTR_GameState(players.length);
+    public TTR_LocalGame(Context context) {
+        gameState = new TTR_GameState(context, numPlayers);
     }
 
     @Override

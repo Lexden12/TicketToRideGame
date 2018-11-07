@@ -1,5 +1,7 @@
 package ttr.up.edu.tickettoride;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import ttr.up.edu.game.infoMsg.GameState;
@@ -22,7 +24,7 @@ public class TTR_GameState extends GameState{
 
     //cards and trains available for use
     private TrainDeck trainDeck;
-    private Card[] faceUpTrainCards;
+    protected Card[] faceUpTrainCards;
     private RouteDeck routeDeck;
     private TrainPieceStash trainPieceStash;
 
@@ -41,13 +43,13 @@ public class TTR_GameState extends GameState{
     /**
      * Default GameState ctor
      */
-    public TTR_GameState(int numPlayers){
-        trainDeck = new TrainDeck();
+    public TTR_GameState(Context context, int numPlayers){
+        trainDeck = new TrainDeck(context);
         faceUpTrainCards = new Card[5];
         for(int i=0; i<5; i++){
             faceUpTrainCards[i] = trainDeck.draw();
         }
-        routeDeck = new RouteDeck();
+        routeDeck = new RouteDeck(context);
         playerHands = new ArrayList<>();
         for(int i=0;i<numPlayers;i++)
             playerHands.add(new PlayerHand());

@@ -7,9 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.SurfaceView;
 
-public class TTR_SurfaceView extends SurfaceView {
+import ttr.up.edu.game.util.FlashSurfaceView;
+
+public class TTR_SurfaceView extends FlashSurfaceView {
     private TTR_GameState state;
     private Bitmap board;
     private Paint paint;
@@ -26,5 +27,9 @@ public class TTR_SurfaceView extends SurfaceView {
     protected void onDraw(Canvas canvas) {
         dest = new Rect(0, 0, (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight())), canvas.getHeight());
         canvas.drawBitmap(board, null, dest, paint);
+    }
+
+    public void setState(TTR_GameState state) {
+        this.state = state;
     }
 }
