@@ -53,12 +53,12 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             surfaceView.flash(Color.RED, 50);
         }
         else if (!(info instanceof TTR_GameState))
-            // if we do not have a TTTState, ignore
+            // if we do not have a TTR_GameState, ignore
             return;
         else {
             state = (TTR_GameState)info;
             for(int i=1;i<6;i++){
-                draw[i].setImageBitmap(state.faceUpTrainCards[i].getBmp());
+                draw[i].setImageBitmap(state.faceUpTrainCards[i-1].getBmp());
             }
             surfaceView.setState(state);
             surfaceView.invalidate();

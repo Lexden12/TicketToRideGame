@@ -2,6 +2,8 @@ package ttr.up.edu.tickettoride;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import ttr.up.edu.game.GamePlayer;
 import ttr.up.edu.game.LocalGame;
 import ttr.up.edu.game.actionMsg.GameAction;
@@ -31,12 +33,17 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     public void start(GamePlayer[] players) {
         numPlayers = players.length;
+        ArrayList<PlayerHand> hands = new ArrayList<>();
+        for(int i=0;i<numPlayers;i++){
+            hands.add(new PlayerHand());
+        }
+        gameState.setPlayerHands(hands);
         super.start(players);
     }
 
     /**
      * Pick new route cards
-     * @param player player drawing route cards
+     * @param //player player drawing route cards
      * @return successful completion of draw
      */
     /*
@@ -80,7 +87,7 @@ public class TTR_LocalGame extends LocalGame {
 
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-
+        p.sendInfo(gameState);//TODO send a limited gameState
     }
 
     @Override
@@ -96,11 +103,11 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       /*if (action instanceof DrawTrainDeckFaceUpGameAction) return drawTrainFaceUp(action);
-       else if (action instanceof DrawTrainDeckGameAction) return false;
-       else if (action instanceof DrawRouteDeckGameAction) return false;
-       else return false;*/
-       return false;
+       if (action instanceof DrawTrainDeckFaceUpGameAction) gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard());
+       else if (action instanceof DrawTrainDeckGameAction) gameState.drawDeck(getPlayerIdx(action.getPlayer()));
+       else if (action instanceof DrawRouteDeckGameAction) gameState.drawRouteCards(getPlayerIdx(action.getPlayer()));
+       else return false;
+       return true;
 
     }
 
