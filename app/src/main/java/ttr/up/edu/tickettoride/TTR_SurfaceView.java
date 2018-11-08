@@ -16,7 +16,7 @@ public class TTR_SurfaceView extends FlashSurfaceView {
     private Bitmap board;
     private Paint paint;
     Rect dest;
-
+    int top, left, right, bottom;
     public TTR_SurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
@@ -24,17 +24,20 @@ public class TTR_SurfaceView extends FlashSurfaceView {
         paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(75);
+        top = 0;
+        left = dest.right;
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {//TODO display current player and draw hand
+    protected void onDraw(Canvas canvas) {//TODO display and draw hand
         dest = new Rect(0, 0, (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight())), canvas.getHeight());
         canvas.drawBitmap(board, null, dest, paint);
         if(state!=null)
             canvas.drawText("Player "+state.getCurrentPlayer()+"'s Turn", dest.right/2, dest.bottom/10, paint);
-        //int top = 0;
-        //int left = dest.left;
-        //int right = left +//TODO finish drawing the hand
+        if(state.getPlayerHands().get(0).getTrainCards().get(0) != null) {
+            right = left + state.getPlayerHands().get(0).getTrainCards().get(0).getBmp().getWidth();//TODO finish drawing the hand
+            bottom = top + state.getPlayerHands().get(0).getTrainCards().get(0).getBmp().getHeight();
+        }
         for(Card c:state.getPlayerHands().get(0).getTrainCards()){
 
         }

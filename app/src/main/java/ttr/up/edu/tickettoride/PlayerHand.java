@@ -59,7 +59,13 @@ public class PlayerHand {
      * @param card the arraylist of cards to add to our hand
      */
     public void addTrainCard(Card card){
-        trainCards.add(card);
+        int idx = 0;
+        for (int i=0; i<trainCards.size(); i++){
+            if(trainCards.get(i).getName().compareTo(card.getName())>-1){
+                idx = i;
+            }
+        }
+        trainCards.add(idx, card);
     }
 
     /**
