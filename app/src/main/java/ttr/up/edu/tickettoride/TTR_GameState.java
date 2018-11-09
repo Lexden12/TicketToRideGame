@@ -63,9 +63,8 @@ public class TTR_GameState extends GameState{
     /**
      * Deep-copy ctor
      * @param state GameState to copy
-     * @throws CloneNotSupportedException if it cannot copy the ArrayList of playerHands
      */
-    public TTR_GameState(TTR_GameState state) throws CloneNotSupportedException {
+    public TTR_GameState(TTR_GameState state){
         trainDeck = new TrainDeck(state.trainDeck);
         faceUpTrainCards = new Card[5];
         for(int i=0;i<5;i++)
@@ -78,6 +77,18 @@ public class TTR_GameState extends GameState{
         //board = new Board(state.board);
 
         currentPlayer = state.currentPlayer;
+    }
+
+    private void init(){
+        for(int i=0;i<playerHands.size();i++){
+            for(int j=0;j<4;j++) {
+                Card c = trainDeck.draw();
+                playerHands.get(i).addTrainCard(c);
+            }
+            drawRouteCards(i);
+            endTurn();
+        }
+        //notify
     }
 
     /**
@@ -105,13 +116,26 @@ public class TTR_GameState extends GameState{
         if(numTrainCardsDrawn == 2) {
             endTurn();
         }
+        int numRainbow = 0;
+        for(Card card1:faceUpTrainCards){
+            if(card1 != null && card1.getName().equals("Rainbow Train"))
+                numRainbow++;
+        }
+        if(numRainbow >= 3){
+            for (int i=0;i<faceUpTrainCards.length;i++){
+                trainDeck.discard(faceUpTrainCards[i]);
+                faceUpTrainCards[i] = trainDeck.draw();
+            }
+            //notify
+        }
         return c;
     }
 
     public void endTurn(){
         if(numRouteCardsDrawn>0)
             for (Card c:routeCards)
-                playerHands.get(currentPlayer).addRouteCard(c);
+                if(c != null)
+                    playerHands.get(currentPlayer).addRouteCard(c);
         currentPlayer = (currentPlayer+1)% playerHands.size();
         routeCards = new Card[3];
         numRouteCardsDrawn = 0;
@@ -143,9 +167,16 @@ public class TTR_GameState extends GameState{
     public Card[] drawRouteCards(int player){
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return null;
-        for (int i=0; i<3; i++)
-            routeCards[i] = routeDeck.draw();
+        for (int i=0; i<3; i++) {
+            Card c;
+            if((c = routeDeck.draw())!=null)
+                routeCards[i] = c;
+        }
         numRouteCardsDrawn = 3;
+        if(routeCards[0] != null)
+            endTurn();
+        else
+            numRouteCardsDrawn = 0;
         return routeCards;
     }
 
@@ -199,6 +230,7 @@ public class TTR_GameState extends GameState{
 
     public void setPlayerHands(ArrayList<PlayerHand> playerHands) {
         this.playerHands = playerHands;
+        init();
     }
 
     public int getCurrentPlayer() {

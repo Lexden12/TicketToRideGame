@@ -62,7 +62,7 @@ public class PlayerHand {
         int idx = 0;
         for (int i=0; i<trainCards.size(); i++){
             if(trainCards.get(i).getName().compareTo(card.getName())>-1){
-                idx = i;
+                idx = i+1;
             }
         }
         trainCards.add(idx, card);
