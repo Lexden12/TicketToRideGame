@@ -42,13 +42,37 @@ public class CityGraph {
         City houston = new City("Houston");
         City newOrleans = new City("New Orleans");
         City miami = new City("Miami");
-        HashMap<String, Route> routes = new HashMap<>();
+        HashMap<String, Route> routes = new HashMap<>();//routes for Vancouver
         routes.put("Calgary", new Route(calgary, 3, "grey"));
         routes.put("Seattle1", new Route(seattle, 1, "grey"));
         routes.put("Seattle2", new Route(seattle, 1, "grey"));
         vancouver.setRoutes(routes);
-        routes = new HashMap<>();
-
+        routes = new HashMap<>();//routes for Calgary
+        routes.put("Vancouver", new Route(vancouver, 3, "grey"));
+        routes.put("Seattle", new Route(seattle, 4, "grey"));
+        routes.put("Helena", new Route(helena, 4, "grey"));
+        routes.put("Winnipeg", new Route(winnipeg, 6, "white"));
+        calgary.setRoutes(routes);
+        routes = new HashMap<>();//routes for Winnipeg
+        routes.put("Calgary", new Route(calgary, 6, "white"));
+        routes.put("Helena", new Route(helena, 4, "blue"));
+        routes.put("Duluth", new Route(duluth, 4, "black"));
+        routes.put("Sault St. Marie", new Route(saultStMarie, 6, "grey"));
+        winnipeg.setRoutes(routes);
+        routes = new HashMap<>();//routes for Sault St. Marie
+        routes.put("Winnipeg", new Route(winnipeg, 6, "grey"));
+        routes.put("Duluth", new Route(duluth, 3, "grey"));
+        routes.put("Toronto", new Route(toronto, 2, "grey"));
+        routes.put("Montreal", new Route(montreal, 5, "black"));
+        saultStMarie.setRoutes(routes);
+        routes = new HashMap<>();//routes for Montreal
+        routes.put("Sault St. Marie", new Route(saultStMarie, 5, "black"));
+        routes.put("Toronto", new Route(toronto, 3, "grey"));
+        routes.put("New York", new Route(newYork, 3, "blue"));
+        routes.put("Boston1", new Route(boston, 2, "grey"));
+        routes.put("Boston2", new Route(boston, 2, "grey"));
+        montreal.setRoutes(routes);
+        routes = new HashMap<>();//routes for Boston
     }//TODO finish the adding the cities
     //TODO add isConnected method
 }

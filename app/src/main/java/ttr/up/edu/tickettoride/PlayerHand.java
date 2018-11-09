@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class PlayerHand {
     private ArrayList<Card> trainCards;
     private ArrayList<Card> routeCards;
+    private String color;
+    private int trains;
     //Add score and train pieces to store all player accessible data here.
 
     /**
@@ -27,6 +29,7 @@ public class PlayerHand {
     public PlayerHand(){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
+        trains = 45;
     }
 
     public PlayerHand clone(){
