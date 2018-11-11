@@ -8,10 +8,17 @@ public class TTR_GameStateTest {
 
     @Test
     public void drawFaceUp() {
+        TTR_GameState state = new TTR_GameState(null, 2);
+        Card c = state.drawFaceUp(1, 2);
+
+        assertNotEquals(c, null);
+        assertNotEquals(c.getName(), "");
+        assertNotEquals(c.getBmp(), null);
     }
 
     @Test
     public void drawDeck() {
+
     }
 
     @Test
