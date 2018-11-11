@@ -17,6 +17,7 @@ public class Route{
         color = r.getColor();
     }
 
+    //todo Clarify what the functionality of this is... the behavior seems weird
     public void setPlayerNum(int playerNum) {
         this.playerNum = playerNum;
         city.routes.get(city.name).setPlayerNum(playerNum);

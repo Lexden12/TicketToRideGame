@@ -355,6 +355,12 @@ public class CityGraph {
         boston.setRoutes(routes);
     }
 
+    /**
+     * This method check whether two cities are connected
+     * @param c1 the fist city
+     * @param c2 the second city
+     * @return whether the two cities are connected
+     */
     public boolean isConnected(City c1, City c2){
         for (Route r : c1.getRoutes().values()){
             if (r.getCity().getName().equals(c2.getName())) return true;
