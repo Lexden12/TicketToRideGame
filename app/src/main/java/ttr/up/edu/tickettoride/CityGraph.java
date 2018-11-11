@@ -6,42 +6,42 @@ import java.util.HashMap;
 public class CityGraph {
     ArrayList<City> cities;
     public CityGraph(){
-        City vancouver = new City("Vancouver");
-        City calgary = new City("Calgary");
-        City winnipeg = new City("Winnipeg");
-        City saultStMarie = new City("Sault St. Marie");
-        City montreal = new City("Montreal");
-        City seattle = new City("Seattle");
-        City helena = new City("Helena");
-        City duluth = new City("Duluth");
-        City toronto = new City("Toronto");
-        City boston = new City("Boston");
-        City newYork = new City("New York");
-        City pittsburgh = new City("Pittsburgh");
-        City chicago = new City("Chicago");
-        City omaha = new City("Omaha");
-        City portland = new City("Portland");
-        City washington = new City("Washington");
-        City raleigh = new City("Raleigh");
-        City nashville = new City("Nashville");
-        City saintLouis = new City("Saint Louis");
-        City kansasCity= new City("Kansas City");
-        City denver = new City("Denver");
-        City saltLakeCity = new City("Salt Lake City");
-        City sanFrancisco = new City("San Francisco");
-        City lasVegas = new City("Las Vegas");
-        City santaFe = new City("Santa Fe");
-        City oklahomaCity = new City("Oklahoma City");
-        City littleRock = new City("Little Rock");
-        City atlanta = new City("Atlanta");
-        City charleston = new City("Charleston");
-        City losAngeles = new City("Los Angeles");
-        City phoenix = new City("Phoenix");
-        City elPaso = new City("El Paso");
-        City dallas = new City("Dallas");
-        City houston = new City("Houston");
-        City newOrleans = new City("New Orleans");
-        City miami = new City("Miami");
+        City vancouver = new City("Vancouver"); cities.add(vancouver);
+        City calgary = new City("Calgary"); cities.add(calgary);
+        City winnipeg = new City("Winnipeg"); cities.add(winnipeg);
+        City saultStMarie = new City("Sault St. Marie"); cities.add(saultStMarie);
+        City montreal = new City("Montreal"); cities.add(montreal);
+        City seattle = new City("Seattle"); cities.add(seattle);
+        City helena = new City("Helena"); cities.add(helena);
+        City duluth = new City("Duluth"); cities.add(duluth);
+        City toronto = new City("Toronto"); cities.add(toronto);
+        City boston = new City("Boston"); cities.add(boston);
+        City newYork = new City("New York"); cities.add(newYork);
+        City pittsburgh = new City("Pittsburgh"); cities.add(pittsburgh);
+        City chicago = new City("Chicago"); cities.add(chicago);
+        City omaha = new City("Omaha"); cities.add(omaha);
+        City portland = new City("Portland"); cities.add(portland);
+        City washington = new City("Washington"); cities.add(washington);
+        City raleigh = new City("Raleigh"); cities.add(raleigh);
+        City nashville = new City("Nashville"); cities.add(nashville);
+        City saintLouis = new City("Saint Louis"); cities.add(saintLouis);
+        City kansasCity= new City("Kansas City"); cities.add(kansasCity);
+        City denver = new City("Denver"); cities.add(denver);
+        City saltLakeCity = new City("Salt Lake City"); cities.add(saltLakeCity);
+        City sanFrancisco = new City("San Francisco"); cities.add(sanFrancisco);
+        City lasVegas = new City("Las Vegas"); cities.add(lasVegas);
+        City santaFe = new City("Santa Fe"); cities.add(santaFe);
+        City oklahomaCity = new City("Oklahoma City"); cities.add(oklahomaCity);
+        City littleRock = new City("Little Rock"); cities.add(littleRock);
+        City atlanta = new City("Atlanta"); cities.add(atlanta);
+        City charleston = new City("Charleston"); cities.add(charleston);
+        City losAngeles = new City("Los Angeles"); cities.add(losAngeles);
+        City phoenix = new City("Phoenix"); cities.add(phoenix);
+        City elPaso = new City("El Paso"); cities.add(elPaso);
+        City dallas = new City("Dallas"); cities.add(dallas);
+        City houston = new City("Houston"); cities.add(houston);
+        City newOrleans = new City("New Orleans"); cities.add(newOrleans);
+        City miami = new City("Miami"); cities.add(miami);
 
         HashMap<String, Route> routes = new HashMap<>();//routes for Vancouver
         routes.put("Calgary", new Route(calgary, 3, "grey"));
@@ -353,6 +353,12 @@ public class CityGraph {
         routes.put("Montreal1", new Route(montreal, 2, "grey"));
         routes.put("Montreal2", new Route(montreal, 2, "grey"));
         boston.setRoutes(routes);
-    }//TODO finish the adding the cities
-    //TODO add isConnected method
+    }
+
+    public boolean isConnected(City c1, City c2){
+        for (Route r : c1.getRoutes().values()){
+            if (r.getCity().getName().equals(c2.getName())) return true;
+        }
+        return false;
+    }
 }
