@@ -29,8 +29,13 @@ public class TTR_SurfaceView extends FlashSurfaceView {
         paint.setTextSize(75);
     }
 
+    /**
+     * Overrides the standard View's onDraw. Draws the board and all the cards in the human
+     * player's hand.
+     * @param canvas the canvas to draw on
+     */
     @Override
-    protected void onDraw(Canvas canvas) {//TODO display and draw hand
+    protected void onDraw(Canvas canvas) {
         dest = new Rect(0, 0, (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight())), canvas.getHeight());
         canvas.drawBitmap(board, null, dest, paint);
         if(state!=null) {

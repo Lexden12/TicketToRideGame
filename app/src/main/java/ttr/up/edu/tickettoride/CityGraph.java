@@ -2,8 +2,24 @@ package ttr.up.edu.tickettoride;
 
 import java.util.HashMap;
 
+/**
+ * class Card
+ *
+ * a class to initialize and store the graph that is all the cities and routes on the board
+ *
+ * @author Alex
+ * @author Cameron
+ * @author Nick
+ * @author Ben
+ * @version October 2018
+ *
+ */
 public class CityGraph {
     HashMap<String, City> cities;
+
+    /**
+     * Constructor which creates a new CityGraph from scratch
+     */
     public CityGraph(){
         cities = new HashMap<>();
         City vancouver = new City("Vancouver"); cities.put("Vancouver", vancouver);

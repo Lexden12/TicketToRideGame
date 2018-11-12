@@ -25,6 +25,7 @@ public class PlayerHand {
     /**
      * Create a new PlayerHand with an arraylist to keep track of the trainCards in our hand
      * and the routecards in our hand
+     * Also initialize the number of trains to 45
      */
     public PlayerHand(){
         trainCards = new ArrayList<>();

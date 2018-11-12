@@ -83,6 +83,9 @@ public class TTR_GameState extends GameState{
         turnsLeft = -1;
     }
 
+    /**
+     * draw four train cards and three route cards for each player (as required to start the game).
+     */
     private void init(){
         for(int i=0;i<playerHands.size();i++){
             for(int j=0;j<4;j++) {
@@ -135,6 +138,9 @@ public class TTR_GameState extends GameState{
         return c;
     }
 
+    /**
+     * End the current turn by setting route cards (if applicable) and setting it to the next player's turn
+     */
     public void endTurn(){
         if(numRouteCardsDrawn>0)
             for (Card c:routeCards)
@@ -196,6 +202,12 @@ public class TTR_GameState extends GameState{
         return c;
     }
 
+    /**
+     * Claim the given route on the board.
+     * @param player the player who wants to claim a route
+     * @param route the route the player wants to claim
+     * @return true for successful completion, false otherwise.
+     */
     public boolean claimRoute(int player, String route) {
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return false;
