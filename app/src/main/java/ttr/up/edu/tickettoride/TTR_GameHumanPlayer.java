@@ -5,8 +5,14 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
@@ -36,6 +42,10 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
     private TextView trainCount;
     private TTR_SurfaceView surfaceView;
     private TTR_GameState state;
+    private Spinner routes;
+    private ArrayAdapter<String> routeAdapter;
+    private Button claimButton;
+    private String route;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -70,8 +80,10 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
-            trainCount.setText("Trains Remaining: "+45);
+            trainCount.setText("Trains Remaining: "+state.getPlayerHands().get(playerNum).getTrains());
             Log.i("human player", "receiving");
+            if(routes.getAdapter() == null)
+                initSpinner();
         }
     }
 
@@ -98,6 +110,25 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
 
         surfaceView = myActivity.findViewById(R.id.surfaceView);
         trainCount = myActivity.findViewById(R.id.trainCount);
+        routes = myActivity.findViewById(R.id.routeSpinner);
+        claimButton = myActivity.findViewById(R.id.claimButton);
+        claimButton.setOnClickListener(drawOnClick);
+    }
+
+    public void initSpinner(){
+        ArrayList<String> routeList = new ArrayList<>();
+        for(City c:state.getGraph().cities.values()){
+            for(String r:c.getRoutes().keySet()){
+                String s = c.getName() + "<->" + r;
+                String sR = r + "<->" + c.getName();
+                if(routeList.contains(sR) || routeList.contains(s))
+                    continue;
+                routeList.add(s);
+            }
+        }
+        routeAdapter = new ArrayAdapter<>(myActivity, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, routeList);
+        routes.setAdapter(routeAdapter);
+        routes.setOnItemSelectedListener(new RoutesSpinnerListener());
     }
 
     public int getPlayerNum(){
@@ -159,6 +190,22 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             if(v.getId() == R.id.routeDeck){
                 game.sendAction(new DrawRouteDeckGameAction(player));
             }
+            if(v.getId() == R.id.claimButton){
+                game.sendAction(new ClaimRouteGameAction(player, route));
+            }
+        }
+    }
+
+    private class RoutesSpinnerListener implements AdapterView.OnItemSelectedListener{
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            route = routeAdapter.getItem(position);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
         }
     }
 }

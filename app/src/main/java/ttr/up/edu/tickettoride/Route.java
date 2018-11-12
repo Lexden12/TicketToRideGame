@@ -8,6 +8,7 @@ public class Route{
         city = c;
         length = l;
         color = c1;
+        playerNum = -1;
     }
 
     public Route(Route r){
@@ -17,10 +18,9 @@ public class Route{
         color = r.getColor();
     }
 
-    //todo Clarify what the functionality of this is... the behavior seems weird
     public void setPlayerNum(int playerNum) {
+        if(this.playerNum != -1) return;
         this.playerNum = playerNum;
-        city.routes.get(city.name).setPlayerNum(playerNum);
     }
 
     public City getCity() {

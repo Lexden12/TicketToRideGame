@@ -46,7 +46,7 @@ public class TTR_SurfaceView extends FlashSurfaceView {
                     canvas.drawBitmap(trainCards.get(i).getBmp(), left, top+space*i, paint);
                 }
             }
-            if(state.getPlayerHands().get(0).getRouteCards().size() > 0 && state.getPlayerHands().get(0).getTrainCards().get(0) != null){
+            if(state.getPlayerHands().get(0).getRouteCards().size() > 0 && state.getPlayerHands().get(0).getRouteCards().get(0) != null){
                 ArrayList<Card> routeCards = state.getPlayerHands().get(0).getRouteCards();
                 int top = 0;
                 int left = dest.right + cardWidth;

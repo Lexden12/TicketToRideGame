@@ -1,357 +1,357 @@
 package ttr.up.edu.tickettoride;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CityGraph {
-    ArrayList<City> cities;
+    HashMap<String, City> cities;
     public CityGraph(){
-        City vancouver = new City("Vancouver"); cities.add(vancouver);
-        City calgary = new City("Calgary"); cities.add(calgary);
-        City winnipeg = new City("Winnipeg"); cities.add(winnipeg);
-        City saultStMarie = new City("Sault St. Marie"); cities.add(saultStMarie);
-        City montreal = new City("Montreal"); cities.add(montreal);
-        City seattle = new City("Seattle"); cities.add(seattle);
-        City helena = new City("Helena"); cities.add(helena);
-        City duluth = new City("Duluth"); cities.add(duluth);
-        City toronto = new City("Toronto"); cities.add(toronto);
-        City boston = new City("Boston"); cities.add(boston);
-        City newYork = new City("New York"); cities.add(newYork);
-        City pittsburgh = new City("Pittsburgh"); cities.add(pittsburgh);
-        City chicago = new City("Chicago"); cities.add(chicago);
-        City omaha = new City("Omaha"); cities.add(omaha);
-        City portland = new City("Portland"); cities.add(portland);
-        City washington = new City("Washington"); cities.add(washington);
-        City raleigh = new City("Raleigh"); cities.add(raleigh);
-        City nashville = new City("Nashville"); cities.add(nashville);
-        City saintLouis = new City("Saint Louis"); cities.add(saintLouis);
-        City kansasCity= new City("Kansas City"); cities.add(kansasCity);
-        City denver = new City("Denver"); cities.add(denver);
-        City saltLakeCity = new City("Salt Lake City"); cities.add(saltLakeCity);
-        City sanFrancisco = new City("San Francisco"); cities.add(sanFrancisco);
-        City lasVegas = new City("Las Vegas"); cities.add(lasVegas);
-        City santaFe = new City("Santa Fe"); cities.add(santaFe);
-        City oklahomaCity = new City("Oklahoma City"); cities.add(oklahomaCity);
-        City littleRock = new City("Little Rock"); cities.add(littleRock);
-        City atlanta = new City("Atlanta"); cities.add(atlanta);
-        City charleston = new City("Charleston"); cities.add(charleston);
-        City losAngeles = new City("Los Angeles"); cities.add(losAngeles);
-        City phoenix = new City("Phoenix"); cities.add(phoenix);
-        City elPaso = new City("El Paso"); cities.add(elPaso);
-        City dallas = new City("Dallas"); cities.add(dallas);
-        City houston = new City("Houston"); cities.add(houston);
-        City newOrleans = new City("New Orleans"); cities.add(newOrleans);
-        City miami = new City("Miami"); cities.add(miami);
+        cities = new HashMap<>();
+        City vancouver = new City("Vancouver"); cities.put("Vancouver", vancouver);
+        City calgary = new City("Calgary"); cities.put("Calgary", calgary);
+        City winnipeg = new City("Winnipeg"); cities.put("Winnipeg", winnipeg);
+        City saultStMarie = new City("Sault St. Marie"); cities.put("Sault St. Marie", saultStMarie);
+        City montreal = new City("Montreal"); cities.put("Montreal", montreal);
+        City seattle = new City("Seattle"); cities.put("Seattle", seattle);
+        City helena = new City("Helena"); cities.put("Helena", helena);
+        City duluth = new City("Duluth"); cities.put("Duluth", duluth);
+        City toronto = new City("Toronto"); cities.put("Toronto", toronto);
+        City boston = new City("Boston"); cities.put("Boston", boston);
+        City newYork = new City("New York"); cities.put("New York", newYork);
+        City pittsburgh = new City("Pittsburgh"); cities.put("Pittsburgh", pittsburgh);
+        City chicago = new City("Chicago"); cities.put("Chicago", chicago);
+        City omaha = new City("Omaha"); cities.put("Omaha", omaha);
+        City portland = new City("Portland"); cities.put("Portland", portland);
+        City washington = new City("Washington"); cities.put("Washington", washington);
+        City raleigh = new City("Raleigh"); cities.put("Raleigh", raleigh);
+        City nashville = new City("Nashville"); cities.put("Nashville", nashville);
+        City saintLouis = new City("Saint Louis"); cities.put("Saint Louis", saintLouis);
+        City kansasCity= new City("Kansas City"); cities.put("Kansas City", kansasCity);
+        City denver = new City("Denver"); cities.put("Denver", denver);
+        City saltLakeCity = new City("Salt Lake City"); cities.put("Salt Lake City", saltLakeCity);
+        City sanFrancisco = new City("San Francisco"); cities.put("San Francisco", sanFrancisco);
+        City lasVegas = new City("Las Vegas"); cities.put("Las Vegas", lasVegas);
+        City santaFe = new City("Santa Fe"); cities.put("Santa Fe", santaFe);
+        City oklahomaCity = new City("Oklahoma City"); cities.put("Oklahoma City", oklahomaCity);
+        City littleRock = new City("Little Rock"); cities.put("Little Rock", littleRock);
+        City atlanta = new City("Atlanta"); cities.put("Atlanta", atlanta);
+        City charleston = new City("Charleston"); cities.put("Charleston", charleston);
+        City losAngeles = new City("Los Angeles"); cities.put("Los Angeles", losAngeles);
+        City phoenix = new City("Phoenix"); cities.put("Phoenix", phoenix);
+        City elPaso = new City("El Paso"); cities.put("El Paso", elPaso);
+        City dallas = new City("Dallas"); cities.put("Dallas", dallas);
+        City houston = new City("Houston"); cities.put("Houston", houston);
+        City newOrleans = new City("New Orleans"); cities.put("New Orleans", newOrleans);
+        City miami = new City("Miami"); cities.put("Miami", miami);
 
         HashMap<String, Route> routes = new HashMap<>();//routes for Vancouver
-        routes.put("Calgary", new Route(calgary, 3, "grey"));
-        routes.put("Seattle1", new Route(seattle, 1, "grey"));
-        routes.put("Seattle2", new Route(seattle, 1, "grey"));
+        routes.put("Calgary", new Route(calgary, 3, "Grey"));
+        routes.put("Seattle1", new Route(seattle, 1, "Grey"));
+        routes.put("Seattle2", new Route(seattle, 1, "Grey"));
         vancouver.setRoutes(routes);
 
         routes = new HashMap<>();//routes for Calgary
-        routes.put("Vancouver", new Route(vancouver, 3, "grey"));
-        routes.put("Seattle", new Route(seattle, 4, "grey"));
-        routes.put("Helena", new Route(helena, 4, "grey"));
-        routes.put("Winnipeg", new Route(winnipeg, 6, "white"));
+        routes.put("Vancouver", new Route(vancouver, 3, "Grey"));
+        routes.put("Seattle", new Route(seattle, 4, "Grey"));
+        routes.put("Helena", new Route(helena, 4, "Grey"));
+        routes.put("Winnipeg", new Route(winnipeg, 6, "White"));
         calgary.setRoutes(routes);
 
         routes = new HashMap<>();//routes for Winnipeg
-        routes.put("Calgary", new Route(calgary, 6, "white"));
-        routes.put("Helena", new Route(helena, 4, "blue"));
-        routes.put("Duluth", new Route(duluth, 4, "black"));
-        routes.put("Sault St. Marie", new Route(saultStMarie, 6, "grey"));
+        routes.put("Calgary", new Route(calgary, 6, "White"));
+        routes.put("Helena", new Route(helena, 4, "Blue"));
+        routes.put("Duluth", new Route(duluth, 4, "Black"));
+        routes.put("Sault St. Marie", new Route(saultStMarie, 6, "Grey"));
         winnipeg.setRoutes(routes);
 
         routes = new HashMap<>();//routes for Sault St. Marie
-        routes.put("Winnipeg", new Route(winnipeg, 6, "grey"));
-        routes.put("Duluth", new Route(duluth, 3, "grey"));
-        routes.put("Toronto", new Route(toronto, 2, "grey"));
-        routes.put("Montreal", new Route(montreal, 5, "black"));
+        routes.put("Winnipeg", new Route(winnipeg, 6, "Grey"));
+        routes.put("Duluth", new Route(duluth, 3, "Grey"));
+        routes.put("Toronto", new Route(toronto, 2, "Grey"));
+        routes.put("Montreal", new Route(montreal, 5, "Black"));
         saultStMarie.setRoutes(routes);
 
         routes = new HashMap<>();//routes for Montreal
-        routes.put("Sault St. Marie", new Route(saultStMarie, 5, "black"));
-        routes.put("Toronto", new Route(toronto, 3, "grey"));
-        routes.put("New York", new Route(newYork, 3, "blue"));
-        routes.put("Boston1", new Route(boston, 2, "grey"));
-        routes.put("Boston2", new Route(boston, 2, "grey"));
+        routes.put("Sault St. Marie", new Route(saultStMarie, 5, "Black"));
+        routes.put("Toronto", new Route(toronto, 3, "Grey"));
+        routes.put("New York", new Route(newYork, 3, "Blue"));
+        routes.put("Boston1", new Route(boston, 2, "Grey"));
+        routes.put("Boston2", new Route(boston, 2, "Grey"));
         montreal.setRoutes(routes);
 
         routes = new HashMap<>();//routes for Seattle
-        routes.put("Calgary", new Route(calgary, 4, "grey"));
-        routes.put("Helena", new Route(helena, 6, "yellow"));
-        routes.put("Portland1", new Route(portland, 1, "grey"));
-        routes.put("Portland2", new Route(portland, 1, "grey"));
-        routes.put("Vancouver1", new Route(vancouver, 1, "grey"));
-        routes.put("Vancouver2", new Route(vancouver, 1, "grey"));
-        vancouver.setRoutes(routes);
+        routes.put("Calgary", new Route(calgary, 4, "Grey"));
+        routes.put("Helena", new Route(helena, 6, "Yellow"));
+        routes.put("Portland1", new Route(portland, 1, "Grey"));
+        routes.put("Portland2", new Route(portland, 1, "Grey"));
+        routes.put("Vancouver1", new Route(vancouver, 1, "Grey"));
+        routes.put("Vancouver2", new Route(vancouver, 1, "Grey"));
+        seattle.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Helena
-        routes.put("Calgary", new Route(calgary, 4, "grey"));
-        routes.put("Winnipeg", new Route(winnipeg, 4, "blue"));
-        routes.put("Duluth", new Route(duluth, 6, "orange"));
-        routes.put("Omaha", new Route(omaha, 4, "red"));
-        routes.put("Denver", new Route(denver, 4, "green"));
-        routes.put("Salt Lake City", new Route(saltLakeCity, 3, "pink"));
-        routes.put("Seattle", new Route(seattle, 6, "yellow"));
+        routes.put("Calgary", new Route(calgary, 4, "Grey"));
+        routes.put("Winnipeg", new Route(winnipeg, 4, "Blue"));
+        routes.put("Duluth", new Route(duluth, 6, "Orange"));
+        routes.put("Omaha", new Route(omaha, 4, "Red"));
+        routes.put("Denver", new Route(denver, 4, "Green"));
+        routes.put("Salt Lake City", new Route(saltLakeCity, 3, "Purple"));
+        routes.put("Seattle", new Route(seattle, 6, "Yellow"));
         helena.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Portland
-        routes.put("Seattle1", new Route(seattle, 1, "grey"));
-        routes.put("Seattle2", new Route(seattle, 1, "grey"));
-        routes.put("Salt Lake City", new Route(saltLakeCity, 6, "blue"));
-        routes.put("San Francisco1", new Route(sanFrancisco, 5, "pink"));
-        routes.put("San Francisco2", new Route(sanFrancisco, 5, "green"));
+        routes.put("Seattle1", new Route(seattle, 1, "Grey"));
+        routes.put("Seattle2", new Route(seattle, 1, "Grey"));
+        routes.put("Salt Lake City", new Route(saltLakeCity, 6, "Blue"));
+        routes.put("San Francisco1", new Route(sanFrancisco, 5, "Purple"));
+        routes.put("San Francisco2", new Route(sanFrancisco, 5, "Green"));
         portland.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for San Francisco
-        routes.put("Portland1", new Route(portland, 5, "pink"));
-        routes.put("Portland2", new Route(portland, 5, "green"));
-        routes.put("Salt Lake City1", new Route(saltLakeCity, 5, "orange"));
-        routes.put("Salt Lake City2", new Route(saltLakeCity, 5, "white"));
-        routes.put("Los Angeles1", new Route(losAngeles, 3, "pink"));
-        routes.put("Los Angeles2", new Route(losAngeles, 3, "yellow"));
-        losAngeles.setRoutes(routes);
+        routes.put("Portland1", new Route(portland, 5, "Purple"));
+        routes.put("Portland2", new Route(portland, 5, "Green"));
+        routes.put("Salt Lake City1", new Route(saltLakeCity, 5, "Orange"));
+        routes.put("Salt Lake City2", new Route(saltLakeCity, 5, "White"));
+        routes.put("Los Angeles1", new Route(losAngeles, 3, "Purple"));
+        routes.put("Los Angeles2", new Route(losAngeles, 3, "Yellow"));
+        sanFrancisco.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for los angeles
-        routes.put("San Francisco1", new Route(sanFrancisco, 3, "pink"));
-        routes.put("San Francisco2", new Route(sanFrancisco, 3, "yellow"));
-        routes.put("Las Vegas", new Route(lasVegas, 2, "grey"));
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
-        routes.put("El Paso", new Route(elPaso, 6, "black"));
+        routes.put("San Francisco1", new Route(sanFrancisco, 3, "Purple"));
+        routes.put("San Francisco2", new Route(sanFrancisco, 3, "Yellow"));
+        routes.put("Las Vegas", new Route(lasVegas, 2, "Grey"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
+        routes.put("El Paso", new Route(elPaso, 6, "Black"));
         losAngeles.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for salt lake city
-        routes.put("Portland", new Route(portland, 6, "blue"));
-        routes.put("Helena", new Route(helena, 3, "pink"));
-        routes.put("Denver1", new Route(denver, 3, "red"));
-        routes.put("Denver2", new Route(denver, 3, "yellow"));
-        routes.put("Las Vegas", new Route(lasVegas, 3, "orange"));
-        routes.put("San Francisco1", new Route(sanFrancisco, 5, "orange"));
-        routes.put("San Francisco2", new Route(sanFrancisco, 5, "white"));
+        routes.put("Portland", new Route(portland, 6, "Blue"));
+        routes.put("Helena", new Route(helena, 3, "Purple"));
+        routes.put("Denver1", new Route(denver, 3, "Red"));
+        routes.put("Denver2", new Route(denver, 3, "Yellow"));
+        routes.put("Las Vegas", new Route(lasVegas, 3, "Orange"));
+        routes.put("San Francisco1", new Route(sanFrancisco, 5, "Orange"));
+        routes.put("San Francisco2", new Route(sanFrancisco, 5, "White"));
         saltLakeCity.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Las Vegas
-        routes.put("Salt Lake City", new Route(saltLakeCity, 3, "orange"));
-        routes.put("Los Angeles", new Route(losAngeles, 2, "grey"));
+        routes.put("Salt Lake City", new Route(saltLakeCity, 3, "Orange"));
+        routes.put("Los Angeles", new Route(losAngeles, 2, "Grey"));
         lasVegas.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Phoenix
-        routes.put("Los Angeles", new Route(losAngeles, 3, "grey"));
-        routes.put("Denver", new Route(denver, 5, "white"));
-        routes.put("Santa Fe", new Route(santaFe, 3, "grey"));
-        routes.put("El Paso", new Route(elPaso, 3, "grey"));
+        routes.put("Los Angeles", new Route(losAngeles, 3, "Grey"));
+        routes.put("Denver", new Route(denver, 5, "White"));
+        routes.put("Santa Fe", new Route(santaFe, 3, "Grey"));
+        routes.put("El Paso", new Route(elPaso, 3, "Grey"));
         phoenix.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for El Paso
-        routes.put("Los Angeles", new Route(losAngeles, 6, "black"));
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
-        routes.put("Santa Fe", new Route(santaFe, 2, "grey"));
-        routes.put("Oklahoma City", new Route(oklahomaCity, 5, "yellow"));
-        routes.put("Dallas", new Route(dallas, 4, "red"));
-        routes.put("Houston", new Route(houston, 6, "green"));
+        routes.put("Los Angeles", new Route(losAngeles, 6, "Black"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
+        routes.put("Santa Fe", new Route(santaFe, 2, "Grey"));
+        routes.put("Oklahoma City", new Route(oklahomaCity, 5, "Yellow"));
+        routes.put("Dallas", new Route(dallas, 4, "Red"));
+        routes.put("Houston", new Route(houston, 6, "Green"));
         elPaso.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Santa Fe
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
-        routes.put("Denver", new Route(denver, 2, "grey"));
-        routes.put("Oklahoma City", new Route(oklahomaCity, 3, "blue"));
-        routes.put("El Paso", new Route(elPaso, 2, "grey"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
+        routes.put("Denver", new Route(denver, 2, "Grey"));
+        routes.put("Oklahoma City", new Route(oklahomaCity, 3, "Blue"));
+        routes.put("El Paso", new Route(elPaso, 2, "Grey"));
         santaFe.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Denver
-        routes.put("Helena", new Route(helena, 4, "green"));
-        routes.put("Salt Lake City1", new Route(saltLakeCity, 3, "red"));
-        routes.put("Salt Lake City2", new Route(saltLakeCity, 3, "yellow"));
-        routes.put("Phoenix", new Route(phoenix, 5, "white"));
-        routes.put("Santa Fe", new Route(santaFe, 2, "grey"));
-        routes.put("Oklahoma City", new Route(oklahomaCity, 4, "red"));
-        routes.put("Kansas City1", new Route(kansasCity, 4, "orange"));
-        routes.put("Kansas City2", new Route(kansasCity, 4, "black"));
-        routes.put("Omaha", new Route(omaha, 4, "pink"));
+        routes.put("Helena", new Route(helena, 4, "Green"));
+        routes.put("Salt Lake City1", new Route(saltLakeCity, 3, "Red"));
+        routes.put("Salt Lake City2", new Route(saltLakeCity, 3, "Yellow"));
+        routes.put("Phoenix", new Route(phoenix, 5, "White"));
+        routes.put("Santa Fe", new Route(santaFe, 2, "Grey"));
+        routes.put("Oklahoma City", new Route(oklahomaCity, 4, "Red"));
+        routes.put("Kansas City1", new Route(kansasCity, 4, "Orange"));
+        routes.put("Kansas City2", new Route(kansasCity, 4, "Black"));
+        routes.put("Omaha", new Route(omaha, 4, "Purple"));
         denver.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Omaha
-        routes.put("Helena", new Route(helena, 5, "red"));
-        routes.put("Duluth1", new Route(duluth, 1, "grey"));
-        routes.put("Duluth2", new Route(duluth, 1, "grey"));
-        routes.put("Chicago", new Route(chicago, 4, "blue"));
-        routes.put("Kansas City1", new Route(kansasCity, 1, "grey"));
-        routes.put("Kansas City2", new Route(kansasCity, 1, "grey"));
-        routes.put("Denver", new Route(denver, 4, "pink"));
-        denver.setRoutes(routes);
+        routes.put("Helena", new Route(helena, 5, "Red"));
+        routes.put("Duluth1", new Route(duluth, 1, "Grey"));
+        routes.put("Duluth2", new Route(duluth, 1, "Grey"));
+        routes.put("Chicago", new Route(chicago, 4, "Blue"));
+        routes.put("Kansas City1", new Route(kansasCity, 1, "Grey"));
+        routes.put("Kansas City2", new Route(kansasCity, 1, "Grey"));
+        routes.put("Denver", new Route(denver, 4, "Purple"));
+        omaha.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Duluth
-        routes.put("Helena", new Route(helena, 6, "orange"));
-        routes.put("Winnipeg", new Route(winnipeg, 4, "black"));
-        routes.put("Sault St. Marie", new Route(saultStMarie, 3, "grey"));
-        routes.put("Toronto", new Route(toronto, 6, "pink"));
-        routes.put("Chicago", new Route(chicago, 3, "red"));
-        routes.put("Omaha1", new Route(omaha, 1, "grey"));
-        routes.put("Omaha2", new Route(omaha, 1, "grey"));
+        routes.put("Helena", new Route(helena, 6, "Orange"));
+        routes.put("Winnipeg", new Route(winnipeg, 4, "Black"));
+        routes.put("Sault St. Marie", new Route(saultStMarie, 3, "Grey"));
+        routes.put("Toronto", new Route(toronto, 6, "Purple"));
+        routes.put("Chicago", new Route(chicago, 3, "Red"));
+        routes.put("Omaha1", new Route(omaha, 1, "Grey"));
+        routes.put("Omaha2", new Route(omaha, 1, "Grey"));
         duluth.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Kansas City
-        routes.put("Omaha1", new Route(omaha, 1, "grey"));
-        routes.put("Omaha2", new Route(omaha, 1, "grey"));
-        routes.put("Saint Louis1", new Route(saintLouis, 2, "blue"));
-        routes.put("Saint Louis2", new Route(saintLouis, 2, "pink"));
-        routes.put("Oklahoma City1", new Route(oklahomaCity, 2, "grey"));
-        routes.put("Oklahoma City2", new Route(oklahomaCity, 2, "grey"));
-        routes.put("Denver1", new Route(denver, 5, "orange"));
-        routes.put("Denver2", new Route(denver, 5, "black"));
+        routes.put("Omaha1", new Route(omaha, 1, "Grey"));
+        routes.put("Omaha2", new Route(omaha, 1, "Grey"));
+        routes.put("Saint Louis1", new Route(saintLouis, 2, "Blue"));
+        routes.put("Saint Louis2", new Route(saintLouis, 2, "Purple"));
+        routes.put("Oklahoma City1", new Route(oklahomaCity, 2, "Grey"));
+        routes.put("Oklahoma City2", new Route(oklahomaCity, 2, "Grey"));
+        routes.put("Denver1", new Route(denver, 5, "Orange"));
+        routes.put("Denver2", new Route(denver, 5, "Black"));
         kansasCity.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Oklahoma City
-        routes.put("Kansas City1", new Route(kansasCity, 2, "grey"));
-        routes.put("Kansas City 2", new Route(kansasCity, 2, "grey"));
-        routes.put("Little Rock", new Route(littleRock, 2, "grey"));
-        routes.put("Dallas1", new Route(dallas, 2, "grey"));
-        routes.put("Dallas2", new Route(dallas, 2, "grey"));
-        routes.put("El Paso", new Route(elPaso, 5, "yellow"));
-        routes.put("Santa Fe", new Route(santaFe, 3, "blue"));
-        routes.put("Denver", new Route(denver, 4, "red"));
+        routes.put("Kansas City1", new Route(kansasCity, 2, "Grey"));
+        routes.put("Kansas City 2", new Route(kansasCity, 2, "Grey"));
+        routes.put("Little Rock", new Route(littleRock, 2, "Grey"));
+        routes.put("Dallas1", new Route(dallas, 2, "Grey"));
+        routes.put("Dallas2", new Route(dallas, 2, "Grey"));
+        routes.put("El Paso", new Route(elPaso, 5, "Yellow"));
+        routes.put("Santa Fe", new Route(santaFe, 3, "Blue"));
+        routes.put("Denver", new Route(denver, 4, "Red"));
         oklahomaCity.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Dallas
-        routes.put("El Paso", new Route(elPaso, 4, "red"));
-        routes.put("Oklahoma City1", new Route(oklahomaCity, 2, "grey"));
-        routes.put("Oklahoma City2", new Route(oklahomaCity, 2, "grey"));
-        routes.put("Little Rock", new Route(littleRock, 2, "grey"));
-        routes.put("Houston1", new Route(houston, 1, "grey"));
-        routes.put("Houston2", new Route(houston, 1, "grey"));
+        routes.put("El Paso", new Route(elPaso, 4, "Red"));
+        routes.put("Oklahoma City1", new Route(oklahomaCity, 2, "Grey"));
+        routes.put("Oklahoma City2", new Route(oklahomaCity, 2, "Grey"));
+        routes.put("Little Rock", new Route(littleRock, 2, "Grey"));
+        routes.put("Houston1", new Route(houston, 1, "Grey"));
+        routes.put("Houston2", new Route(houston, 1, "Grey"));
         dallas.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Houston
-        routes.put("Dallas1", new Route(dallas, 1, "grey"));
-        routes.put("Dallas2", new Route(dallas, 1, "grey"));
-        routes.put("New Orleans", new Route(newOrleans, 2, "grey"));
-        routes.put("El Paso", new Route(elPaso, 6, "green"));
+        routes.put("Dallas1", new Route(dallas, 1, "Grey"));
+        routes.put("Dallas2", new Route(dallas, 1, "Grey"));
+        routes.put("New Orleans", new Route(newOrleans, 2, "Grey"));
+        routes.put("El Paso", new Route(elPaso, 6, "Green"));
         houston.setRoutes(routes);
 
         routes = new HashMap<>(); //rotues for New Orleans
-        routes.put("Houston", new Route(houston, 2, "grey"));
-        routes.put("Little Rock", new Route(littleRock, 3, "green"));
-        routes.put("Atlanta1", new Route(atlanta, 4, "yellow"));
-        routes.put("Atlanta2", new Route(atlanta, 4, "orange"));
-        routes.put("Miami", new Route(miami, 6, "red"));
+        routes.put("Houston", new Route(houston, 2, "Grey"));
+        routes.put("Little Rock", new Route(littleRock, 3, "Green"));
+        routes.put("Atlanta1", new Route(atlanta, 4, "Yellow"));
+        routes.put("Atlanta2", new Route(atlanta, 4, "Orange"));
+        routes.put("Miami", new Route(miami, 6, "Red"));
         newOrleans.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Little Rock
-        routes.put("Dallas", new Route(dallas, 2, "grey"));
-        routes.put("Oklahoma City", new Route(oklahomaCity, 2, "grey"));
-        routes.put("Saint Louis", new Route(saintLouis, 2, "grey"));
-        routes.put("Nashville", new Route(nashville, 3, "white"));
-        routes.put("New Orleans", new Route(newOrleans, 3, "green"));
+        routes.put("Dallas", new Route(dallas, 2, "Grey"));
+        routes.put("Oklahoma City", new Route(oklahomaCity, 2, "Grey"));
+        routes.put("Saint Louis", new Route(saintLouis, 2, "Grey"));
+        routes.put("Nashville", new Route(nashville, 3, "White"));
+        routes.put("New Orleans", new Route(newOrleans, 3, "Green"));
         littleRock.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Saint Louis
-        routes.put("Little Rock", new Route(littleRock, 2, "grey"));
-        routes.put("Kansas City1", new Route(kansasCity, 2, "blue"));
-        routes.put("Kansas City2", new Route(kansasCity, 2, "pink"));
-        routes.put("Chicago1", new Route(chicago, 2, "green"));
-        routes.put("Chicago2", new Route(chicago, 2, "white"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 5, "green"));
-        routes.put("Nashville", new Route(nashville, 2, "grey"));
+        routes.put("Little Rock", new Route(littleRock, 2, "Grey"));
+        routes.put("Kansas City1", new Route(kansasCity, 2, "Blue"));
+        routes.put("Kansas City2", new Route(kansasCity, 2, "Purple"));
+        routes.put("Chicago1", new Route(chicago, 2, "Green"));
+        routes.put("Chicago2", new Route(chicago, 2, "White"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 5, "Green"));
+        routes.put("Nashville", new Route(nashville, 2, "Grey"));
         saintLouis.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Chicago
-        routes.put("Saint Louis1", new Route(saintLouis, 2, "green"));
-        routes.put("Saint Louis2", new Route(saintLouis, 2, "white"));
-        routes.put("Omaha", new Route(omaha, 4, "blue"));
-        routes.put("Duluth", new Route(duluth, 3, "red"));
-        routes.put("Toronto", new Route(toronto, 4, "white"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 3, "orange"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 3, "black"));
+        routes.put("Saint Louis1", new Route(saintLouis, 2, "Green"));
+        routes.put("Saint Louis2", new Route(saintLouis, 2, "White"));
+        routes.put("Omaha", new Route(omaha, 4, "Blue"));
+        routes.put("Duluth", new Route(duluth, 3, "Red"));
+        routes.put("Toronto", new Route(toronto, 4, "White"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 3, "Orange"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 3, "Black"));
         chicago.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Toronto
-        routes.put("Sault St. Marie", new Route(saultStMarie, 2, "grey"));
-        routes.put("Montreal", new Route(montreal, 3, "grey"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 2, "grey"));
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
-        routes.put("Chicago", new Route(chicago, 4, "white"));
-        routes.put("Duluth", new Route(duluth, 6, "pink"));
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
+        routes.put("Sault St. Marie", new Route(saultStMarie, 2, "Grey"));
+        routes.put("Montreal", new Route(montreal, 3, "Grey"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 2, "Grey"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
+        routes.put("Chicago", new Route(chicago, 4, "White"));
+        routes.put("Duluth", new Route(duluth, 6, "Purple"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
         toronto.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Pittsburgh
-        routes.put("Chicago1", new Route(chicago, 3, "black"));
-        routes.put("Chicago2", new Route(chicago, 3, "orange"));
-        routes.put("Toronto", new Route(toronto, 2, "grey"));
-        routes.put("New York1", new Route(newYork, 2, "white"));
-        routes.put("New York2", new Route(newYork, 2, "green"));
-        routes.put("Washington", new Route(washington, 2, "grey"));
-        routes.put("Raleigh", new Route(raleigh, 2, "grey"));
-        routes.put("Nashville", new Route(nashville, 4, "yellow"));
-        routes.put("Saint Louis", new Route(saintLouis, 5, "green"));
+        routes.put("Chicago1", new Route(chicago, 3, "Black"));
+        routes.put("Chicago2", new Route(chicago, 3, "Orange"));
+        routes.put("Toronto", new Route(toronto, 2, "Grey"));
+        routes.put("New York1", new Route(newYork, 2, "White"));
+        routes.put("New York2", new Route(newYork, 2, "Green"));
+        routes.put("Washington", new Route(washington, 2, "Grey"));
+        routes.put("Raleigh", new Route(raleigh, 2, "Grey"));
+        routes.put("Nashville", new Route(nashville, 4, "Yellow"));
+        routes.put("Saint Louis", new Route(saintLouis, 5, "Green"));
         pittsburgh.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Nashville
-        routes.put("Saint Louis", new Route(saintLouis, 2, "grey"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 4, "yellow"));
-        routes.put("Raleigh", new Route(raleigh, 3, "black"));
-        routes.put("Atlanta", new Route(atlanta, 1, "grey"));
-        routes.put("Little Rock", new Route(littleRock, 3, "white"));
+        routes.put("Saint Louis", new Route(saintLouis, 2, "Grey"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 4, "Yellow"));
+        routes.put("Raleigh", new Route(raleigh, 3, "Black"));
+        routes.put("Atlanta", new Route(atlanta, 1, "Grey"));
+        routes.put("Little Rock", new Route(littleRock, 3, "White"));
         nashville.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Atlanta
-        routes.put("Nashville", new Route(nashville, 1, "grey"));
-        routes.put("Raleigh1", new Route(raleigh, 2, "grey"));
-        routes.put("Raleigh2", new Route(raleigh, 2, "grey"));
-        routes.put("Charleston", new Route(charleston, 2, "grey"));
-        routes.put("Miami", new Route(miami, 5, "blue"));
-        routes.put("New Orleans1", new Route(newOrleans, 4, "yellow"));
-        routes.put("New Orleans2", new Route(newOrleans, 4, "orange"));
-        routes.put("Phoenix", new Route(phoenix, 3, "grey"));
+        routes.put("Nashville", new Route(nashville, 1, "Grey"));
+        routes.put("Raleigh1", new Route(raleigh, 2, "Grey"));
+        routes.put("Raleigh2", new Route(raleigh, 2, "Grey"));
+        routes.put("Charleston", new Route(charleston, 2, "Grey"));
+        routes.put("Miami", new Route(miami, 5, "Blue"));
+        routes.put("New Orleans1", new Route(newOrleans, 4, "Yellow"));
+        routes.put("New Orleans2", new Route(newOrleans, 4, "Orange"));
+        routes.put("Phoenix", new Route(phoenix, 3, "Grey"));
         atlanta.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Miami
-        routes.put("New Orleans", new Route(newOrleans, 6, "red"));
-        routes.put("Atlanta", new Route(atlanta, 5, "blue"));
-        routes.put("Charleston", new Route(charleston, 4, "pink"));
+        routes.put("New Orleans", new Route(newOrleans, 6, "Red"));
+        routes.put("Atlanta", new Route(atlanta, 5, "Blue"));
+        routes.put("Charleston", new Route(charleston, 4, "Purple"));
         miami.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Charleston
-        routes.put("Miami", new Route(miami, 4, "pink"));
-        routes.put("Atlanta", new Route(atlanta, 2, "grey"));
-        routes.put("Raleigh", new Route(raleigh, 2, "grey"));
+        routes.put("Miami", new Route(miami, 4, "Purple"));
+        routes.put("Atlanta", new Route(atlanta, 2, "Grey"));
+        routes.put("Raleigh", new Route(raleigh, 2, "Grey"));
         charleston.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Raleigh
-        routes.put("Charleston", new Route(charleston, 2, "grey"));
-        routes.put("Atlanta1", new Route(atlanta, 2, "grey"));
-        routes.put("Atlanta2", new Route(atlanta, 2, "grey"));
-        routes.put("Nashville", new Route(nashville, 3, "black"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 2, "grey"));
-        routes.put("Washington1", new Route(washington, 2, "grey"));
-        routes.put("Washington2", new Route(washington, 2, "grey"));
+        routes.put("Charleston", new Route(charleston, 2, "Grey"));
+        routes.put("Atlanta1", new Route(atlanta, 2, "Grey"));
+        routes.put("Atlanta2", new Route(atlanta, 2, "Grey"));
+        routes.put("Nashville", new Route(nashville, 3, "Black"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 2, "Grey"));
+        routes.put("Washington1", new Route(washington, 2, "Grey"));
+        routes.put("Washington2", new Route(washington, 2, "Grey"));
         raleigh.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Washington
-        routes.put("Raleigh1", new Route(raleigh, 2, "grey"));
-        routes.put("Raleigh2", new Route(raleigh, 2, "grey"));
-        routes.put("Pittsburgh", new Route(pittsburgh, 2, "grey"));
-        routes.put("New York1", new Route(newYork, 2, "orange"));
-        routes.put("New York2", new Route(newYork, 2, "black"));
+        routes.put("Raleigh1", new Route(raleigh, 2, "Grey"));
+        routes.put("Raleigh2", new Route(raleigh, 2, "Grey"));
+        routes.put("Pittsburgh", new Route(pittsburgh, 2, "Grey"));
+        routes.put("New York1", new Route(newYork, 2, "Orange"));
+        routes.put("New York2", new Route(newYork, 2, "Black"));
         washington.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for New York
-        routes.put("Washington1", new Route(washington, 2, "orange"));
-        routes.put("Washington2", new Route(washington, 2, "black"));
-        routes.put("Pittsburgh1", new Route(pittsburgh, 2, "white"));
-        routes.put("Pittsburgh2", new Route(pittsburgh, 2, "green"));
-        routes.put("Montreal", new Route(montreal, 3, "blue"));
-        routes.put("Boston1", new Route(boston, 2, "yellow"));
-        routes.put("Boston2", new Route(boston, 2, "red"));
+        routes.put("Washington1", new Route(washington, 2, "Orange"));
+        routes.put("Washington2", new Route(washington, 2, "Black"));
+        routes.put("Pittsburgh1", new Route(pittsburgh, 2, "White"));
+        routes.put("Pittsburgh2", new Route(pittsburgh, 2, "Green"));
+        routes.put("Montreal", new Route(montreal, 3, "Blue"));
+        routes.put("Boston1", new Route(boston, 2, "Yellow"));
+        routes.put("Boston2", new Route(boston, 2, "Red"));
         newYork.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Boston
-        routes.put("New York1", new Route(newYork, 2, "red"));
-        routes.put("New York2", new Route(newYork, 2, "yellow"));
-        routes.put("Montreal1", new Route(montreal, 2, "grey"));
-        routes.put("Montreal2", new Route(montreal, 2, "grey"));
+        routes.put("New York1", new Route(newYork, 2, "Red"));
+        routes.put("New York2", new Route(newYork, 2, "Yellow"));
+        routes.put("Montreal1", new Route(montreal, 2, "Grey"));
+        routes.put("Montreal2", new Route(montreal, 2, "Grey"));
         boston.setRoutes(routes);
     }
 

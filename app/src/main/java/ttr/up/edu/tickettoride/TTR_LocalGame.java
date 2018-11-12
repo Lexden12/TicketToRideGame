@@ -74,7 +74,8 @@ public class TTR_LocalGame extends LocalGame {
 
     @Override
     protected String checkIfGameOver() {
-        return null;
+        if(gameState.getTurnsLeft() != 0) return null;
+        return "Game over!";
     }
 
     @Override
@@ -83,6 +84,7 @@ public class TTR_LocalGame extends LocalGame {
        if (action instanceof DrawTrainDeckFaceUpGameAction) gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard());
        else if (action instanceof DrawTrainDeckGameAction) gameState.drawDeck(getPlayerIdx(action.getPlayer()));
        else if (action instanceof DrawRouteDeckGameAction) gameState.drawRouteCards(getPlayerIdx(action.getPlayer()));
+       else if (action instanceof ClaimRouteGameAction) gameState.claimRoute(getPlayerIdx(action.getPlayer()), ((ClaimRouteGameAction) action).getRoute());
        else return false;
        return true;
 

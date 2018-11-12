@@ -57,6 +57,10 @@ public class PlayerHand {
         this.trainCards = trainCards;
     }
 
+    public int getTrains() {
+        return trains;
+    }
+
     /**
      * In the event that we draw a train card, this will add the cards to our hand
      * @param card the arraylist of cards to add to our hand
@@ -90,8 +94,14 @@ public class PlayerHand {
         ArrayList<Card> discards = new ArrayList<>();
         for(int i = 0; i < count; i++) {
             boolean hasCard = false;
+
             for (int j = 0; j < trainCards.size(); j++) {
-                if (trainCards.get(j).getName().equals(name)) {
+                if (!name.equals("Grey Train") && trainCards.get(j).getName().equals(name)) {
+                    discards.add(trainCards.remove(j));
+                    hasCard = true;
+                    break;
+                }
+                else if (name.equals("Grey Train")){
                     discards.add(trainCards.remove(j));
                     hasCard = true;
                     break;
@@ -103,11 +113,12 @@ public class PlayerHand {
                 return null;
             }
         }
+        trains -= discards.size();
         return discards;
     }
 
     /**
-     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by routeColor
+     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by card color
      */
     public void sort() {
         for(int i = 0; i < trainCards.size(); i++){
