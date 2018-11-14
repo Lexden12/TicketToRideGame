@@ -27,6 +27,8 @@ public class TTR_GameState extends GameState{
     protected Card[] faceUpTrainCards;
     private RouteDeck routeDeck;
     private TrainPieceStash trainPieceStash;
+    private CityGraph graph;
+    private int turnsLeft;
 
     //player specific information
     private ArrayList<PlayerHand> playerHands;
@@ -58,14 +60,15 @@ public class TTR_GameState extends GameState{
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
         routeCards = new Card[3];
+        graph = new CityGraph();
+        turnsLeft = -1;
     }
 
     /**
      * Deep-copy ctor
      * @param state GameState to copy
-     * @throws CloneNotSupportedException if it cannot copy the ArrayList of playerHands
      */
-    public TTR_GameState(TTR_GameState state) throws CloneNotSupportedException {
+    public TTR_GameState(TTR_GameState state){
         trainDeck = new TrainDeck(state.trainDeck);
         faceUpTrainCards = new Card[5];
         for(int i=0;i<5;i++)
@@ -75,9 +78,24 @@ public class TTR_GameState extends GameState{
         for(PlayerHand h: state.playerHands)
             playerHands.add(h.clone());
         trainPieceStash = new TrainPieceStash();
-        //board = new Board(state.board);
-
         currentPlayer = state.currentPlayer;
+        graph = state.graph;
+        turnsLeft = -1;
+    }
+
+    /**
+     * draw four train cards and three route cards for each player (as required to start the game).
+     */
+    private void init(){
+        for(int i=0;i<playerHands.size();i++){
+            for(int j=0;j<4;j++) {
+                Card c = trainDeck.draw();
+                playerHands.get(i).addTrainCard(c);
+            }
+            drawRouteCards(i);
+            endTurn();
+        }
+        //notify
     }
 
     /**
@@ -105,17 +123,35 @@ public class TTR_GameState extends GameState{
         if(numTrainCardsDrawn == 2) {
             endTurn();
         }
+        int numRainbow = 0;
+        for(Card card1:faceUpTrainCards){
+            if(card1 != null && card1.getName().equals("Rainbow Train"))
+                numRainbow++;
+        }
+        if(numRainbow >= 3){
+            for (int i=0;i<faceUpTrainCards.length;i++){
+                trainDeck.discard(faceUpTrainCards[i]);
+                faceUpTrainCards[i] = trainDeck.draw();
+            }
+            //notify
+        }
         return c;
     }
 
+    /**
+     * End the current turn by setting route cards (if applicable) and setting it to the next player's turn
+     */
     public void endTurn(){
         if(numRouteCardsDrawn>0)
             for (Card c:routeCards)
-                playerHands.get(currentPlayer).addRouteCard(c);
+                if(c != null)
+                    playerHands.get(currentPlayer).addRouteCard(c);
         currentPlayer = (currentPlayer+1)% playerHands.size();
         routeCards = new Card[3];
         numRouteCardsDrawn = 0;
         numTrainCardsDrawn = 0;
+        if(turnsLeft == -1 && playerHands.get(currentPlayer).getTrains() < 3) turnsLeft = playerHands.size();
+        if(turnsLeft != -1) turnsLeft--;
     }
 
     /**
@@ -143,9 +179,16 @@ public class TTR_GameState extends GameState{
     public Card[] drawRouteCards(int player){
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return null;
-        for (int i=0; i<3; i++)
-            routeCards[i] = routeDeck.draw();
+        for (int i=0; i<3; i++) {
+            Card c;
+            if((c = routeDeck.draw())!=null)
+                routeCards[i] = c;
+        }
         numRouteCardsDrawn = 3;
+        if(routeCards[0] != null)
+            endTurn();
+        else
+            numRouteCardsDrawn = 0;
         return routeCards;
     }
 
@@ -158,6 +201,67 @@ public class TTR_GameState extends GameState{
         routeCards[idx] = null;
         return c;
     }
+
+    /**
+     * Claim the given route on the board.
+     * @param player the player who wants to claim a route
+     * @param route the route the player wants to claim
+     * @return true for successful completion, false otherwise.
+     */
+    public boolean claimRoute(int player, String route) {
+        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
+            return false;
+        String[] cities = route.split("<->");
+        City c1 = graph.cities.get(cities[0]);
+        City c2 = graph.cities.get(cities[1]);
+        if (cities[1].contains("1") || cities[1].contains("2"))
+            c2 = graph.cities.get(cities[1].substring(0, cities[1].length()-1));
+        Route r1 = c1.getRoutes().get(cities[1]);
+        int totalMatch = 0;
+        if(!r1.color.equals("Grey")) {
+            for (Card c : playerHands.get(player).getTrainCards())
+                if (c.getName().contains(r1.color)) totalMatch++;
+        }
+        else{
+            for (Card c : playerHands.get(player).getTrainCards())
+                totalMatch++;
+        }
+        if (totalMatch < r1.length) {
+            int rainbow = 0;
+            int needed = r1.length - totalMatch;
+            for (Card c : playerHands.get(player).getTrainCards()) {
+                if (c.getName().equals("Rainbow Train") && needed > 0) {
+                    rainbow++;
+                    needed--;
+                }
+            }
+            if (needed > 0)
+                return false;
+            for(Card c:playerHands.get(player).discard("Rainbow Train", rainbow))
+                trainDeck.discard(c);
+            for(Card c:playerHands.get(player).discard(r1.color + " Train", totalMatch))
+                trainDeck.discard(c);
+        }
+        else{
+            if(!r1.color.equals("Grey"))
+                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
+                    trainDeck.discard(c);
+            else
+                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
+                    trainDeck.discard(c);
+        }
+        r1.setPlayerNum(player);
+        if (cities[1].contains("1"))
+            c2.getRoutes().get((c1.getName())+"1").setPlayerNum(player);
+        else if(cities[1].contains("2"))
+            c2.getRoutes().get((c1.getName())+"2").setPlayerNum(player);
+        else
+            c2.getRoutes().get(c1.getName()).setPlayerNum(player);
+
+        return true;
+    }
+
+    //Getters/Setters
 
     public TrainDeck getTrainDeck() {
         return trainDeck;
@@ -199,6 +303,7 @@ public class TTR_GameState extends GameState{
 
     public void setPlayerHands(ArrayList<PlayerHand> playerHands) {
         this.playerHands = playerHands;
+        init();
     }
 
     public int getCurrentPlayer() {
@@ -231,6 +336,14 @@ public class TTR_GameState extends GameState{
 
     public void setNumRouteCardsDrawn(int numRouteCardsDrawn) {
         this.numRouteCardsDrawn = numRouteCardsDrawn;
+    }
+
+    public int getTurnsLeft() {
+        return turnsLeft;
+    }
+
+    public CityGraph getGraph() {
+        return graph;
     }
 
     @Override

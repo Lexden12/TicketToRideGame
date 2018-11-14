@@ -18,15 +18,19 @@ import java.util.ArrayList;
 public class PlayerHand {
     private ArrayList<Card> trainCards;
     private ArrayList<Card> routeCards;
+    private String color;
+    private int trains;
     //Add score and train pieces to store all player accessible data here.
 
     /**
      * Create a new PlayerHand with an arraylist to keep track of the trainCards in our hand
      * and the routecards in our hand
+     * Also initialize the number of trains to 45
      */
     public PlayerHand(){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
+        trains = 45;
     }
 
     public PlayerHand clone(){
@@ -54,6 +58,10 @@ public class PlayerHand {
         this.trainCards = trainCards;
     }
 
+    public int getTrains() {
+        return trains;
+    }
+
     /**
      * In the event that we draw a train card, this will add the cards to our hand
      * @param card the arraylist of cards to add to our hand
@@ -62,7 +70,7 @@ public class PlayerHand {
         int idx = 0;
         for (int i=0; i<trainCards.size(); i++){
             if(trainCards.get(i).getName().compareTo(card.getName())>-1){
-                idx = i;
+                idx = i+1;
             }
         }
         trainCards.add(idx, card);
@@ -87,8 +95,14 @@ public class PlayerHand {
         ArrayList<Card> discards = new ArrayList<>();
         for(int i = 0; i < count; i++) {
             boolean hasCard = false;
+
             for (int j = 0; j < trainCards.size(); j++) {
-                if (trainCards.get(j).getName().equals(name)) {
+                if (!name.equals("Grey Train") && trainCards.get(j).getName().equals(name)) {
+                    discards.add(trainCards.remove(j));
+                    hasCard = true;
+                    break;
+                }
+                else if (name.equals("Grey Train")){
                     discards.add(trainCards.remove(j));
                     hasCard = true;
                     break;
@@ -100,11 +114,12 @@ public class PlayerHand {
                 return null;
             }
         }
+        trains -= discards.size();
         return discards;
     }
 
     /**
-     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by routeColor
+     * no practical purpose, but it is so aesthetically pleasing when your cards are sorted by card color
      */
     public void sort() {
         for(int i = 0; i < trainCards.size(); i++){

@@ -5,8 +5,14 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
@@ -27,7 +33,7 @@ import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
  *
  */
 
-public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouchListener{
+public class TTR_GameHumanPlayer extends GameHumanPlayer{
 
     private Activity myActivity;
 
@@ -36,6 +42,10 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
     private TextView trainCount;
     private TTR_SurfaceView surfaceView;
     private TTR_GameState state;
+    private Spinner routes;
+    private ArrayAdapter<String> routeAdapter;
+    private Button claimButton;
+    private String route;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -47,6 +57,10 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
         return null;
     }
 
+    /**
+     * Override receiveInfo to allow the HumanPlayer to accurately update their view.
+     * @param info the info being sent to them.
+     */
     @Override
     public void receiveInfo(GameInfo info) {
         if (surfaceView == null) return;
@@ -70,11 +84,18 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
-            trainCount.setText("Trains Remaining: "+45);
+            trainCount.setText("Trains Remaining: "+state.getPlayerHands().get(playerNum).getTrains());
             Log.i("human player", "receiving");
+            if(routes.getAdapter() == null)
+                initSpinner();
         }
     }
 
+    /**
+     * The game sends the human player the MainActivity of the game, allowing us to initialize
+     * our GUI
+     * @param activity the main activity of the game
+     */
     public void setAsGui(GameMainActivity activity) {
 
         // remember our activitiy
@@ -98,38 +119,39 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
 
         surfaceView = myActivity.findViewById(R.id.surfaceView);
         trainCount = myActivity.findViewById(R.id.trainCount);
+        routes = myActivity.findViewById(R.id.routeSpinner);
+        claimButton = myActivity.findViewById(R.id.claimButton);
+        claimButton.setOnClickListener(drawOnClick);
+    }
+
+    /**
+     * wait until we receive info with a GameState to initialize the Spinner so that we can have a
+     * fully initialized ArrayAdapter
+     */
+    public void initSpinner(){
+        ArrayList<String> routeList = new ArrayList<>();
+        for(City c:state.getGraph().cities.values()){
+            for(String r:c.getRoutes().keySet()){
+                String s = c.getName() + "<->" + r;
+                String sR = r + "<->" + c.getName();
+                if(routeList.contains(sR) || routeList.contains(s))
+                    continue;
+                routeList.add(s);
+            }
+        }
+        routeAdapter = new ArrayAdapter<>(myActivity, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, routeList);
+        routes.setAdapter(routeAdapter);
+        routes.setOnItemSelectedListener(new RoutesSpinnerListener());
     }
 
     public int getPlayerNum(){
         return this.playerNum;
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-// ignore if not an "up" event
-        if (event.getAction() != MotionEvent.ACTION_UP) return true;
-        // get the x and y coordinates of the touch-location;
-        // convert them to square coordinates (where both
-        // values are in the range 0..2)
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        // if the location did not map to a legal square, flash
-        // the screen; otherwise, create and send an action to
-        // the game
-        /*if (p == null) {
-            surfaceView.flash(Color.RED, 50);
-        } else {
-            ClaimRouteGameAction action = new ClaimRouteGameAction(this);
-            Log.i("onTouch", "Human player sending CRGA ...");
-            game.sendAction(action);
-            surfaceView.invalidate();
-        }*/
-
-        // register that we have handled the event
-        return true;
-    }
-
+    /**
+     * Class to handle all the clicks of the buttons in the GUI
+     * sends the appropriate GameAction to the game in response to a click
+     */
     private class DrawOnClick implements View.OnClickListener{
         private TTR_GameHumanPlayer player;
         public DrawOnClick(TTR_GameHumanPlayer player){
@@ -159,6 +181,26 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer implements View.OnTouch
             if(v.getId() == R.id.routeDeck){
                 game.sendAction(new DrawRouteDeckGameAction(player));
             }
+            if(v.getId() == R.id.claimButton){
+                game.sendAction(new ClaimRouteGameAction(player, route));
+            }
+        }
+    }
+
+    /**
+     * Set the route selected in the Spinner each time it changes so that it is accessible
+     * in the onClick
+     */
+    private class RoutesSpinnerListener implements AdapterView.OnItemSelectedListener{
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            route = routeAdapter.getItem(position);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
         }
     }
 }
