@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private Activity myActivity;
 
     private int layoutId;
+    private TextView[] hand_count;
     private ImageButton[] draw;
     private TextView trainCount;
     private TTR_SurfaceView surfaceView;
@@ -67,7 +69,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
 
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
             // if the move was out of turn or otherwise illegal, flash the screen
-            surfaceView.flash(Color.RED, 50);
+            surfaceView.flash(Color.RED, 100);
         }
         else if (!(info instanceof TTR_GameState))
             // if we do not have a TTR_GameState, ignore
@@ -81,6 +83,9 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
                 }
                 else
                     draw[i].setVisibility(View.GONE);
+            }
+            for(int i=0;i<9;i++){
+                hand_count[i].setText(state.getPlayerHands().get(playerNum).getCardCount(i)+"");
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
@@ -105,6 +110,16 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         activity.setContentView(layoutId);
         /*View v = myActivity.findViewById(R.id.runTestButton);
         v.setOnClickListener(activity);*/
+        hand_count = new TextView[9];
+        hand_count[0] = myActivity.findViewById(R.id.black_count);
+        hand_count[1] = myActivity.findViewById(R.id.blue_count);
+        hand_count[2] = myActivity.findViewById(R.id.green_count);
+        hand_count[3] = myActivity.findViewById(R.id.orange_count);
+        hand_count[4] = myActivity.findViewById(R.id.purple_count);
+        hand_count[5] = myActivity.findViewById(R.id.rainbow_count);
+        hand_count[6] = myActivity.findViewById(R.id.red_count);
+        hand_count[7] = myActivity.findViewById(R.id.white_count);
+        hand_count[8] = myActivity.findViewById(R.id.yellow_count);
         draw = new ImageButton[7];
         draw[0] = myActivity.findViewById(R.id.trainDeck);
         draw[1] = myActivity.findViewById(R.id.card1);
@@ -133,15 +148,37 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         for(City c:state.getGraph().cities.values()){
             for(String r:c.getRoutes().keySet()){
                 String s = c.getName() + "<->" + r;
-                String sR = r + "<->" + c.getName();
-                if(routeList.contains(sR) || routeList.contains(s))
-                    continue;
                 routeList.add(s);
             }
         }
+        routeList = quickSort(routeList, 0, routeList.size());
         routeAdapter = new ArrayAdapter<>(myActivity, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, routeList);
         routes.setAdapter(routeAdapter);
         routes.setOnItemSelectedListener(new RoutesSpinnerListener());
+    }
+
+    public ArrayList<String> quickSort(ArrayList<String> list, int low, int high){
+        if(low >= high-1)
+            return list;
+        String pivot = list.get(low);
+        int idx = low+1;
+        for(int i=low+1; i<high; i++){
+            if(list.get(i).compareTo(pivot)<0){
+                if(i != idx)
+                    list = quickSortHelper(list, i, idx);
+                idx++;
+            }
+        }
+        list = quickSortHelper(list, low, idx-1);
+        quickSort(list, low, idx-1);
+        return quickSort(list, idx, high);
+    }
+
+    private ArrayList<String> quickSortHelper(ArrayList<String> list, int i, int j){
+        String s = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, s);
+        return list;
     }
 
     public int getPlayerNum(){

@@ -147,7 +147,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 		
 		// save the original background routeColor; set the new background
 		// routeColor
-		int savedColor = getBackgroundColor(top);
+		int savedColor = Color.BLACK;
 		top.setBackgroundColor(color);
 		
 		// set up a timer event to set the background routeColor back to

@@ -1,6 +1,7 @@
 package ttr.up.edu.game.util;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -60,7 +61,7 @@ public class FlashSurfaceView extends SurfaceView {
      */
     public void flash(int color, int millis) {
         // save the old background, so that we can restore it
-        Drawable saveDrawable = this.getBackground();
+        Drawable saveDrawable = new ColorDrawable(Color.BLACK);
 
         // if a flash is already in progress, abort this flash. Otherwise, create
         // a flasher object
