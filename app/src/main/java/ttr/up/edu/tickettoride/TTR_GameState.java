@@ -216,7 +216,11 @@ public class TTR_GameState extends GameState{
         City c2 = graph.cities.get(cities[1]);
         if (cities[1].contains("1") || cities[1].contains("2"))
             c2 = graph.cities.get(cities[1].substring(0, cities[1].length()-1));
+
         Route r1 = c1.getRoutes().get(cities[1]);
+        //surround with if statement and test if r1 is not null
+        //dijkstras would have to pass 9 options
+        if (r1 == null) return false;
         int totalMatch = 0;
         if(!r1.color.equals("Grey")) {
             for (Card c : playerHands.get(player).getTrainCards())

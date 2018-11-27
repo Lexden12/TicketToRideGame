@@ -53,6 +53,8 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
                     String route = null;
                     for (int i = 0; i < path.size() - 1; i++) {
                         route = path.get(i) + "<->" + path.get(i+1);
+                        route = path.get(i) + "<->1" + path.get(i+1);
+                        route = path.get(i) + "<->2" + path.get(i+1);
                     }
                     game.sendAction(new ClaimRouteGameAction(this, route));
                 }
