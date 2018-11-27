@@ -1,6 +1,8 @@
 package ttr.up.edu.tickettoride;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -14,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
@@ -48,6 +51,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private ArrayAdapter<String> routeAdapter;
     private Button claimButton;
     private String route;
+    private HashMap<String, Bitmap> trainMap;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -79,7 +83,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
             for(int i=1;i<6;i++){
                 if(state.faceUpTrainCards[i-1]!=null) {
                     draw[i].setVisibility(View.VISIBLE);
-                    draw[i].setImageBitmap(state.faceUpTrainCards[i - 1].getBmp());
+                    draw[i].setImageBitmap(trainMap.get(state.faceUpTrainCards[i - 1].getName()));
                 }
                 else
                     draw[i].setVisibility(View.GONE);
@@ -137,6 +141,16 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         routes = myActivity.findViewById(R.id.routeSpinner);
         claimButton = myActivity.findViewById(R.id.claimButton);
         claimButton.setOnClickListener(drawOnClick);
+        trainMap = new HashMap<>();
+        trainMap.put("Black Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.black_card));
+        trainMap.put("Blue Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.blue_card));
+        trainMap.put("Green Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.green_card));
+        trainMap.put("Orange Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.orange_card));
+        trainMap.put("Purple Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.purple_card));
+        trainMap.put("Red Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.red_card));
+        trainMap.put("White Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.white_card));
+        trainMap.put("Yellow Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.yellow_card));
+        trainMap.put("Rainbow Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.rainbow_card));
     }
 
     /**

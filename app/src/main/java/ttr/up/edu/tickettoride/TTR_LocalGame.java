@@ -26,8 +26,8 @@ public class TTR_LocalGame extends LocalGame {
     private TTR_GameState gameState;
     private int numPlayers;
 
-    public TTR_LocalGame(Context context) {
-        gameState = new TTR_GameState(context, numPlayers);
+    public TTR_LocalGame() {
+        gameState = new TTR_GameState(numPlayers);
     }
 
     @Override

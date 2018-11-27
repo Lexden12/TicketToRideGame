@@ -17,19 +17,17 @@ import android.graphics.Bitmap;
 
 public class Card {
     private String name;
-    private Bitmap bmp;
 
     /**
      * Construct a new Card from scratch
      * @param name the name of the card to be used when comparing cards
      */
-    public Card(String name, Bitmap bmp){
+    public Card(String name){
         this.name = name;
-        this.bmp = bmp;
     }
 
     public Card clone(){
-        Card c = new Card(getName(), getBmp());
+        Card c = new Card(getName());
         return c;
     }
 
@@ -39,14 +37,10 @@ public class Card {
      */
     public Card(Card c){
         this.name = c.getName();
-        this.bmp = c.getBmp();
     }
 
     public String getName() {
         return name;
     }
 
-    public Bitmap getBmp() {
-        return bmp;
-    }
 }

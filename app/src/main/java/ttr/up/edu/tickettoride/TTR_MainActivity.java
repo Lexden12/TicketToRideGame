@@ -78,7 +78,7 @@ public class TTR_MainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        game = new TTR_LocalGame(this);
+        game = new TTR_LocalGame();
         return game;
     }
 

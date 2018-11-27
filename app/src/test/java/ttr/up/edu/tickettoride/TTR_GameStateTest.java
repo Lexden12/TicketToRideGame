@@ -5,15 +5,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TTR_GameStateTest {
-
+    /**
+     * Tests whether we can draw a FaceUp card properly.
+     * @author Alex Schendel
+     */
     @Test
     public void drawFaceUp() {
-        TTR_GameState state = new TTR_GameState(null, 2);
-        Card c = state.drawFaceUp(1, 2);
-
+        TTR_GameState state = new TTR_GameState(2);
+        Card c = state.drawFaceUp(state.getCurrentPlayer(), 0);
         assertNotEquals(c, null);
         assertNotEquals(c.getName(), "");
-        assertNotEquals(c.getBmp(), null);
+        c = state.drawFaceUp(state.getCurrentPlayer(), 5);
+        assertEquals(c, null);
     }
 
     @Test

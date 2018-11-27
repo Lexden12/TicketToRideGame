@@ -17,21 +17,20 @@ import android.graphics.BitmapFactory;
  */
 
 public class TrainDeck extends Deck {
-    Context context;
     /**
      * create a new Train Card Deck with the proper amounts of each type of card
      */
-    public TrainDeck(Context context){
-        this.context = context;
-        Card[] trainCards = {new Card("Black Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.black_card)),
-                new Card("Blue Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.blue_card)),
-                new Card("Green Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.green_card)),
-                new Card("Orange Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.orange_card)),
-                new Card("Purple Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.purple_card)),
-                new Card("Red Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.red_card)),
-                new Card("White Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.white_card)),
-                new Card("Yellow Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.yellow_card)),
-                new Card("Rainbow Train", BitmapFactory.decodeResource(context.getResources(), R.drawable.rainbow_card))};
+    public TrainDeck(){
+        Card[] trainCards = {new Card("Black Train"),
+                new Card("Blue Train"),
+                new Card("Green Train"),
+                new Card("Orange Train"),
+                new Card("Purple Train"),
+                new Card("Red Train"),
+                new Card("White Train"),
+                new Card("Yellow Train"),
+                new Card("Rainbow Train")
+        };
         for(int i = 0; i < 8; i++)
             for (int j = 0; j < 12; j++)
                 cards.add(new Card(trainCards[i]));//add the regular cards
@@ -42,6 +41,5 @@ public class TrainDeck extends Deck {
 
     public TrainDeck(TrainDeck deck) {
         super(deck);
-        this.context = deck.context;
     }
 }
