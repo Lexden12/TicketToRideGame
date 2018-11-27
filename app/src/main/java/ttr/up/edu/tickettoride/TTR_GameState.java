@@ -209,7 +209,7 @@ public class TTR_GameState extends GameState{
      * @return true for successful completion, false otherwise.
      */
     public boolean claimRoute(int player, String route) {
-        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
+        if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0 || route == null)
             return false;
         String[] cities = route.split("<->");
         City c1 = graph.cities.get(cities[0]);
@@ -251,6 +251,7 @@ public class TTR_GameState extends GameState{
                     trainDeck.discard(c);
         }
         r1.setPlayerNum(player);
+
         if (cities[1].contains("1"))
             c2.getRoutes().get((c1.getName())+"1").setPlayerNum(player);
         else if(cities[1].contains("2"))
@@ -258,6 +259,7 @@ public class TTR_GameState extends GameState{
         else
             c2.getRoutes().get(c1.getName()).setPlayerNum(player);
 
+        endTurn();
         return true;
     }
 

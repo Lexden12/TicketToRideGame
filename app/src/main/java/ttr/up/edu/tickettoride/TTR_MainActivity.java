@@ -56,13 +56,18 @@ public class TTR_MainActivity extends GameMainActivity {
             }
         });
 
+        playerTypes.add(new GamePlayerType("Local Smart Computer Player") {
+            public GamePlayer createPlayer(String name) {
+                return new TTR_SmartComputerPlayer(name);
+            }
+        });
 
         // Create a game configuration class for Tic-tac-toe
         GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Ticket_To_Ride", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0); // yellow-on-blue GUI
-        defaultConfig.addPlayer("Computer", 3); // dumb computer player
+        defaultConfig.addPlayer("Computer", 1); // dumb computer player
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Remote Player", "", 1); // red-on-yellow GUI

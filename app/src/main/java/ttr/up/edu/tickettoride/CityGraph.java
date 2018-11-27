@@ -383,4 +383,8 @@ public class CityGraph {
         }
         return false;
     }
+
+    public HashMap<String, City> getCities() {
+        return cities;
+    }
 }

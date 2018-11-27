@@ -1,5 +1,7 @@
 package ttr.up.edu.tickettoride;
 
+import java.util.ArrayList;
+
 import ttr.up.edu.game.GameComputerPlayer;
 import ttr.up.edu.game.infoMsg.GameInfo;
 
@@ -22,16 +24,18 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
         super(name);
     }
 
+
     @Override
     protected void receiveInfo(GameInfo info) {
         if (info instanceof TTR_GameState){
             TTR_GameState state = (TTR_GameState)info;
-            if(!(state.getCurrentPlayer()==getPlayerNum()))
-                return;
+            if(!(state.getCurrentPlayer()==getPlayerNum())) return;
             sleep(500);
             game.sendAction(new DrawTrainDeckGameAction(this));
         }
     }
+
+
 
     public int getPlayerNum(){
         return this.playerNum;

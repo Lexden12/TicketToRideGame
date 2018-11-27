@@ -42,7 +42,7 @@ public class RouteDeck extends Deck {
             new Card("Los Angeles - Chicago", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest14)),
             new Card("Toronto - Miami", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest15)),
             new Card("Helena - Los Angeles", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest16)),
-            new Card("Sault Ste. Marie - Nashville", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest17)),
+            new Card("Sault St. Marie - Nashville", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest17)),
             new Card("Duluth - Houston", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest18)),
             new Card("Seattle - Los Angeles", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest19)),
             new Card("Montreal - Atlanta", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest20)),
