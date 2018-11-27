@@ -45,13 +45,13 @@ public class TTR_GameState extends GameState{
     /**
      * Default GameState ctor
      */
-    public TTR_GameState(Context context, int numPlayers){
-        trainDeck = new TrainDeck(context);
+    public TTR_GameState(int numPlayers){
+        trainDeck = new TrainDeck();
         faceUpTrainCards = new Card[5];
         for(int i=0; i<5; i++){
             faceUpTrainCards[i] = trainDeck.draw();
         }
-        routeDeck = new RouteDeck(context);
+        routeDeck = new RouteDeck();
         playerHands = new ArrayList<>();
         for(int i=0;i<numPlayers;i++)
             playerHands.add(new PlayerHand());
