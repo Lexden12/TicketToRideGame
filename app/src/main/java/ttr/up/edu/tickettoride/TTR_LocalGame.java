@@ -26,8 +26,8 @@ public class TTR_LocalGame extends LocalGame {
     private TTR_GameState gameState;
     private int numPlayers;
 
-    public TTR_LocalGame(Context context) {
-        gameState = new TTR_GameState(context, numPlayers);
+    public TTR_LocalGame() {
+        gameState = new TTR_GameState(numPlayers);
     }
 
     @Override
@@ -81,10 +81,22 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
 
-       if (action instanceof DrawTrainDeckFaceUpGameAction) gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard());
-       else if (action instanceof DrawTrainDeckGameAction) gameState.drawDeck(getPlayerIdx(action.getPlayer()));
-       else if (action instanceof DrawRouteDeckGameAction) gameState.drawRouteCards(getPlayerIdx(action.getPlayer()));
-       else if (action instanceof ClaimRouteGameAction) gameState.claimRoute(getPlayerIdx(action.getPlayer()), ((ClaimRouteGameAction) action).getRoute());
+       if (action instanceof DrawTrainDeckFaceUpGameAction) {
+           if (gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard()) == null)
+               return false;
+       }
+       else if (action instanceof DrawTrainDeckGameAction) {
+           if (gameState.drawDeck(getPlayerIdx(action.getPlayer())) == null)
+               return false;
+       }
+       else if (action instanceof DrawRouteDeckGameAction) {
+           if (gameState.drawRouteCards(getPlayerIdx(action.getPlayer())) == null)
+               return false;
+       }
+       else if (action instanceof ClaimRouteGameAction) {
+           if (!gameState.claimRoute(getPlayerIdx(action.getPlayer()), ((ClaimRouteGameAction) action).getRoute()))
+               return false;
+       }
        else return false;
        return true;
 

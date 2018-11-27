@@ -1,6 +1,8 @@
 package ttr.up.edu.tickettoride;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -9,10 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
@@ -38,6 +42,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private Activity myActivity;
 
     private int layoutId;
+    private TextView[] hand_count;
     private ImageButton[] draw;
     private TextView trainCount;
     private TTR_SurfaceView surfaceView;
@@ -46,6 +51,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private ArrayAdapter<String> routeAdapter;
     private Button claimButton;
     private String route;
+    private HashMap<String, Bitmap> trainMap;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -67,7 +73,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
 
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
             // if the move was out of turn or otherwise illegal, flash the screen
-            surfaceView.flash(Color.RED, 50);
+            surfaceView.flash(Color.RED, 100);
         }
         else if (!(info instanceof TTR_GameState))
             // if we do not have a TTR_GameState, ignore
@@ -77,10 +83,13 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
             for(int i=1;i<6;i++){
                 if(state.faceUpTrainCards[i-1]!=null) {
                     draw[i].setVisibility(View.VISIBLE);
-                    draw[i].setImageBitmap(state.faceUpTrainCards[i - 1].getBmp());
+                    draw[i].setImageBitmap(trainMap.get(state.faceUpTrainCards[i - 1].getName()));
                 }
                 else
                     draw[i].setVisibility(View.GONE);
+            }
+            for(int i=0;i<9;i++){
+                hand_count[i].setText(state.getPlayerHands().get(playerNum).getCardCount(i)+"");
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
@@ -105,6 +114,16 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         activity.setContentView(layoutId);
         /*View v = myActivity.findViewById(R.id.runTestButton);
         v.setOnClickListener(activity);*/
+        hand_count = new TextView[9];
+        hand_count[0] = myActivity.findViewById(R.id.black_count);
+        hand_count[1] = myActivity.findViewById(R.id.blue_count);
+        hand_count[2] = myActivity.findViewById(R.id.green_count);
+        hand_count[3] = myActivity.findViewById(R.id.orange_count);
+        hand_count[4] = myActivity.findViewById(R.id.purple_count);
+        hand_count[5] = myActivity.findViewById(R.id.rainbow_count);
+        hand_count[6] = myActivity.findViewById(R.id.red_count);
+        hand_count[7] = myActivity.findViewById(R.id.white_count);
+        hand_count[8] = myActivity.findViewById(R.id.yellow_count);
         draw = new ImageButton[7];
         draw[0] = myActivity.findViewById(R.id.trainDeck);
         draw[1] = myActivity.findViewById(R.id.card1);
@@ -122,6 +141,16 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         routes = myActivity.findViewById(R.id.routeSpinner);
         claimButton = myActivity.findViewById(R.id.claimButton);
         claimButton.setOnClickListener(drawOnClick);
+        trainMap = new HashMap<>();
+        trainMap.put("Black Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.black_card));
+        trainMap.put("Blue Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.blue_card));
+        trainMap.put("Green Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.green_card));
+        trainMap.put("Orange Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.orange_card));
+        trainMap.put("Purple Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.purple_card));
+        trainMap.put("Red Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.red_card));
+        trainMap.put("White Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.white_card));
+        trainMap.put("Yellow Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.yellow_card));
+        trainMap.put("Rainbow Train", BitmapFactory.decodeResource(myActivity.getResources(), R.drawable.rainbow_card));
     }
 
     /**
@@ -133,15 +162,37 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         for(City c:state.getGraph().cities.values()){
             for(String r:c.getRoutes().keySet()){
                 String s = c.getName() + "<->" + r;
-                String sR = r + "<->" + c.getName();
-                if(routeList.contains(sR) || routeList.contains(s))
-                    continue;
                 routeList.add(s);
             }
         }
+        routeList = quickSort(routeList, 0, routeList.size());
         routeAdapter = new ArrayAdapter<>(myActivity, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, routeList);
         routes.setAdapter(routeAdapter);
         routes.setOnItemSelectedListener(new RoutesSpinnerListener());
+    }
+
+    public ArrayList<String> quickSort(ArrayList<String> list, int low, int high){
+        if(low >= high-1)
+            return list;
+        String pivot = list.get(low);
+        int idx = low+1;
+        for(int i=low+1; i<high; i++){
+            if(list.get(i).compareTo(pivot)<0){
+                if(i != idx)
+                    list = quickSortHelper(list, i, idx);
+                idx++;
+            }
+        }
+        list = quickSortHelper(list, low, idx-1);
+        quickSort(list, low, idx-1);
+        return quickSort(list, idx, high);
+    }
+
+    private ArrayList<String> quickSortHelper(ArrayList<String> list, int i, int j){
+        String s = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, s);
+        return list;
     }
 
     public int getPlayerNum(){

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class PlayerHand {
     private ArrayList<Card> trainCards;
+    int[] cardsCounts;
     private ArrayList<Card> routeCards;
     private String color;
     private int trains;
@@ -30,6 +31,7 @@ public class PlayerHand {
     public PlayerHand(){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
+        cardsCounts = new int[9];
         trains = 45;
     }
 
@@ -64,16 +66,30 @@ public class PlayerHand {
 
     /**
      * In the event that we draw a train card, this will add the cards to our hand
-     * @param card the arraylist of cards to add to our hand
+     * @param card the card to add to our hand
      */
     public void addTrainCard(Card card){
-        int idx = 0;
-        for (int i=0; i<trainCards.size(); i++){
-            if(trainCards.get(i).getName().compareTo(card.getName())>-1){
-                idx = i+1;
-            }
+        if (card!=null) {
+            trainCards.add(card);
+            if (card.getName().equals("Black Train"))
+                cardsCounts[0]++;
+            else if (card.getName().equals("Blue Train"))
+                cardsCounts[1]++;
+            else if (card.getName().equals("Green Train"))
+                cardsCounts[2]++;
+            else if (card.getName().equals("Orange Train"))
+                cardsCounts[3]++;
+            else if (card.getName().equals("Purple Train"))
+                cardsCounts[4]++;
+            else if (card.getName().equals("Rainbow Train"))
+                cardsCounts[5]++;
+            else if (card.getName().equals("Red Train"))
+                cardsCounts[6]++;
+            else if (card.getName().equals("White Train"))
+                cardsCounts[7]++;
+            else if (card.getName().equals("Yellow Train"))
+                cardsCounts[8]++;
         }
-        trainCards.add(idx, card);
     }
 
     /**
@@ -113,6 +129,24 @@ public class PlayerHand {
                 sort();
                 return null;
             }
+            if(name.equals("Black Train"))
+                cardsCounts[0]--;
+            else if(name.equals("Blue Train"))
+                cardsCounts[1]--;
+            else if(name.equals("Green Train"))
+                cardsCounts[2]--;
+            else if(name.equals("Orange Train"))
+                cardsCounts[3]--;
+            else if(name.equals("Purple Train"))
+                cardsCounts[4]--;
+            else if(name.equals("Rainbow Train"))
+                cardsCounts[5]--;
+            else if(name.equals("Red Train"))
+                cardsCounts[6]--;
+            else if(name.equals("White Train"))
+                cardsCounts[7]--;
+            else if(name.equals("Yellow Train"))
+                cardsCounts[8]--;
         }
         trains -= discards.size();
         return discards;
@@ -127,6 +161,10 @@ public class PlayerHand {
             if(index != i)
                 swap(trainCards, i, index);
         }
+    }
+
+    public int getCardCount(int c){
+        return cardsCounts[c];
     }
 
     /**
