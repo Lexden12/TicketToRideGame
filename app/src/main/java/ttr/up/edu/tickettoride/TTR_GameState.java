@@ -107,7 +107,7 @@ public class TTR_GameState extends GameState{
      */
     public Card drawFaceUp(int player, int card){
         //modified here
-        if(currentPlayer != player || numRouteCardsDrawn > 0)
+        if(currentPlayer != player || numRouteCardsDrawn > 0 || card > 4 || card < 0)
             return null;
 
         if(faceUpTrainCards[card].getName().equals("Rainbow Train")) {
