@@ -17,12 +17,18 @@ public class City {
     String name;
     HashMap<String, Route> routes;
 
+    //information used for dijkstra's algorithm
+    int cost;
+    String parent;
+
     /**
      * Constructor which creates a new City given a name
      * @param name the name to give the city
      */
     public City(String name){
         this.name = name;
+        this.cost = Integer.MAX_VALUE;
+        this.parent = null;
     }
 
     /**
@@ -31,9 +37,11 @@ public class City {
      */
     public City(City c){
         name = c.getName();
-        for(String k:c.getRoutes().keySet()){
+       /* for(String k:c.getRoutes().keySet()){
             routes.put(k, c.getRoutes().get(k));
-        }
+        }*/
+        this.cost = Integer.MAX_VALUE;
+        this.parent = null;
     }
 
     //Getters/Setters
@@ -47,5 +55,21 @@ public class City {
 
     public void setRoutes(HashMap<String, Route> routes) {
         this.routes = routes;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 }
