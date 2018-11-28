@@ -377,7 +377,8 @@ public class CityGraph {
      * @param c2 the second city
      * @return whether the two cities are connected
      */
-    public boolean isConnected(City c1, City c2){
+    //TODO finish this method for the Route Cards
+    public boolean isConnected(City c1, City c2, int playerNum){
         for (Route r : c1.getRoutes().values()){
             if (r.getCity().getName().equals(c2.getName())) return true;
         }

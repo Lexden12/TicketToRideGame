@@ -19,6 +19,9 @@ public class TTR_GameStateTest {
         assertEquals(c, null);
     }
 
+    /**
+     * @author Ben LaFave
+     */
     @Test
     public void drawDeck() {
 
@@ -31,7 +34,7 @@ public class TTR_GameStateTest {
 
         TTR_GameState state2 = new TTR_GameState(2);
         Card c2 = state.drawDeck(1);
-        assertEquals(null, c2);     //
+        assertEquals(null, c2);     //since it is not player one's turn, the draw deck returns null.
     }
 
     @Test
