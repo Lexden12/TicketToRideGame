@@ -8,18 +8,24 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import ttr.up.edu.game.util.FlashSurfaceView;
 
-public class TTR_SurfaceView extends FlashSurfaceView {
+public class TTR_SurfaceView extends FlashSurfaceView{
     private TTR_GameState state;
     private Bitmap board;
     private Paint paint;
     private Rect dest;
     private HashMap<String, Bitmap> routeMap;
+    private int clickX;
+    private int clickY;
+    private final boolean DEBUG = true;
 
 
     public TTR_SurfaceView(Context context, AttributeSet attrs) {
@@ -29,6 +35,8 @@ public class TTR_SurfaceView extends FlashSurfaceView {
         paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(75);
+        clickX = -1;
+        clickY = -1;
 
         routeMap = new HashMap<>();
         routeMap.put("Winnipeg - Little Rock", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest1));
@@ -66,8 +74,18 @@ public class TTR_SurfaceView extends FlashSurfaceView {
      */
     @Override
     protected void onDraw(Canvas canvas) {
-        dest = new Rect(0, 0, (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight())), canvas.getHeight());
+        int x = (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight()));
+        int y = canvas.getHeight();
+        dest = new Rect(0, 0, x, y);
         canvas.drawBitmap(board, null, dest, paint);
+        if (DEBUG) {
+            Log.i("width of map:", "" + x);
+            Log.i("height of map", "" + y);
+            Paint paint = new Paint();
+            paint.setColor(0xff00ff00);
+            paint.setStrokeWidth((float) 10.0);
+            canvas.drawLine(0, 0, clickX, clickY, paint); //testing drawLine
+        }
         if(state!=null) {
             canvas.drawText("Player " + state.getCurrentPlayer() + "'s Turn", dest.right / 2, dest.bottom / 10, paint);
             if(state.getPlayerHands().get(0).getRouteCards().size() > 0 && state.getPlayerHands().get(0).getRouteCards().get(0) != null){
@@ -80,6 +98,24 @@ public class TTR_SurfaceView extends FlashSurfaceView {
                 }
             }
         }
+    }
+
+    /**
+     * this method is used for development purposes only
+     * logs the x and y coordinates to the console
+     * @param event the touch event to be handled
+     * @return true if the event was handled, false otherwise
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        clickX = (int) event.getX();
+        clickY = (int) event.getY();
+        if (DEBUG && event.getAction() == MotionEvent.ACTION_UP) {
+            Log.i("X Coordinate: ", "" + clickX);
+            Log.i("Y Coordinate: ", "" + clickY);
+            this.invalidate();
+        }
+        return true;
     }
 
     public void setState(TTR_GameState state) {
