@@ -222,37 +222,54 @@ public class TTR_GameState extends GameState{
         //dijkstras would have to pass 9 options
         if (r1 == null) return false;
         int totalMatch = 0;
+        String color = r1.color;
         if(!r1.color.equals("Grey")) {
             for (Card c : playerHands.get(player).getTrainCards())
                 if (c.getName().contains(r1.color)) totalMatch++;
         }
         else{
-            for (Card c : playerHands.get(player).getTrainCards())
-                totalMatch++;
+            int maxIdx = 0;
+            for (int i = 0; i < playerHands.get(player).cardsCounts.length; i++){
+                if(i != 5 && playerHands.get(player).cardsCounts[i] > playerHands.get(player).cardsCounts[maxIdx]){
+                    maxIdx = i;
+                }
+            }
+            totalMatch = playerHands.get(player).cardsCounts[maxIdx];
+            if(maxIdx == 0)
+                color = "Black";
+            else if(maxIdx == 1)
+                color = "Blue";
+            else if(maxIdx == 2)
+                color = "Green";
+            else if(maxIdx == 3)
+                color = "Orange";
+            else if(maxIdx == 4)
+                color = "Purple";
+            else if(maxIdx == 6)
+                color = "Red";
+            else if(maxIdx == 7)
+                color = "White";
+            else if(maxIdx == 8)
+                color = "Yellow";
         }
         if (totalMatch < r1.length) {
-            int rainbow = 0;
+            int rainbow = playerHands.get(player).getCardCount(5);
             int needed = r1.length - totalMatch;
-            for (Card c : playerHands.get(player).getTrainCards()) {
-                if (c.getName().equals("Rainbow Train") && needed > 0) {
-                    rainbow++;
-                    needed--;
-                }
+            needed -= rainbow;
+            if(needed < 0){
+                rainbow += needed;
+                needed = 0;
             }
             if (needed > 0)
                 return false;
             for(Card c:playerHands.get(player).discard("Rainbow Train", rainbow))
                 trainDeck.discard(c);
-            for(Card c:playerHands.get(player).discard(r1.color + " Train", totalMatch))
+            for(Card c:playerHands.get(player).discard(color + " Train", totalMatch))
                 trainDeck.discard(c);
         }
         else{
-            if(!r1.color.equals("Grey"))
-                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
-                    trainDeck.discard(c);
-            else
-                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
-                    trainDeck.discard(c);
+            for(Card c:playerHands.get(player).discard(color + " Train", r1.length))
+                trainDeck.discard(c);
         }
         r1.setPlayerNum(player);
 
