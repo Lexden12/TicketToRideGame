@@ -52,6 +52,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private Button claimButton;
     private String route;
     private HashMap<String, Bitmap> trainMap;
+    private ArrayList<String> unclaimedRoutes;
 
     TTR_GameHumanPlayer(String name, int layoutId){
         super(name);
@@ -97,7 +98,19 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
             Log.i("human player", "receiving");
             if(routes.getAdapter() == null)
                 initSpinner();
+            for(City c:state.getGraph().getCities().values()){
+                for(String s:c.getRoutes().keySet()){
+                    if(c.getRoutes().get(s).getPlayerNum() != -1){
+                        String r = c.getName() + "<->" + s;
+                        routeAdapter.remove(r);
+                    }
+                }
+            }
         }
+    }
+
+    private void updateSpinner(){
+
     }
 
     /**
