@@ -107,7 +107,7 @@ public class TTR_GameState extends GameState{
      */
     public Card drawFaceUp(int player, int card){
         //modified here
-        if(currentPlayer != player || numRouteCardsDrawn > 0)
+        if(currentPlayer != player || numRouteCardsDrawn > 0 || card > 4 || card < 0)
             return null;
 
         if(faceUpTrainCards[card].getName().equals("Rainbow Train")) {
@@ -216,39 +216,60 @@ public class TTR_GameState extends GameState{
         City c2 = graph.cities.get(cities[1]);
         if (cities[1].contains("1") || cities[1].contains("2"))
             c2 = graph.cities.get(cities[1].substring(0, cities[1].length()-1));
+
         Route r1 = c1.getRoutes().get(cities[1]);
+        //surround with if statement and test if r1 is not null
+        //dijkstras would have to pass 9 options
+        if (r1 == null) return false;
         int totalMatch = 0;
+        String color = r1.color;
         if(!r1.color.equals("Grey")) {
             for (Card c : playerHands.get(player).getTrainCards())
                 if (c.getName().contains(r1.color)) totalMatch++;
         }
         else{
-            for (Card c : playerHands.get(player).getTrainCards())
-                totalMatch++;
+            int maxIdx = 0;
+            for (int i = 0; i < playerHands.get(player).cardsCounts.length; i++){
+                if(i != 5 && playerHands.get(player).cardsCounts[i] > playerHands.get(player).cardsCounts[maxIdx]){
+                    maxIdx = i;
+                }
+            }
+            totalMatch = playerHands.get(player).cardsCounts[maxIdx];
+            if(maxIdx == 0)
+                color = "Black";
+            else if(maxIdx == 1)
+                color = "Blue";
+            else if(maxIdx == 2)
+                color = "Green";
+            else if(maxIdx == 3)
+                color = "Orange";
+            else if(maxIdx == 4)
+                color = "Purple";
+            else if(maxIdx == 6)
+                color = "Red";
+            else if(maxIdx == 7)
+                color = "White";
+            else if(maxIdx == 8)
+                color = "Yellow";
         }
         if (totalMatch < r1.length) {
-            int rainbow = 0;
+            int rainbow = playerHands.get(player).getCardCount(5);
             int needed = r1.length - totalMatch;
-            for (Card c : playerHands.get(player).getTrainCards()) {
-                if (c.getName().equals("Rainbow Train") && needed > 0) {
-                    rainbow++;
-                    needed--;
-                }
+            needed -= rainbow;
+            if(needed < 0){
+                rainbow += needed;
+                needed = 0;
             }
             if (needed > 0)
                 return false;
             for(Card c:playerHands.get(player).discard("Rainbow Train", rainbow))
                 trainDeck.discard(c);
-            for(Card c:playerHands.get(player).discard(r1.color + " Train", totalMatch))
+            for(Card c:playerHands.get(player).discard(color + " Train", totalMatch))
                 trainDeck.discard(c);
         }
         else{
-            if(!r1.color.equals("Grey"))
-                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
-                    trainDeck.discard(c);
-            else
-                for(Card c:playerHands.get(player).discard(r1.color + " Train", r1.length))
-                    trainDeck.discard(c);
+            for(Card c:playerHands.get(player).discard(color + " Train", r1.length))
+                trainDeck.discard(c);
         }
         r1.setPlayerNum(player);
 

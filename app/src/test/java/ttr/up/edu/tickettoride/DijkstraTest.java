@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 public class DijkstraTest {
 
-    @Test //Cameron
+    @Test //@author Cameron
     public void calculatedPath() {
         //setup
         CityGraph graph = new CityGraph();
@@ -36,7 +36,7 @@ public class DijkstraTest {
         assertTrue(path.get(4).equals("Boston"));
     }
 
-    @Test //Cameron
+    @Test //@author Cameron
     public void checkQueues() {
         //setup
         CityGraph graph = new CityGraph();

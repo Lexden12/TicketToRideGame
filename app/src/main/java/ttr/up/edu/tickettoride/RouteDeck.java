@@ -40,7 +40,7 @@ public class RouteDeck extends Deck {
             new Card("Los Angeles - Chicago"),
             new Card("Toronto - Miami"),
             new Card("Helena - Los Angeles"),
-            new Card("Sault Ste. Marie - Nashville"),
+            new Card("Sault St. Marie - Nashville"),
             new Card("Duluth - Houston"),
             new Card("Seattle - Los Angeles"),
             new Card("Montreal - Atlanta"),
