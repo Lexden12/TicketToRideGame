@@ -39,7 +39,7 @@ public class TTR_GameState extends GameState{
 
     private int numRouteCardsDrawn;
 
-    private Card[] routeCards;
+    private RouteCard[] routeCards;
 
     /**
      * Default GameState ctor
@@ -58,7 +58,7 @@ public class TTR_GameState extends GameState{
         currentPlayer = 0;
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
-        routeCards = new Card[3];
+        routeCards = new RouteCard[3];
         graph = new CityGraph();
         turnsLeft = -1;
     }
@@ -141,11 +141,11 @@ public class TTR_GameState extends GameState{
      */
     public void endTurn(){
         if(numRouteCardsDrawn>0)
-            for (Card c:routeCards)
+            for (RouteCard c:routeCards)
                 if(c != null)
                     playerHands.get(currentPlayer).addRouteCard(c);
         currentPlayer = (currentPlayer+1)% playerHands.size();
-        routeCards = new Card[3];
+        routeCards = new RouteCard[3];
         numRouteCardsDrawn = 0;
         numTrainCardsDrawn = 0;
         if(turnsLeft == -1 && playerHands.get(currentPlayer).getTrains() < 3) turnsLeft = playerHands.size();
@@ -178,7 +178,7 @@ public class TTR_GameState extends GameState{
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return null;
         for (int i=0; i<3; i++) {
-            Card c;
+            RouteCard c;
             if((c = routeDeck.draw())!=null)
                 routeCards[i] = c;
         }
@@ -338,7 +338,7 @@ public class TTR_GameState extends GameState{
         return routeCards;
     }
 
-    public void setRouteCards(Card[] routeCards) {
+    public void setRouteCards(RouteCard[] routeCards) {
         this.routeCards = routeCards;
     }
 
@@ -357,6 +357,7 @@ public class TTR_GameState extends GameState{
     public CityGraph getGraph() {
         return graph;
     }
+
 
     @Override
     public String toString() {

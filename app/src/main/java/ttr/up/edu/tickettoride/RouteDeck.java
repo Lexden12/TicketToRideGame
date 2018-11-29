@@ -24,35 +24,47 @@ public class RouteDeck extends Deck {
      */
     public RouteDeck() {
         Card[] routeCards = {
-            new Card("Winnipeg - Little Rock"),
-            new Card("Denver - Pittsburgh"),
-            new Card("Portland - Phoenix"),
-            new Card("Vancouver - Santa Fe"),
-            new Card("Calgary - Phoenix"),
-            new Card("Los Angeles - Miami"),
-            new Card("Los Angeles - New York"),
-            new Card("Boston - Miami"),
-            new Card("San Francisco - Atlanta"),
-            new Card("Portland - Nashville"),
-            new Card("Vancouver - Montreal"),
-            new Card("Seattle - New York"),
-            new Card("Dallas - New York"),
-            new Card("Los Angeles - Chicago"),
-            new Card("Toronto - Miami"),
-            new Card("Helena - Los Angeles"),
-            new Card("Sault St. Marie - Nashville"),
-            new Card("Duluth - Houston"),
-            new Card("Seattle - Los Angeles"),
-            new Card("Montreal - Atlanta"),
-            new Card("Sault Ste. Marie - Oklahoma City"),
-            new Card("Denver - El Paso"),
-            new Card("New York - Atlanta"),
-            new Card("Chicago - New Orleans"),
-            new Card("Kansas City - Houston"),
-            new Card("Calgary - Salt Lake City")
+            new RouteCard("Winnipeg - Little Rock",11),
+            new RouteCard("Denver - Pittsburgh",11),
+            new RouteCard("Portland - Phoenix",11),
+            new RouteCard("Vancouver - Santa Fe",13),
+            new RouteCard("Calgary - Phoenix",13),
+            new RouteCard("Los Angeles - Miami",20),
+            new RouteCard("Los Angeles - New York",21),
+            new RouteCard("Boston - Miami",12),
+            new RouteCard("San Francisco - Atlanta",17),
+            new RouteCard("Portland - Nashville",17),
+            new RouteCard("Vancouver - Montreal",20),
+            new RouteCard("Seattle - New York",22),
+            new RouteCard("Dallas - New York",11),
+            new RouteCard("Los Angeles - Chicago",16),
+            new RouteCard("Toronto - Miami",10),
+            new RouteCard("Helena - Los Angeles",8),
+            new RouteCard("Sault St. Marie - Nashville",8),
+            new RouteCard("Duluth - Houston",8),
+            new RouteCard("Seattle - Los Angeles",9),
+            new RouteCard("Montreal - Atlanta",9),
+            new RouteCard("Sault St. Marie - Oklahoma City",9),
+            new RouteCard("Denver - El Paso",4),
+            new RouteCard("New York - Atlanta",6),
+            new RouteCard("Chicago - New Orleans",7),
+            new RouteCard("Kansas City - Houston",5),
+            new RouteCard("Calgary - Salt Lake City",7)
         };
         cards.addAll(Arrays.asList(routeCards));
         shuffle();
+    }
+
+    @Override
+    public RouteCard draw() {
+        if(cards.size()==0) {
+            if(discard.size()==0)
+                return null;//no cards left in deck
+            cards.addAll(discard);
+            discard.clear();
+            shuffle();
+        }
+        return (RouteCard) cards.remove(cards.size()-1);
     }
 
     public RouteDeck(RouteDeck deck) {
