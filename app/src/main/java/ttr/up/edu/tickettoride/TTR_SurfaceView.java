@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +24,8 @@ public class TTR_SurfaceView extends FlashSurfaceView{
     private HashMap<String, Bitmap> routeMap;
     private int clickX;
     private int clickY;
-    private final boolean DEBUG = true;
+    private final boolean DEBUG = false;
+    private boolean stateInitialized;
 
 
     public TTR_SurfaceView(Context context, AttributeSet attrs) {
@@ -37,6 +37,7 @@ public class TTR_SurfaceView extends FlashSurfaceView{
         paint.setTextSize(75);
         clickX = -1;
         clickY = -1;
+        stateInitialized = false;
 
         routeMap = new HashMap<>();
         routeMap.put("Winnipeg - Little Rock", BitmapFactory.decodeResource(context.getResources(), R.drawable.dest1));
@@ -74,6 +75,8 @@ public class TTR_SurfaceView extends FlashSurfaceView{
      */
     @Override
     protected void onDraw(Canvas canvas) {
+        float xScale = 1753;
+        float yScale = 1168;
         int x = (int)(canvas.getHeight()*((double)board.getWidth()/board.getHeight()));
         int y = canvas.getHeight();
         dest = new Rect(0, 0, x, y);
@@ -85,11 +88,57 @@ public class TTR_SurfaceView extends FlashSurfaceView{
             paint.setColor(0xff00ff00);
             paint.setStrokeWidth((float) 10.0);
             canvas.drawLine(0, 0, clickX, clickY, paint); //testing drawLine
+            canvas.drawLine(217,189,428,160, paint); //vancouver-calgary
+        }
+        else if (stateInitialized){
+            Paint paint = new Paint();
+            paint.setStrokeWidth((float) 10.0);
+            for (City city : state.getGraph().getCities().values()){
+                for (String routeName : city.getRoutes().keySet()){ //todo fix this issue
+                    Route route = city.getRoutes().get(routeName);
+                    if (route.getPlayerNum() != -1) { //if the route is claimed
+                        //get the color of the player who claimed the route
+                        paint.setColor(getRouteColor(route));
+                        //draw the appropriate line on the map
+                        if (city.getName().equals("Vancouver") && routeName.equals("Calgary")) {
+                            canvas.drawLine((float)217/xScale*(float)x, (float)189/yScale*(float)y, (float)428/xScale*(float)x, (float)160/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Portland") && routeName.equals("Seattle1")) {
+                            canvas.drawLine((float)188/xScale*(float)x, (float)282/yScale*(float)y, (float)168/xScale*(float)x, (float)337/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Portland") && routeName.equals("Seattle2")) {
+                            canvas.drawLine((float)190/xScale*(float)x, (float)343/yScale*(float)y, (float)208/xScale*(float)x, (float)297/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Seattle") && routeName.equals("Calgary")) {
+                            canvas.drawLine((float)230/xScale*(float)x, (float)278/yScale*(float)y, (float)423/xScale*(float)x, (float)162/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Calgary") && routeName.equals("Winnipeg")) {
+                            canvas.drawLine((float)430/xScale*(float)x, (float)157/yScale*(float)y, (float)788/xScale*(float)x, (float)169/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Calgary") && routeName.equals("Helena")) {
+                            canvas.drawLine((float)426/xScale*(float)x, (float)160/yScale*(float)y, (float)585/xScale*(float)x, (float)370/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Winnipeg") && routeName.equals("Helena")) {
+                            canvas.drawLine((float)789/xScale*(float)x, (float)175/yScale*(float)y, (float)588/xScale*(float)x, (float)370/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Helena") && routeName.equals("Seattle")) {
+                            canvas.drawLine((float) 585 / xScale * (float) x, (float) 368 / yScale * (float) y, (float) 210 / xScale * (float) x, (float) 278 / yScale * (float) y, paint);
+                        }
+                        else if (city.getName().equals("Portland1") && routeName.equals("San Francisco1")) {
+                            canvas.drawLine((float)148 /xScale*(float)x, (float)675/yScale*(float)y, (float)172/xScale*(float)x, (float)378/yScale*(float)y, paint);
+                        }
+                        else if (city.getName().equals("Portland2") && routeName.equals("San Francisco2")) {
+                            canvas.drawLine((float)143 /xScale*(float)x, (float)367/yScale*(float)y, (float)125/xScale*(float)x, (float)676/yScale*(float)y, paint);
+                        }
+
+
+
+
+                        else if (false){
+                            //todo continue adding the rest of the cities here...
+                        }
+
+                    }
+                }
+            }
         }
         if(state!=null) {
             canvas.drawText("Player " + state.getCurrentPlayer() + "'s Turn", dest.right / 2, dest.bottom / 10, paint);
             if(state.getPlayerHands().get(0).getRouteCards().size() > 0 && state.getPlayerHands().get(0).getRouteCards().get(0) != null){
-                ArrayList<Card> routeCards = state.getPlayerHands().get(0).getRouteCards();
+                ArrayList<RouteCard> routeCards = state.getPlayerHands().get(0).getRouteCards();
                 int top = 0;
                 int left = dest.right;
                 int space = (dest.bottom - dest.top - routeMap.get(routeCards.get(0).getName()).getHeight()/2) / routeCards.size();
@@ -108,9 +157,9 @@ public class TTR_SurfaceView extends FlashSurfaceView{
      */
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        clickX = (int) event.getX();
-        clickY = (int) event.getY();
         if (DEBUG && event.getAction() == MotionEvent.ACTION_UP) {
+            clickX = (int) event.getX();
+            clickY = (int) event.getY();
             Log.i("X Coordinate: ", "" + clickX);
             Log.i("Y Coordinate: ", "" + clickY);
             this.invalidate();
@@ -119,7 +168,40 @@ public class TTR_SurfaceView extends FlashSurfaceView{
     }
 
     public void setState(TTR_GameState state) {
+        stateInitialized = true;
         this.state = state;
         invalidate();
+    }
+
+
+    /**
+     * Gets the player color of a claimed route.
+     * Specifically useful for grey routes where who claimed it may not immediately be obvious.
+     * @param r the route to examine
+     * @return an integer value representing a Color, -1 if the route isn't claimed
+     */
+    private int getRouteColor(Route r){
+        if (r.getPlayerNum() == -1) return -1;
+        String playerHandColor = state.getPlayerHands().get(r.getPlayerNum()).getColor();
+        switch(playerHandColor){
+            case "Black":
+                return Color.BLACK;
+            case "Purple":
+                return Color.argb(255,160,32,240);
+            case "White":
+                return Color.WHITE;
+            case "Blue":
+                return Color.BLUE;
+            case "Yellow":
+                return Color.YELLOW;
+            case "Orange":
+                return Color.argb(255,136,0,204);
+            case "Red":
+                return Color.RED;
+            case "Green":
+                return Color.GREEN;
+            default:
+                return -1;
+        }
     }
 }

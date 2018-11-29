@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PlayerHand {
     private ArrayList<Card> trainCards;
     int[] cardsCounts;
-    private ArrayList<Card> routeCards;
+    private ArrayList<RouteCard> routeCards;
     private String color;
     private int trains;
     //Add score and train pieces to store all player accessible data here.
@@ -28,23 +28,24 @@ public class PlayerHand {
      * and the routecards in our hand
      * Also initialize the number of trains to 45
      */
-    public PlayerHand(){
+    public PlayerHand(String color){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
         cardsCounts = new int[9];
+        this.color = color;
         trains = 45;
     }
 
     public PlayerHand clone(){
-        PlayerHand playerHand = new PlayerHand();
+        PlayerHand playerHand = new PlayerHand(new String(this.color));
         for(Card c:trainCards)
             playerHand.addTrainCard(c.clone());
-        for(Card c:routeCards)
-            playerHand.addRouteCard(c.clone());
+        for(RouteCard c:routeCards)
+            playerHand.addRouteCard((RouteCard) c.clone());
         return playerHand;
     }
 
-    public ArrayList<Card> getRouteCards() {
+    public ArrayList<RouteCard> getRouteCards() {
         return routeCards;
     }
 
@@ -52,7 +53,7 @@ public class PlayerHand {
         return trainCards;
     }
 
-    public void setRouteCards(ArrayList<Card> routeCards) {
+    public void setRouteCards(ArrayList<RouteCard> routeCards) {
         this.routeCards = routeCards;
     }
 
@@ -96,7 +97,7 @@ public class PlayerHand {
      * In the event that we draw a route card, this will add the cards to our hand
      * @param card the arraylist of cards to add to our hand
      */
-    public void addRouteCard(Card card){
+    public void addRouteCard(RouteCard card){
         routeCards.add(card);
     }
 
@@ -215,5 +216,13 @@ public class PlayerHand {
 
     public int getTrainCardsSize(){
         return trainCards.size();
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    protected void setTrains(int trains) {
+        this.trains = trains;
     }
 }

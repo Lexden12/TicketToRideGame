@@ -32,6 +32,13 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
             if(!(state.getCurrentPlayer()==getPlayerNum())) return;
             sleep(500);
             game.sendAction(new DrawTrainDeckGameAction(this));
+            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City1"));
+            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City2"));
+            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Duluth1"));
+            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Duluth2"));
+            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City2"));
+            game.sendAction(new ClaimRouteGameAction(this, "Kansas City<->Oklahoma City1"));
+            game.sendAction(new ClaimRouteGameAction(this, "Kansas City<->Oklahoma City2"));
         }
     }
 

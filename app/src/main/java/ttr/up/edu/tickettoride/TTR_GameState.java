@@ -26,7 +26,6 @@ public class TTR_GameState extends GameState{
     private TrainDeck trainDeck;
     protected Card[] faceUpTrainCards;
     private RouteDeck routeDeck;
-    private TrainPieceStash trainPieceStash;
     private CityGraph graph;
     private int turnsLeft;
 
@@ -40,7 +39,7 @@ public class TTR_GameState extends GameState{
 
     private int numRouteCardsDrawn;
 
-    private Card[] routeCards;
+    private RouteCard[] routeCards;
 
     /**
      * Default GameState ctor
@@ -52,14 +51,14 @@ public class TTR_GameState extends GameState{
             faceUpTrainCards[i] = trainDeck.draw();
         }
         routeDeck = new RouteDeck();
-        playerHands = new ArrayList<>();
+        //todo VERIFY playerhands don't need to be set here b/c they're set in start() in LocalGame
+        /*playerHands = new ArrayList<>();
         for(int i=0;i<numPlayers;i++)
-            playerHands.add(new PlayerHand());
-        trainPieceStash = new TrainPieceStash();
+            playerHands.add(new PlayerHand());*/
         currentPlayer = 0;
         numTrainCardsDrawn = 0;
         numRouteCardsDrawn = 0;
-        routeCards = new Card[3];
+        routeCards = new RouteCard[3];
         graph = new CityGraph();
         turnsLeft = -1;
     }
@@ -77,7 +76,6 @@ public class TTR_GameState extends GameState{
         playerHands = new ArrayList<>();
         for(PlayerHand h: state.playerHands)
             playerHands.add(h.clone());
-        trainPieceStash = new TrainPieceStash();
         currentPlayer = state.currentPlayer;
         graph = state.graph;
         turnsLeft = -1;
@@ -143,11 +141,11 @@ public class TTR_GameState extends GameState{
      */
     public void endTurn(){
         if(numRouteCardsDrawn>0)
-            for (Card c:routeCards)
+            for (RouteCard c:routeCards)
                 if(c != null)
                     playerHands.get(currentPlayer).addRouteCard(c);
         currentPlayer = (currentPlayer+1)% playerHands.size();
-        routeCards = new Card[3];
+        routeCards = new RouteCard[3];
         numRouteCardsDrawn = 0;
         numTrainCardsDrawn = 0;
         if(turnsLeft == -1 && playerHands.get(currentPlayer).getTrains() < 3) turnsLeft = playerHands.size();
@@ -180,7 +178,7 @@ public class TTR_GameState extends GameState{
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0)
             return null;
         for (int i=0; i<3; i++) {
-            Card c;
+            RouteCard c;
             if((c = routeDeck.draw())!=null)
                 routeCards[i] = c;
         }
@@ -310,15 +308,6 @@ public class TTR_GameState extends GameState{
         this.routeDeck = routeDeck;
     }
 
-    public TrainPieceStash getTrainPieceStash() {
-        return trainPieceStash;
-    }
-
-    public void setTrainPieceStash(TrainPieceStash trainPieceStash) {
-        this.trainPieceStash = trainPieceStash;
-    }
-
-
 
     public ArrayList<PlayerHand> getPlayerHands() {
         return playerHands;
@@ -349,7 +338,7 @@ public class TTR_GameState extends GameState{
         return routeCards;
     }
 
-    public void setRouteCards(Card[] routeCards) {
+    public void setRouteCards(RouteCard[] routeCards) {
         this.routeCards = routeCards;
     }
 
@@ -367,6 +356,10 @@ public class TTR_GameState extends GameState{
 
     public CityGraph getGraph() {
         return graph;
+    }
+
+    public void setGraph(CityGraph graph) {
+        this.graph = graph;
     }
 
     @Override

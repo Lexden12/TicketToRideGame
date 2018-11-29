@@ -1,5 +1,6 @@
 package ttr.up.edu.tickettoride;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -190,8 +191,8 @@ public class CityGraph {
 
         routes = new HashMap<>(); //routes for Omaha
         routes.put("Helena", new Route(helena, 5, "Red"));
-        routes.put("Duluth1", new Route(duluth, 1, "Grey"));
-        routes.put("Duluth2", new Route(duluth, 1, "Grey"));
+        routes.put("Duluth1", new Route(duluth, 2, "Grey"));
+        routes.put("Duluth2", new Route(duluth, 2, "Grey"));
         routes.put("Chicago", new Route(chicago, 4, "Blue"));
         routes.put("Kansas City1", new Route(kansasCity, 1, "Grey"));
         routes.put("Kansas City2", new Route(kansasCity, 1, "Grey"));
@@ -204,8 +205,8 @@ public class CityGraph {
         routes.put("Sault St. Marie", new Route(saultStMarie, 3, "Grey"));
         routes.put("Toronto", new Route(toronto, 6, "Purple"));
         routes.put("Chicago", new Route(chicago, 3, "Red"));
-        routes.put("Omaha1", new Route(omaha, 1, "Grey"));
-        routes.put("Omaha2", new Route(omaha, 1, "Grey"));
+        routes.put("Omaha1", new Route(omaha, 2, "Grey"));
+        routes.put("Omaha2", new Route(omaha, 2, "Grey"));
         duluth.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Kansas City
@@ -221,7 +222,7 @@ public class CityGraph {
 
         routes = new HashMap<>(); //routes for Oklahoma City
         routes.put("Kansas City1", new Route(kansasCity, 2, "Grey"));
-        routes.put("Kansas City 2", new Route(kansasCity, 2, "Grey"));
+        routes.put("Kansas City2", new Route(kansasCity, 2, "Grey"));
         routes.put("Little Rock", new Route(littleRock, 2, "Grey"));
         routes.put("Dallas1", new Route(dallas, 2, "Grey"));
         routes.put("Dallas2", new Route(dallas, 2, "Grey"));
@@ -378,11 +379,70 @@ public class CityGraph {
      * @return whether the two cities are connected
      */
     //TODO finish this method for the Route Cards
-    public boolean isConnected(City c1, City c2, int playerNum){
+    public boolean isConnected(City c1, City c2, ArrayList<City> citiesChecked, int playerNum){
+        if(c1 == c2)
+            return true;
+        citiesChecked.add(c1);
+        ArrayList<Route> routes = new ArrayList<>();
         for (Route r : c1.getRoutes().values()){
-            if (r.getCity().getName().equals(c2.getName())) return true;
+            if(r.getPlayerNum() == playerNum && !citiesChecked.contains(r.city))
+                routes.add(r);
         }
-        return false;
+        if(routes.size()==1)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==2)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==3)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==4)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==5)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(4).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==6)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(5).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==7)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(5).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(6).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==8)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(5).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(6).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(7).city, c2, citiesChecked, playerNum);
+        else if(routes.size()==9)
+            return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(5).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(6).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(7).city, c2, citiesChecked, playerNum) ||
+                    isConnected(routes.get(8).city, c2, citiesChecked, playerNum);
+        return false;//the greatest number of routes coming from one city is 9.
     }
 
     public HashMap<String, City> getCities() {

@@ -16,7 +16,7 @@ import android.graphics.Bitmap;
  */
 
 public class Card {
-    private String name;
+    protected String name;
 
     /**
      * Construct a new Card from scratch
