@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ import ttr.up.edu.game.config.GamePlayerType;
 
 /**
  * class TTR_MainActivity
- *
+ * <p>
  * is a class to extend GameMainActivity to allow for the creation and running of Ticket To Ride.
  *
  * @author Alex
@@ -24,7 +23,6 @@ import ttr.up.edu.game.config.GamePlayerType;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class TTR_MainActivity extends GameMainActivity {
@@ -63,7 +61,7 @@ public class TTR_MainActivity extends GameMainActivity {
         });
 
         // Create a game configuration class for Tic-tac-toe
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Ticket_To_Ride", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 4, "Ticket_To_Ride", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0); // yellow-on-blue GUI

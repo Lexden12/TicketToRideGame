@@ -5,7 +5,7 @@ import ttr.up.edu.game.actionMsg.GameAction;
 
 /**
  * class DrawRouteDeckGameAction
- *
+ * <p>
  * is a class to represent a player drawing from the train deck (unimplemented)
  *
  * @author Alex
@@ -13,7 +13,6 @@ import ttr.up.edu.game.actionMsg.GameAction;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class DrawTrainDeckGameAction extends GameAction {

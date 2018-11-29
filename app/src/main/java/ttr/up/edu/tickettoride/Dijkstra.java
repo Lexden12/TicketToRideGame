@@ -2,9 +2,10 @@ package ttr.up.edu.tickettoride;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
  * class Dijkstra
- *
+ * <p>
  * a class to calculate the minimum spanning path between two cities
  *
  * @author Alex
@@ -12,7 +13,6 @@ import java.util.Collections;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class Dijkstra {
@@ -36,20 +36,22 @@ public class Dijkstra {
 
     /**
      * Get the calculated minimum spanning path from the start to end city
+     *
      * @return the minimum spanning path from the start to end city
      */
-    public ArrayList<String> getPath(){
+    public ArrayList<String> getPath() {
         if (timeout) return null;
         return path;
     }
 
     /**
      * Put the startCity at the front of the queue
+     *
      * @param startCity the start location of the minimum spanning path
      */
-    private void initializeQueue(String startCity){
-         int pos = queue.indexOf(startCity);
-        if (pos > 0){
+    private void initializeQueue(String startCity) {
+        int pos = queue.indexOf(startCity);
+        if (pos > 0) {
             queue.remove(pos);
             queue.add(0, startCity);
             graph.getCities().get(startCity).setCost(0);
@@ -60,21 +62,21 @@ public class Dijkstra {
      * Generate the Dijkstra's graph (least cost path)
      * Only unclaimed paths are used in the calculation
      */
-    private void calculateDGraph(){
+    private void calculateDGraph() {
         int size = queue.size();
-        for (int i = 0; i<size; i++){
+        for (int i = 0; i < size; i++) {
             //get the city at the front of queue
             String cityName = queue.get(0);
             queue.remove(0);
             City city = graph.getCities().get(cityName);
             //iterate through city edges and update costs
-                for (Route r : city.getRoutes().values()){
-                    City adjacentCity = r.getCity();
-                    if (city.getCost() + r.getLength() < adjacentCity.getCost() && (r.getPlayerNum() == -1 || r.getPlayerNum() == this.playerNumber)){
-                        adjacentCity.setCost(r.getLength()+city.getCost());
-                        adjacentCity.setParent(city.getName());
-                    }
+            for (Route r : city.getRoutes().values()) {
+                City adjacentCity = r.getCity();
+                if (city.getCost() + r.getLength() < adjacentCity.getCost() && (r.getPlayerNum() == -1 || r.getPlayerNum() == this.playerNumber)) {
+                    adjacentCity.setCost(r.getLength() + city.getCost());
+                    adjacentCity.setParent(city.getName());
                 }
+            }
             //update the queue positions to reflect updated costs
             updateQueue();
         }
@@ -83,13 +85,13 @@ public class Dijkstra {
     /**
      * Sorts the queue by the current order of cost (selection sort)
      */
-    private void updateQueue(){
+    private void updateQueue() {
         String c1;
         String c2;
         if (queue.size() > 0) {
             for (int i = 0; i < queue.size(); i++) {
                 c1 = queue.get(i);
-                for (int b = i+1; b < queue.size(); b++) {
+                for (int b = i + 1; b < queue.size(); b++) {
                     c2 = queue.get(b);
                     if (graph.getCities().get(c1).getCost() > graph.getCities().get(c2).getCost()) {
                         //swap the items
@@ -102,14 +104,15 @@ public class Dijkstra {
 
     /**
      * Find the minimum spanning path to the end City
+     *
      * @param endCity the end city of the path
      */
-    private void determinePath(String endCity){
+    private void determinePath(String endCity) {
         City currentCity = graph.getCities().get(endCity);
         int maxIterations = (new ArrayList<>(graph.getCities().keySet())).size();
         int currentIterations = 0;
 
-        while (currentCity != null){
+        while (currentCity != null) {
             if (currentIterations >= maxIterations) { //handles case where it is impossible to reach destination
                 timeout = true;
                 return;
