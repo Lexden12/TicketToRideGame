@@ -100,13 +100,33 @@ public class TTR_SurfaceView extends FlashSurfaceView{
                         //get the color of the player who claimed the route
                         paint.setColor(getRouteColor(route));
                         //draw the appropriate line on the map
-                        if (city.getName().equals("Winnipeg") && routeName.equals("Calgary")) {
+                        if (city.getName().equals("Vancouver") && routeName.equals("Calgary")) {
                             canvas.drawLine((float)217/xScale*(float)x, (float)189/yScale*(float)y, (float)428/xScale*(float)x, (float)160/yScale*(float)y, paint);
                         } else if (city.getName().equals("Portland") && routeName.equals("Seattle1")) {
                             canvas.drawLine((float)188/xScale*(float)x, (float)282/yScale*(float)y, (float)168/xScale*(float)x, (float)337/yScale*(float)y, paint);
-                        } else if (city.getName().equals("Portland") && route.getCity().equals("Seattle2")) {
+                        } else if (city.getName().equals("Portland") && routeName.equals("Seattle2")) {
                             canvas.drawLine((float)190/xScale*(float)x, (float)343/yScale*(float)y, (float)208/xScale*(float)x, (float)297/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Seattle") && routeName.equals("Calgary")) {
+                            canvas.drawLine((float)230/xScale*(float)x, (float)278/yScale*(float)y, (float)423/xScale*(float)x, (float)162/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Calgary") && routeName.equals("Winnipeg")) {
+                            canvas.drawLine((float)430/xScale*(float)x, (float)157/yScale*(float)y, (float)788/xScale*(float)x, (float)169/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Calgary") && routeName.equals("Helena")) {
+                            canvas.drawLine((float)426/xScale*(float)x, (float)160/yScale*(float)y, (float)585/xScale*(float)x, (float)370/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Winnipeg") && routeName.equals("Helena")) {
+                            canvas.drawLine((float)789/xScale*(float)x, (float)175/yScale*(float)y, (float)588/xScale*(float)x, (float)370/yScale*(float)y, paint);
+                        } else if (city.getName().equals("Helena") && routeName.equals("Seattle")) {
+                            canvas.drawLine((float) 585 / xScale * (float) x, (float) 368 / yScale * (float) y, (float) 210 / xScale * (float) x, (float) 278 / yScale * (float) y, paint);
                         }
+                        else if (city.getName().equals("Portland1") && routeName.equals("San Francisco1")) {
+                            canvas.drawLine((float)148 /xScale*(float)x, (float)675/yScale*(float)y, (float)172/xScale*(float)x, (float)378/yScale*(float)y, paint);
+                        }
+                        else if (city.getName().equals("Portland2") && routeName.equals("San Francisco2")) {
+                            canvas.drawLine((float)143 /xScale*(float)x, (float)367/yScale*(float)y, (float)125/xScale*(float)x, (float)676/yScale*(float)y, paint);
+                        }
+
+
+
+
                         else if (false){
                             //todo continue adding the rest of the cities here...
                         }
