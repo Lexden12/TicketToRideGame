@@ -26,6 +26,7 @@ public class TTR_LocalGame extends LocalGame {
     private TTR_GameState gameState;
     private int numPlayers;
 
+
     public TTR_LocalGame() {
         gameState = new TTR_GameState(numPlayers);
     }
@@ -35,7 +36,7 @@ public class TTR_LocalGame extends LocalGame {
         numPlayers = players.length;
         ArrayList<PlayerHand> hands = new ArrayList<>();
         for(int i=0;i<numPlayers;i++){
-            hands.add(new PlayerHand());
+            hands.add(new PlayerHand(getAssignedPlayerColor(i)));
         }
         gameState.setPlayerHands(hands);
         super.start(players);
@@ -99,5 +100,27 @@ public class TTR_LocalGame extends LocalGame {
        else return false;
        return true;
 
+    }
+
+    private String getAssignedPlayerColor(int playerNumber){
+        switch(playerNumber){
+            case 0:
+                return "Purple";
+            case 1:
+                return "White";
+            case 2:
+                return "Blue";
+            case 3:
+                return "Yellow";
+            case 4:
+                return "Orange";
+            case 5:
+                return "Black";
+            case 6:
+                return "Red";
+            case 7:
+                return "Green";
+        }
+        return null;
     }
 }

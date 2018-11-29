@@ -2,7 +2,6 @@ package ttr.up.edu.tickettoride;
 
 import java.util.ArrayList;
 import java.util.Collections;
-//todo change methods back to private after unit testing
 /**
  * class Dijkstra
  *
@@ -48,7 +47,7 @@ public class Dijkstra {
      * Put the startCity at the front of the queue
      * @param startCity the start location of the minimum spanning path
      */
-    public void initializeQueue(String startCity){
+    private void initializeQueue(String startCity){
          int pos = queue.indexOf(startCity);
         if (pos > 0){
             queue.remove(pos);
@@ -61,7 +60,7 @@ public class Dijkstra {
      * Generate the Dijkstra's graph (least cost path)
      * Only unclaimed paths are used in the calculation
      */
-    public void calculateDGraph(){
+    private void calculateDGraph(){
         int size = queue.size();
         for (int i = 0; i<size; i++){
             //get the city at the front of queue
@@ -84,7 +83,7 @@ public class Dijkstra {
     /**
      * Sorts the queue by the current order of cost (selection sort)
      */
-    public void updateQueue(){
+    private void updateQueue(){
         String c1;
         String c2;
         if (queue.size() > 0) {
@@ -105,7 +104,7 @@ public class Dijkstra {
      * Find the minimum spanning path to the end City
      * @param endCity the end city of the path
      */
-    public void determinePath(String endCity){
+    private void determinePath(String endCity){
         City currentCity = graph.getCities().get(endCity);
         int maxIterations = (new ArrayList<>(graph.getCities().keySet())).size();
         int currentIterations = 0;

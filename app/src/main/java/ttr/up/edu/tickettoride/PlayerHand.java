@@ -28,15 +28,16 @@ public class PlayerHand {
      * and the routecards in our hand
      * Also initialize the number of trains to 45
      */
-    public PlayerHand(){
+    public PlayerHand(String color){
         trainCards = new ArrayList<>();
         routeCards = new ArrayList<>();
         cardsCounts = new int[9];
+        this.color = color;
         trains = 45;
     }
 
     public PlayerHand clone(){
-        PlayerHand playerHand = new PlayerHand();
+        PlayerHand playerHand = new PlayerHand(new String(this.color));
         for(Card c:trainCards)
             playerHand.addTrainCard(c.clone());
         for(Card c:routeCards)
@@ -215,5 +216,9 @@ public class PlayerHand {
 
     public int getTrainCardsSize(){
         return trainCards.size();
+    }
+
+    public String getColor() {
+        return color;
     }
 }

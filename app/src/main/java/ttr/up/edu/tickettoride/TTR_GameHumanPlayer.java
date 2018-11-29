@@ -76,6 +76,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
             // if the move was out of turn or otherwise illegal, flash the screen
             surfaceView.flash(Color.RED, 100);
         }
+        //todo remove and modify else statement
         else if (!(info instanceof TTR_GameState))
             // if we do not have a TTR_GameState, ignore
             return;
