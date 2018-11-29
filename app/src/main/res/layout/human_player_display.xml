@@ -174,42 +174,42 @@
 
         <ImageButton
             android:id="@+id/trainDeck"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/train_card_back" />
 
         <ImageButton
             android:id="@+id/card1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/black_card" />
 
         <ImageButton
             android:id="@+id/card2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/blue_card" />
 
         <ImageButton
             android:id="@+id/card3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/green_card" />
 
         <ImageButton
             android:id="@+id/card4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/orange_card" />
 
         <ImageButton
             android:id="@+id/card5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/purple_card" />
@@ -217,7 +217,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="100"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageButton
@@ -232,7 +232,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="70"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView

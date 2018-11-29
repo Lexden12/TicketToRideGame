@@ -221,4 +221,8 @@ public class PlayerHand {
     public String getColor() {
         return color;
     }
+
+    protected void setTrains(int trains) {
+        this.trains = trains;
+    }
 }

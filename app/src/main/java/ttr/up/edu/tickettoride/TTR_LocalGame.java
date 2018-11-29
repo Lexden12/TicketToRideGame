@@ -124,7 +124,7 @@ public class TTR_LocalGame extends LocalGame {
         String s = "Player "+maxScoreIdx+" wins!\n" +
                 "Scores:\n";
         for(int i = 0; i < numPlayers; i++){
-            s.concat("Player "+i+":\t"+scores[i]+"\n");
+            s = s.concat("Player "+i+":\t"+scores[i]+"\n");
         }
         return s;
     }
@@ -172,5 +172,13 @@ public class TTR_LocalGame extends LocalGame {
                 return "Green";
         }
         return null;
+    }
+
+    public TTR_GameState getGameState() {
+        return new TTR_GameState(gameState);
+    }
+
+    public void setGameState(TTR_GameState gameState) {
+        this.gameState = gameState;
     }
 }
