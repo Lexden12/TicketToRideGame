@@ -9,6 +9,12 @@ public class RouteCard extends Card {
 
     public RouteCard(RouteCard rc){
         super(rc);
+        this.value = rc.getValue();
+    }
+
+    public RouteCard clone(){
+        RouteCard c = new RouteCard(getName(), getValue());
+        return c;
     }
 
     public int getValue() {

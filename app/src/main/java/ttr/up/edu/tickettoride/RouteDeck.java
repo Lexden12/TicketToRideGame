@@ -16,14 +16,17 @@ package ttr.up.edu.tickettoride;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RouteDeck extends Deck {
+public class RouteDeck {
     /**
      * Create a new BoardRoute Card Deck with all thirty destination cards.
      */
+    protected ArrayList<RouteCard> cards;
+    protected ArrayList<RouteCard> discard;
     public RouteDeck() {
-        Card[] routeCards = {
+        RouteCard[] routeCards = {
             new RouteCard("Winnipeg - Little Rock",11),
             new RouteCard("Denver - Pittsburgh",11),
             new RouteCard("Portland - Phoenix",11),
@@ -51,12 +54,47 @@ public class RouteDeck extends Deck {
             new RouteCard("Kansas City - Houston",5),
             new RouteCard("Calgary - Salt Lake City",7)
         };
+        cards = new ArrayList<>();
+        discard = new ArrayList<>();
         cards.addAll(Arrays.asList(routeCards));
         shuffle();
     }
 
-    @Override
-    public RouteCard draw() {
+    public RouteDeck(RouteDeck deck) {
+        cards = new ArrayList<>();
+        discard = new ArrayList<>();
+        for(RouteCard c:deck.cards)
+            cards.add(c.clone());
+        for(RouteCard c:deck.discard)
+            cards.add(c.clone());
+        shuffle();
+    }
+
+    /**
+     * shuffles the deck randomly
+     */
+    public void shuffle(){
+        for(int i=0; i<cards.size()-1; i++){
+            swap(i, (int)(Math.random()*(cards.size()-i)+i));
+        }
+    }
+
+    /**
+     * swaps the positions of two cards (used for shuffling)
+     * @param i index of the first card
+     * @param j index of the card to switch with the first card
+     */
+    private void swap(int i, int j){
+        RouteCard c = cards.get(i);
+        cards.set(i, cards.get(j));
+        cards.set(j, c);
+    }
+
+    /**
+     * draw cards from the deck (removes cards from the deck)
+     * @return the list of the cards that were drawn
+     */
+    public RouteCard draw(){
         if(cards.size()==0) {
             if(discard.size()==0)
                 return null;//no cards left in deck
@@ -64,10 +102,28 @@ public class RouteDeck extends Deck {
             discard.clear();
             shuffle();
         }
-        return (RouteCard) cards.remove(cards.size()-1);
+        return cards.remove(cards.size()-1);
     }
 
-    public RouteDeck(RouteDeck deck) {
-        super(deck);
+    /**
+     * add the given cards to the discard pile (when a player claims a route)
+     * @param card the cards which will be discarded
+     */
+
+    public void discard(RouteCard card){
+        discard.add(card);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append("Cards: ");
+        for (Card c:cards)
+            out.append(c.getName()+", ");
+        out.append("\nDiscards: ");
+        for(Card c:discard)
+            out.append(c.getName()+", ");
+        out.append("\n");
+        return out.toString();
     }
 }

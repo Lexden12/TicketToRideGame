@@ -84,6 +84,8 @@ public class TTR_LocalGame extends LocalGame {
                 City c2 = gameState.getGraph().cities.get(s[1]);
                 if(gameState.getGraph().isConnected(c1, c2, new ArrayList<City>(), i))
                     scores[i] += c.getValue();
+                else
+                    scores[i] -= c.getValue();
             }
             for(City c:gameState.getGraph().getCities().values()){
                 for(String s:c.getRoutes().keySet()){

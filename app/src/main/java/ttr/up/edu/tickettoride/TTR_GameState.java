@@ -358,6 +358,9 @@ public class TTR_GameState extends GameState{
         return graph;
     }
 
+    public void setGraph(CityGraph graph) {
+        this.graph = graph;
+    }
 
     @Override
     public String toString() {

@@ -222,7 +222,7 @@ public class CityGraph {
 
         routes = new HashMap<>(); //routes for Oklahoma City
         routes.put("Kansas City1", new Route(kansasCity, 2, "Grey"));
-        routes.put("Kansas City 2", new Route(kansasCity, 2, "Grey"));
+        routes.put("Kansas City2", new Route(kansasCity, 2, "Grey"));
         routes.put("Little Rock", new Route(littleRock, 2, "Grey"));
         routes.put("Dallas1", new Route(dallas, 2, "Grey"));
         routes.put("Dallas2", new Route(dallas, 2, "Grey"));
