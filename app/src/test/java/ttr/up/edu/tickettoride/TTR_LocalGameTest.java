@@ -36,6 +36,11 @@ public class TTR_LocalGameTest {
             else if(rc.getName().equals("Montreal - Atlanta"))
                 has3 = true;
         }
-        if(!has1)
+        if(!has1){
+            for(int i = 0; i < gameState.getRouteDeck().cards.size(); i++){
+                if(gameState.getRouteDeck().cards.get(i).getName().equals("Helena - Los Angeles"))
+                    routeCards.add(gameState.getRouteDeck().cards.remove());
+            }
+        }
     }
 }

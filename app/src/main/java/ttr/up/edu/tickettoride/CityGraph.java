@@ -191,8 +191,8 @@ public class CityGraph {
 
         routes = new HashMap<>(); //routes for Omaha
         routes.put("Helena", new Route(helena, 5, "Red"));
-        routes.put("Duluth1", new Route(duluth, 1, "Grey"));
-        routes.put("Duluth2", new Route(duluth, 1, "Grey"));
+        routes.put("Duluth1", new Route(duluth, 2, "Grey"));
+        routes.put("Duluth2", new Route(duluth, 2, "Grey"));
         routes.put("Chicago", new Route(chicago, 4, "Blue"));
         routes.put("Kansas City1", new Route(kansasCity, 1, "Grey"));
         routes.put("Kansas City2", new Route(kansasCity, 1, "Grey"));
@@ -205,8 +205,8 @@ public class CityGraph {
         routes.put("Sault St. Marie", new Route(saultStMarie, 3, "Grey"));
         routes.put("Toronto", new Route(toronto, 6, "Purple"));
         routes.put("Chicago", new Route(chicago, 3, "Red"));
-        routes.put("Omaha1", new Route(omaha, 1, "Grey"));
-        routes.put("Omaha2", new Route(omaha, 1, "Grey"));
+        routes.put("Omaha1", new Route(omaha, 2, "Grey"));
+        routes.put("Omaha2", new Route(omaha, 2, "Grey"));
         duluth.setRoutes(routes);
 
         routes = new HashMap<>(); //routes for Kansas City
