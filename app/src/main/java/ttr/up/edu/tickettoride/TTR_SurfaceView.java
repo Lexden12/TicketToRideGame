@@ -117,10 +117,10 @@ public class TTR_SurfaceView extends FlashSurfaceView{
                         } else if (city.getName().equals("Helena") && routeName.equals("Seattle")) {
                             canvas.drawLine((float) 585 / xScale * (float) x, (float) 368 / yScale * (float) y, (float) 210 / xScale * (float) x, (float) 278 / yScale * (float) y, paint);
                         }
-                        else if (city.getName().equals("Portland1") && routeName.equals("San Francisco1")) {
+                        else if (city.getName().equals("Portland") && routeName.equals("San Francisco1")) {
                             canvas.drawLine((float)148 /xScale*(float)x, (float)675/yScale*(float)y, (float)172/xScale*(float)x, (float)378/yScale*(float)y, paint);
                         }
-                        else if (city.getName().equals("Portland2") && routeName.equals("San Francisco2")) {
+                        else if (city.getName().equals("Portland") && routeName.equals("San Francisco2")) {
                             canvas.drawLine((float)143 /xScale*(float)x, (float)367/yScale*(float)y, (float)125/xScale*(float)x, (float)676/yScale*(float)y, paint);
                         }
 
