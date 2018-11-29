@@ -8,6 +8,7 @@ public class TTR_GameStateTest {
     /**
      * Tests whether we can draw a FaceUp card properly.
      * @author Alex Schendel
+     * @author Ben
      */
     @Test
     public void drawFaceUp() {
@@ -40,6 +41,7 @@ public class TTR_GameStateTest {
     @Test
     public void drawRouteCards() {
         //TTR_GameState state = new TTR_GameState(2);
+
 
     }
 
