@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * class Card
- *
+ * <p>
  * a class to initialize and store the graph that is all the cities and routes on the board
  *
  * @author Alex
@@ -13,7 +13,6 @@ import java.util.HashMap;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 public class CityGraph {
     HashMap<String, City> cities;
@@ -21,44 +20,80 @@ public class CityGraph {
     /**
      * Constructor which creates a new CityGraph from scratch
      */
-    public CityGraph(){
+    public CityGraph() {
         cities = new HashMap<>();
-        City vancouver = new City("Vancouver"); cities.put("Vancouver", vancouver);
-        City calgary = new City("Calgary"); cities.put("Calgary", calgary);
-        City winnipeg = new City("Winnipeg"); cities.put("Winnipeg", winnipeg);
-        City saultStMarie = new City("Sault St. Marie"); cities.put("Sault St. Marie", saultStMarie);
-        City montreal = new City("Montreal"); cities.put("Montreal", montreal);
-        City seattle = new City("Seattle"); cities.put("Seattle", seattle);
-        City helena = new City("Helena"); cities.put("Helena", helena);
-        City duluth = new City("Duluth"); cities.put("Duluth", duluth);
-        City toronto = new City("Toronto"); cities.put("Toronto", toronto);
-        City boston = new City("Boston"); cities.put("Boston", boston);
-        City newYork = new City("New York"); cities.put("New York", newYork);
-        City pittsburgh = new City("Pittsburgh"); cities.put("Pittsburgh", pittsburgh);
-        City chicago = new City("Chicago"); cities.put("Chicago", chicago);
-        City omaha = new City("Omaha"); cities.put("Omaha", omaha);
-        City portland = new City("Portland"); cities.put("Portland", portland);
-        City washington = new City("Washington"); cities.put("Washington", washington);
-        City raleigh = new City("Raleigh"); cities.put("Raleigh", raleigh);
-        City nashville = new City("Nashville"); cities.put("Nashville", nashville);
-        City saintLouis = new City("Saint Louis"); cities.put("Saint Louis", saintLouis);
-        City kansasCity= new City("Kansas City"); cities.put("Kansas City", kansasCity);
-        City denver = new City("Denver"); cities.put("Denver", denver);
-        City saltLakeCity = new City("Salt Lake City"); cities.put("Salt Lake City", saltLakeCity);
-        City sanFrancisco = new City("San Francisco"); cities.put("San Francisco", sanFrancisco);
-        City lasVegas = new City("Las Vegas"); cities.put("Las Vegas", lasVegas);
-        City santaFe = new City("Santa Fe"); cities.put("Santa Fe", santaFe);
-        City oklahomaCity = new City("Oklahoma City"); cities.put("Oklahoma City", oklahomaCity);
-        City littleRock = new City("Little Rock"); cities.put("Little Rock", littleRock);
-        City atlanta = new City("Atlanta"); cities.put("Atlanta", atlanta);
-        City charleston = new City("Charleston"); cities.put("Charleston", charleston);
-        City losAngeles = new City("Los Angeles"); cities.put("Los Angeles", losAngeles);
-        City phoenix = new City("Phoenix"); cities.put("Phoenix", phoenix);
-        City elPaso = new City("El Paso"); cities.put("El Paso", elPaso);
-        City dallas = new City("Dallas"); cities.put("Dallas", dallas);
-        City houston = new City("Houston"); cities.put("Houston", houston);
-        City newOrleans = new City("New Orleans"); cities.put("New Orleans", newOrleans);
-        City miami = new City("Miami"); cities.put("Miami", miami);
+        City vancouver = new City("Vancouver");
+        cities.put("Vancouver", vancouver);
+        City calgary = new City("Calgary");
+        cities.put("Calgary", calgary);
+        City winnipeg = new City("Winnipeg");
+        cities.put("Winnipeg", winnipeg);
+        City saultStMarie = new City("Sault St. Marie");
+        cities.put("Sault St. Marie", saultStMarie);
+        City montreal = new City("Montreal");
+        cities.put("Montreal", montreal);
+        City seattle = new City("Seattle");
+        cities.put("Seattle", seattle);
+        City helena = new City("Helena");
+        cities.put("Helena", helena);
+        City duluth = new City("Duluth");
+        cities.put("Duluth", duluth);
+        City toronto = new City("Toronto");
+        cities.put("Toronto", toronto);
+        City boston = new City("Boston");
+        cities.put("Boston", boston);
+        City newYork = new City("New York");
+        cities.put("New York", newYork);
+        City pittsburgh = new City("Pittsburgh");
+        cities.put("Pittsburgh", pittsburgh);
+        City chicago = new City("Chicago");
+        cities.put("Chicago", chicago);
+        City omaha = new City("Omaha");
+        cities.put("Omaha", omaha);
+        City portland = new City("Portland");
+        cities.put("Portland", portland);
+        City washington = new City("Washington");
+        cities.put("Washington", washington);
+        City raleigh = new City("Raleigh");
+        cities.put("Raleigh", raleigh);
+        City nashville = new City("Nashville");
+        cities.put("Nashville", nashville);
+        City saintLouis = new City("Saint Louis");
+        cities.put("Saint Louis", saintLouis);
+        City kansasCity = new City("Kansas City");
+        cities.put("Kansas City", kansasCity);
+        City denver = new City("Denver");
+        cities.put("Denver", denver);
+        City saltLakeCity = new City("Salt Lake City");
+        cities.put("Salt Lake City", saltLakeCity);
+        City sanFrancisco = new City("San Francisco");
+        cities.put("San Francisco", sanFrancisco);
+        City lasVegas = new City("Las Vegas");
+        cities.put("Las Vegas", lasVegas);
+        City santaFe = new City("Santa Fe");
+        cities.put("Santa Fe", santaFe);
+        City oklahomaCity = new City("Oklahoma City");
+        cities.put("Oklahoma City", oklahomaCity);
+        City littleRock = new City("Little Rock");
+        cities.put("Little Rock", littleRock);
+        City atlanta = new City("Atlanta");
+        cities.put("Atlanta", atlanta);
+        City charleston = new City("Charleston");
+        cities.put("Charleston", charleston);
+        City losAngeles = new City("Los Angeles");
+        cities.put("Los Angeles", losAngeles);
+        City phoenix = new City("Phoenix");
+        cities.put("Phoenix", phoenix);
+        City elPaso = new City("El Paso");
+        cities.put("El Paso", elPaso);
+        City dallas = new City("Dallas");
+        cities.put("Dallas", dallas);
+        City houston = new City("Houston");
+        cities.put("Houston", houston);
+        City newOrleans = new City("New Orleans");
+        cities.put("New Orleans", newOrleans);
+        City miami = new City("Miami");
+        cities.put("Miami", miami);
 
         HashMap<String, Route> routes = new HashMap<>();//routes for Vancouver
         routes.put("Calgary", new Route(calgary, 3, "Grey"));
@@ -374,48 +409,49 @@ public class CityGraph {
 
     /**
      * This method check whether two cities are connected
+     *
      * @param c1 the fist city
      * @param c2 the second city
      * @return whether the two cities are connected
      */
     //TODO finish this method for the Route Cards
-    public boolean isConnected(City c1, City c2, ArrayList<City> citiesChecked, int playerNum){
-        if(c1 == c2)
+    public boolean isConnected(City c1, City c2, ArrayList<City> citiesChecked, int playerNum) {
+        if (c1 == c2)
             return true;
         citiesChecked.add(c1);
         ArrayList<Route> routes = new ArrayList<>();
-        for (Route r : c1.getRoutes().values()){
-            if(r.getPlayerNum() == playerNum && !citiesChecked.contains(r.city))
+        for (Route r : c1.getRoutes().values()) {
+            if (r.getPlayerNum() == playerNum && !citiesChecked.contains(r.city))
                 routes.add(r);
         }
-        if(routes.size()==1)
+        if (routes.size() == 1)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==2)
+        else if (routes.size() == 2)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==3)
+        else if (routes.size() == 3)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==4)
+        else if (routes.size() == 4)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(3).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==5)
+        else if (routes.size() == 5)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(4).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==6)
+        else if (routes.size() == 6)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(3).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(5).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==7)
+        else if (routes.size() == 7)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
@@ -423,7 +459,7 @@ public class CityGraph {
                     isConnected(routes.get(4).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(5).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(6).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==8)
+        else if (routes.size() == 8)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||
@@ -432,7 +468,7 @@ public class CityGraph {
                     isConnected(routes.get(5).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(6).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(7).city, c2, citiesChecked, playerNum);
-        else if(routes.size()==9)
+        else if (routes.size() == 9)
             return isConnected(routes.get(0).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(1).city, c2, citiesChecked, playerNum) ||
                     isConnected(routes.get(2).city, c2, citiesChecked, playerNum) ||

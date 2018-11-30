@@ -5,7 +5,7 @@ import ttr.up.edu.game.actionMsg.GameAction;
 
 /**
  * class DrawRouteDeckGameAction
- *
+ * <p>
  * is a class to represent a player drawing from the route deck (unimplemented)
  *
  * @author Alex
@@ -13,7 +13,6 @@ import ttr.up.edu.game.actionMsg.GameAction;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class DrawRouteDeckGameAction extends GameAction {
@@ -29,7 +28,7 @@ public class DrawRouteDeckGameAction extends GameAction {
         discard = new int[]{0, 0, 0};
     }
 
-    public void setDiscard(int cardIndex){
+    public void setDiscard(int cardIndex) {
         discard[cardIndex] = 1;
     }
 }

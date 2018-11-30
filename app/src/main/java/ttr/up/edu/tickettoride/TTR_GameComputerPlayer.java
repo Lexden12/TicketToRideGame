@@ -1,13 +1,11 @@
 package ttr.up.edu.tickettoride;
 
-import java.util.ArrayList;
-
 import ttr.up.edu.game.GameComputerPlayer;
 import ttr.up.edu.game.infoMsg.GameInfo;
 
 /**
  * class TTR_GameComputerPlayer
- *
+ * <p>
  * is a class to extend the GameComputerPlayer to specify it for Ticket To Ride.
  *
  * @author Alex
@@ -15,21 +13,20 @@ import ttr.up.edu.game.infoMsg.GameInfo;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class TTR_GameComputerPlayer extends GameComputerPlayer {
 
-    public TTR_GameComputerPlayer(String name){
+    public TTR_GameComputerPlayer(String name) {
         super(name);
     }
 
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        if (info instanceof TTR_GameState){
-            TTR_GameState state = (TTR_GameState)info;
-            if(!(state.getCurrentPlayer()==getPlayerNum())) return;
+        if (info instanceof TTR_GameState) {
+            TTR_GameState state = (TTR_GameState) info;
+            if (!(state.getCurrentPlayer() == getPlayerNum())) return;
             sleep(500);
             game.sendAction(new DrawTrainDeckGameAction(this));
             game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City1"));
@@ -43,8 +40,7 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
     }
 
 
-
-    public int getPlayerNum(){
+    public int getPlayerNum() {
         return this.playerNum;
     }
 }

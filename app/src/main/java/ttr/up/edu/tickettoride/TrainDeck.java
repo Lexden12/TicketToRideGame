@@ -1,11 +1,8 @@
 package ttr.up.edu.tickettoride;
 
-import android.content.Context;
-import android.graphics.BitmapFactory;
-
 /**
  * class RouteDeck
- *
+ * <p>
  * is a class to implement Deck for the Train Cards (default ctor creates the full deck of Train Cards)
  *
  * @author Alex
@@ -13,14 +10,13 @@ import android.graphics.BitmapFactory;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class TrainDeck extends Deck {
     /**
      * create a new Train Card Deck with the proper amounts of each type of card
      */
-    public TrainDeck(){
+    public TrainDeck() {
         Card[] trainCards = {new Card("Black Train"),
                 new Card("Blue Train"),
                 new Card("Green Train"),
@@ -31,7 +27,7 @@ public class TrainDeck extends Deck {
                 new Card("Yellow Train"),
                 new Card("Rainbow Train")
         };
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
             for (int j = 0; j < 12; j++)
                 cards.add(new Card(trainCards[i]));//add the regular cards
         for (int i = 0; i < 14; i++)

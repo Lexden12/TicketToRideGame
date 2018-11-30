@@ -5,7 +5,7 @@ import ttr.up.edu.game.actionMsg.GameAction;
 
 /**
  * class DrawTrainDeckFaceUpGameAction
- *
+ * <p>
  * is a class to represent a player drawing from the face up train cards (unimplemented)
  *
  * @author Alex
@@ -13,7 +13,6 @@ import ttr.up.edu.game.actionMsg.GameAction;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class DrawTrainDeckFaceUpGameAction extends GameAction {

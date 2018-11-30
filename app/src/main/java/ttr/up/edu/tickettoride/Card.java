@@ -1,10 +1,8 @@
 package ttr.up.edu.tickettoride;
 
-import android.graphics.Bitmap;
-
 /**
  * class Card
- *
+ * <p>
  * is a class to represent a card (either train or route)
  *
  * @author Alex
@@ -12,7 +10,6 @@ import android.graphics.Bitmap;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
 public class Card {
@@ -20,23 +17,25 @@ public class Card {
 
     /**
      * Construct a new Card from scratch
+     *
      * @param name the name of the card to be used when comparing cards
      */
-    public Card(String name){
+    public Card(String name) {
         this.name = name;
-    }
-
-    public Card clone(){
-        Card c = new Card(getName());
-        return c;
     }
 
     /**
      * Construct a new card by using an existing card
+     *
      * @param c the card whose instance variables we will copy from
      */
-    public Card(Card c){
+    public Card(Card c) {
         this.name = c.getName();
+    }
+
+    public Card clone() {
+        Card c = new Card(getName());
+        return c;
     }
 
     public String getName() {

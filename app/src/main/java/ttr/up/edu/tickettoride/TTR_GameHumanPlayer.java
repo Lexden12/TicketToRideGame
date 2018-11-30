@@ -5,13 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,7 +24,7 @@ import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
 
 /**
  * class TTR_GameHumanPlayer
- *
+ * <p>
  * is a class to extend the GameHumanPlayer to specify it for Ticket To Ride.
  *
  * @author Alex
@@ -34,10 +32,9 @@ import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
  * @author Nick
  * @author Ben
  * @version October 2018
- *
  */
 
-public class TTR_GameHumanPlayer extends GameHumanPlayer{
+public class TTR_GameHumanPlayer extends GameHumanPlayer {
 
     private Activity myActivity;
 
@@ -54,7 +51,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
     private HashMap<String, Bitmap> trainMap;
     private ArrayList<String> unclaimedRoutes;
 
-    TTR_GameHumanPlayer(String name, int layoutId){
+    TTR_GameHumanPlayer(String name, int layoutId) {
         super(name);
         this.layoutId = layoutId;
     }
@@ -66,6 +63,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
 
     /**
      * Override receiveInfo to allow the HumanPlayer to accurately update their view.
+     *
      * @param info the info being sent to them.
      */
     @Override
@@ -75,33 +73,27 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
             // if the move was out of turn or otherwise illegal, flash the screen
             surfaceView.flash(Color.RED, 100);
-        }
-        //todo remove and modify else statement
-        else if (!(info instanceof TTR_GameState))
-            // if we do not have a TTR_GameState, ignore
-            return;
-        else {
-            state = (TTR_GameState)info;
-            for(int i=1;i<6;i++){
-                if(state.faceUpTrainCards[i-1]!=null) {
+        } else if (info instanceof TTR_GameState) {
+            state = (TTR_GameState) info;
+            for (int i = 1; i < 6; i++) {
+                if (state.faceUpTrainCards[i - 1] != null) {
                     draw[i].setVisibility(View.VISIBLE);
                     draw[i].setImageBitmap(trainMap.get(state.faceUpTrainCards[i - 1].getName()));
-                }
-                else
+                } else
                     draw[i].setVisibility(View.GONE);
             }
-            for(int i=0;i<9;i++){
-                hand_count[i].setText(state.getPlayerHands().get(playerNum).getCardCount(i)+"");
+            for (int i = 0; i < 9; i++) {
+                hand_count[i].setText(state.getPlayerHands().get(playerNum).getCardCount(i) + "");
             }
             surfaceView.setState(state);
             surfaceView.invalidate();
-            trainCount.setText("Trains Remaining: "+state.getPlayerHands().get(playerNum).getTrains());
+            trainCount.setText("Trains Remaining: " + state.getPlayerHands().get(playerNum).getTrains());
             Log.i("human player", "receiving");
-            if(routes.getAdapter() == null)
+            if (routes.getAdapter() == null)
                 initSpinner();
-            for(City c:state.getGraph().getCities().values()){
-                for(String s:c.getRoutes().keySet()){
-                    if(c.getRoutes().get(s).getPlayerNum() != -1){
+            for (City c : state.getGraph().getCities().values()) {
+                for (String s : c.getRoutes().keySet()) {
+                    if (c.getRoutes().get(s).getPlayerNum() != -1) {
                         String r = c.getName() + "<->" + s;
                         routeAdapter.remove(r);
                     }
@@ -110,13 +102,14 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         }
     }
 
-    private void updateSpinner(){
+    private void updateSpinner() {
 
     }
 
     /**
      * The game sends the human player the MainActivity of the game, allowing us to initialize
      * our GUI
+     *
      * @param activity the main activity of the game
      */
     public void setAsGui(GameMainActivity activity) {
@@ -147,7 +140,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         draw[5] = myActivity.findViewById(R.id.card5);
         draw[6] = myActivity.findViewById(R.id.routeDeck);
         DrawOnClick drawOnClick = new DrawOnClick(this);
-        for(ImageButton button:draw)
+        for (ImageButton button : draw)
             button.setOnClickListener(drawOnClick);
 
         surfaceView = myActivity.findViewById(R.id.surfaceView);
@@ -171,10 +164,10 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
      * wait until we receive info with a GameState to initialize the Spinner so that we can have a
      * fully initialized ArrayAdapter
      */
-    public void initSpinner(){
+    public void initSpinner() {
         ArrayList<String> routeList = new ArrayList<>();
-        for(City c:state.getGraph().cities.values()){
-            for(String r:c.getRoutes().keySet()){
+        for (City c : state.getGraph().cities.values()) {
+            for (String r : c.getRoutes().keySet()) {
                 String s = c.getName() + "<->" + r;
                 routeList.add(s);
             }
@@ -185,31 +178,31 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
         routes.setOnItemSelectedListener(new RoutesSpinnerListener());
     }
 
-    public ArrayList<String> quickSort(ArrayList<String> list, int low, int high){
-        if(low >= high-1)
+    public ArrayList<String> quickSort(ArrayList<String> list, int low, int high) {
+        if (low >= high - 1)
             return list;
         String pivot = list.get(low);
-        int idx = low+1;
-        for(int i=low+1; i<high; i++){
-            if(list.get(i).compareTo(pivot)<0){
-                if(i != idx)
+        int idx = low + 1;
+        for (int i = low + 1; i < high; i++) {
+            if (list.get(i).compareTo(pivot) < 0) {
+                if (i != idx)
                     list = quickSortHelper(list, i, idx);
                 idx++;
             }
         }
-        list = quickSortHelper(list, low, idx-1);
-        quickSort(list, low, idx-1);
+        list = quickSortHelper(list, low, idx - 1);
+        quickSort(list, low, idx - 1);
         return quickSort(list, idx, high);
     }
 
-    private ArrayList<String> quickSortHelper(ArrayList<String> list, int i, int j){
+    private ArrayList<String> quickSortHelper(ArrayList<String> list, int i, int j) {
         String s = list.get(i);
         list.set(i, list.get(j));
         list.set(j, s);
         return list;
     }
 
-    public int getPlayerNum(){
+    public int getPlayerNum() {
         return this.playerNum;
     }
 
@@ -217,36 +210,37 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
      * Class to handle all the clicks of the buttons in the GUI
      * sends the appropriate GameAction to the game in response to a click
      */
-    private class DrawOnClick implements View.OnClickListener{
+    private class DrawOnClick implements View.OnClickListener {
         private TTR_GameHumanPlayer player;
-        public DrawOnClick(TTR_GameHumanPlayer player){
+
+        public DrawOnClick(TTR_GameHumanPlayer player) {
             this.player = player;
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.trainDeck){
+            if (v.getId() == R.id.trainDeck) {
                 game.sendAction(new DrawTrainDeckGameAction(player));
             }
-            if(v.getId() == R.id.card1){
+            if (v.getId() == R.id.card1) {
                 game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 0));
             }
-            if(v.getId() == R.id.card2){
+            if (v.getId() == R.id.card2) {
                 game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 1));
             }
-            if(v.getId() == R.id.card3){
+            if (v.getId() == R.id.card3) {
                 game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 2));
             }
-            if(v.getId() == R.id.card4){
+            if (v.getId() == R.id.card4) {
                 game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 3));
             }
-            if(v.getId() == R.id.card5){
+            if (v.getId() == R.id.card5) {
                 game.sendAction(new DrawTrainDeckFaceUpGameAction(player, 4));
             }
-            if(v.getId() == R.id.routeDeck){
+            if (v.getId() == R.id.routeDeck) {
                 game.sendAction(new DrawRouteDeckGameAction(player));
             }
-            if(v.getId() == R.id.claimButton){
+            if (v.getId() == R.id.claimButton) {
                 game.sendAction(new ClaimRouteGameAction(player, route));
             }
         }
@@ -256,7 +250,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer{
      * Set the route selected in the Spinner each time it changes so that it is accessible
      * in the onClick
      */
-    private class RoutesSpinnerListener implements AdapterView.OnItemSelectedListener{
+    private class RoutesSpinnerListener implements AdapterView.OnItemSelectedListener {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
