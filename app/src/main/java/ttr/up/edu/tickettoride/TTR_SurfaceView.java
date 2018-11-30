@@ -132,10 +132,73 @@ public class TTR_SurfaceView extends FlashSurfaceView {
                             canvas.drawLine((float) 148 / xScale * (float) x, (float) 675 / yScale * (float) y, (float) 172 / xScale * (float) x, (float) 378 / yScale * (float) y, paint);
                         } else if (city.getName().equals("Portland") && routeName.equals("San Francisco2")) {
                             canvas.drawLine((float) 143 / xScale * (float) x, (float) 367 / yScale * (float) y, (float) 125 / xScale * (float) x, (float) 676 / yScale * (float) y, paint);
-                        } else if (false) {
-                            //todo continue adding the rest of the cities here...
+                        }else if (city.getName().equals("Seattle") && routeName.equals("Vancouver1")) {
+                            canvas.drawLine((float) 198 / xScale * (float) x, (float) 204 / yScale * (float) y, (float) 197 / xScale * (float) x, (float) 257 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Seattle") && routeName.equals("Vancouver2")) {
+                            canvas.drawLine((float) 223 / xScale * (float) x, (float) 209 / yScale * (float) y, (float) 223 / xScale * (float) x, (float) 260 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Portland") && routeName.equals("Salt Lake City")) {
+                            canvas.drawLine((float) 168 / xScale * (float) x, (float) 360 / yScale * (float) y, (float) 466 / xScale * (float) x, (float) 575 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Helena") && routeName.equals("Salt Lake City")) {
+                            canvas.drawLine((float) 465 / xScale * (float) x, (float) 575 / yScale * (float) y, (float) 581 / xScale * (float) x, (float) 370 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Helena") && routeName.equals("Duluth")) {
+                            canvas.drawLine((float) 583 / xScale * (float) x, (float) 367 / yScale * (float) y, (float) 974 / xScale * (float) x, (float) 362 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Helena") && routeName.equals("Denver")) {
+                            canvas.drawLine((float) 583 / xScale * (float) x, (float) 370 / yScale * (float) y, (float) 676 / xScale * (float) x, (float) 623 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Salt Lake City") && routeName.equals("San Francisco1")) {
+                            canvas.drawLine((float) 158 / xScale * (float) x, (float) 660 / yScale * (float) y, (float) 438 / xScale * (float) x, (float) 563 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Salt Lake City") && routeName.equals("San Francisco2")) {
+                            canvas.drawLine((float) 448 / xScale * (float) x, (float) 593 / yScale * (float) y, (float) 173 / xScale * (float) x, (float) 685 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Helena") && routeName.equals("Omaha")) {
+                            canvas.drawLine((float) 586 / xScale * (float) x, (float) 372 / yScale * (float) y, (float) 921 / xScale * (float) x, (float) 510 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Denver") && routeName.equals("Omaha")) {
+                            canvas.drawLine((float) 683 / xScale * (float) x, (float) 625 / yScale * (float) y, (float) 928 / xScale * (float) x, (float) 513 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Duluth") && routeName.equals("Omaha1")) {
+                            canvas.drawLine((float) 949 / xScale * (float) x, (float) 377 / yScale * (float) y, (float) 913 / xScale * (float) x, (float) 481 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Duluth") && routeName.equals("Omaha2")) {
+                            canvas.drawLine((float) 938 / xScale * (float) x, (float) 493 / yScale * (float) y, (float) 974 / xScale * (float) x, (float) 385 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Duluth") && routeName.equals("Winnipeg")) {
+                            canvas.drawLine((float) 786 / xScale * (float) x, (float) 180 / yScale * (float) y, (float) 971 / xScale * (float) x, (float) 362 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Denver") && routeName.equals("Salt Lake City1")) {
+                            canvas.drawLine((float) 656 / xScale * (float) x, (float) 598 / yScale * (float) y, (float) 485 / xScale * (float) x, (float) 563 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Denver") && routeName.equals("Salt Lake City2")) {
+                            canvas.drawLine((float) 481 / xScale * (float) x, (float) 585 / yScale * (float) y, (float) 650 / xScale * (float) x, (float) 618 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Salt Lake City") && routeName.equals("Las Vegas")) {
+                            canvas.drawLine((float) 466 / xScale * (float) x, (float) 590 / yScale * (float) y, (float) 385 / xScale * (float) x, (float) 748 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Los Angeles") && routeName.equals("Las Vegas")) {
+                            canvas.drawLine((float) 265 / xScale * (float) x, (float) 828 / yScale * (float) y, (float) 358 / xScale * (float) x, (float) 763 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("San Francisco") && routeName.equals("Los Angeles1")) {
+                            canvas.drawLine((float) 137 / xScale * (float) x, (float) 708 / yScale * (float) y, (float) 230 / xScale * (float) x, (float) 854 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("San Francisco") && routeName.equals("Los Angeles2")) {
+                            canvas.drawLine((float) 248 / xScale * (float) x, (float) 834 / yScale * (float) y, (float) 162 / xScale * (float) x, (float) 693 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Los Angeles") && routeName.equals("Phoenix")) {
+                            canvas.drawLine((float) 263 / xScale * (float) x, (float) 853 / yScale * (float) y, (float) 448 / xScale * (float) x, (float) 864 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Phoenix") && routeName.equals("Denver")) {
+                            canvas.drawLine((float) 455 / xScale * (float) x, (float) 861 / yScale * (float) y, (float) 679 / xScale * (float) x, (float) 623 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Los Angeles") && routeName.equals("El Paso")) {
+                            canvas.drawLine((float) 270 / xScale * (float) x, (float) 869 / yScale * (float) y, (float) 636 / xScale * (float) x, (float) 941 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Phoenix") && routeName.equals("Santa Fe")) {
+                            canvas.drawLine((float) 455 / xScale * (float) x, (float) 869 / yScale * (float) y, (float) 679 / xScale * (float) x, (float) 623 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Santa Fe") && routeName.equals("El Paso")) {
+                            canvas.drawLine((float) 665 / xScale * (float) x, (float) 776 / yScale * (float) y, (float) 651 / xScale * (float) x, (float) 931 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Phoenix") && routeName.equals("El Paso")) {
+                            canvas.drawLine((float) 456 / xScale * (float) x, (float) 869 / yScale * (float) y, (float) 651 / xScale * (float) x, (float) 926 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Santa Fe") && routeName.equals("Denver")) {
+                            canvas.drawLine((float) 678 / xScale * (float) x, (float) 631 / yScale * (float) y, (float) 666 / xScale * (float) x, (float) 773 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Santa Fe") && routeName.equals("Oklahoma City")) {
+                            canvas.drawLine((float) 898 / xScale * (float) x, (float) 751 / yScale * (float) y, (float) 679 / xScale * (float) x, (float) 773 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("El Paso") && routeName.equals("Oklahoma City")) {
+                            canvas.drawLine((float) 923 / xScale * (float) x, (float) 748 / yScale * (float) y, (float) 666 / xScale * (float) x, (float) 926 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Oklahoma City") && routeName.equals("Denver")) {
+                            canvas.drawLine((float) 918 / xScale * (float) x, (float) 739 / yScale * (float) y, (float) 683 / xScale * (float) x, (float) 638 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("El Paso") && routeName.equals("Dallas")) {
+                            canvas.drawLine((float) 696 / xScale * (float) x, (float) 936 / yScale * (float) y, (float) 941 / xScale * (float) x, (float) 899 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("El Paso") && routeName.equals("Houston")) {
+                            canvas.drawLine((float) 674 / xScale * (float) x, (float) 956 / yScale * (float) y, (float) 1008 / xScale * (float) x, (float) 976 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Denver") && routeName.equals("Kansas City1")) {
+                            canvas.drawLine((float) 941 / xScale * (float) x, (float) 615 / yScale * (float) y, (float) 709 / xScale * (float) x, (float) 650 / yScale * (float) y, paint);
+                        }else if (city.getName().equals("Denver") && routeName.equals("Kansas City2")) {
+                            canvas.drawLine((float) 701 / xScale * (float) x, (float) 621 / yScale * (float) y, (float) 936 / xScale * (float) x, (float) 590 / yScale * (float) y, paint);
                         }
-
                     }
                 }
             }

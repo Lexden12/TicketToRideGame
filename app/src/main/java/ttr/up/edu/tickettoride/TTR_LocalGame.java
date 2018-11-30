@@ -152,7 +152,7 @@ public class TTR_LocalGame extends LocalGame {
             case 0:
                 return "Purple";
             case 1:
-                return "White";
+                return "Red";
             case 2:
                 return "Blue";
             case 3:
@@ -162,7 +162,7 @@ public class TTR_LocalGame extends LocalGame {
             case 5:
                 return "Black";
             case 6:
-                return "Red";
+                return "White";
             case 7:
                 return "Green";
         }
