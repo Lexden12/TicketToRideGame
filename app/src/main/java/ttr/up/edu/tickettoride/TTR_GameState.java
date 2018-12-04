@@ -216,11 +216,24 @@ public class TTR_GameState extends GameState {
     public boolean claimRoute(int player, String route) {
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0 || route == null)
             return false;
+        if(!route.contains("<->"))
+            return false;
         String[] cities = route.split("<->");
         City c1 = graph.cities.get(cities[0]);
         City c2 = graph.cities.get(cities[1]);
-        if (cities[1].contains("1") || cities[1].contains("2"))
+        if (cities[1].contains("1") || cities[1].contains("2")) {
             c2 = graph.cities.get(cities[1].substring(0, cities[1].length() - 1));
+            if(cities[1].contains("1")){
+                Route r = c1.getRoutes().get(c2.getName() + "2");
+                if(r == null || r.getPlayerNum() == player)
+                    return false;
+            }
+            else{
+                Route r = c1.getRoutes().get(c2.getName() + "1");
+                if(r == null || r.getPlayerNum() == player)
+                    return false;
+            }
+        }
         Route r1 = c1.getRoutes().get(cities[1]);
         //surround with if statement and test if r1 is not null
         //dijkstras would have to pass 9 options

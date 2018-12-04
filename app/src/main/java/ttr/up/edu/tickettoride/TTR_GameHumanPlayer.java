@@ -99,6 +99,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
                     }
                 }
             }
+            routes.setSelection(0);
         }
     }
 
@@ -173,6 +174,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
             }
         }
         routeList = quickSort(routeList, 0, routeList.size());
+        routeList.add(0, "Claim Route");
         routeAdapter = new ArrayAdapter<>(myActivity, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, routeList);
         routes.setAdapter(routeAdapter);
         routes.setOnItemSelectedListener(new RoutesSpinnerListener());
