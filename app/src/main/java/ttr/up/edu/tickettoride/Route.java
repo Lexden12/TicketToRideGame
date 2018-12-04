@@ -56,7 +56,6 @@ public class Route {
 
     //Getters/setters
     public void setPlayerNum(int playerNum) {
-        if (this.playerNum != -1) return;
         this.playerNum = playerNum;
     }
 
