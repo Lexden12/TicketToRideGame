@@ -38,6 +38,8 @@ public class TTR_GameState extends GameState {
 
     private RouteCard[] routeCards;
 
+    private String name;
+
     /**
      * Default GameState ctor
      */
@@ -57,6 +59,7 @@ public class TTR_GameState extends GameState {
         routeCards = new RouteCard[3];
         graph = new CityGraph();
         turnsLeft = -1;
+        name = null;
     }
 
     /**
@@ -76,6 +79,7 @@ public class TTR_GameState extends GameState {
         currentPlayer = state.currentPlayer;
         graph = state.graph;
         turnsLeft = -1;
+        name = new String(state.getName());
     }
 
     /**
@@ -378,6 +382,14 @@ public class TTR_GameState extends GameState {
 
     public void setGraph(CityGraph graph) {
         this.graph = graph;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

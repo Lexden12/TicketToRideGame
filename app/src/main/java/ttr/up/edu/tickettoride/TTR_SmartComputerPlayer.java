@@ -34,6 +34,7 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
             if (!(state.getCurrentPlayer() == getPlayerNum())) return;
             sleep(500);
 
+            game.sendAction(new SetNameAction(this, this.name));
             //check if there are any route cards left, if not draw one
             boolean remainingRoutes = false;
             for(RouteCard rc:state.getPlayerHands().get(playerNum).getRouteCards()){

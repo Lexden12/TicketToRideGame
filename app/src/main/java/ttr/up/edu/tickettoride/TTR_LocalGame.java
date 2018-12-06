@@ -130,7 +130,10 @@ public class TTR_LocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
-        if (action instanceof DrawTrainDeckFaceUpGameAction) {
+        if (action instanceof SetNameAction){
+            gameState.setName(((SetNameAction) action).getName());
+        }
+        else if (action instanceof DrawTrainDeckFaceUpGameAction) {
             if (gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard()) == null)
                 return false;
         } else if (action instanceof DrawTrainDeckGameAction) {

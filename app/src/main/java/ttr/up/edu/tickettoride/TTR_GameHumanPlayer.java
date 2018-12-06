@@ -74,6 +74,7 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
             // if the move was out of turn or otherwise illegal, flash the screen
             surfaceView.flash(Color.RED, 100);
         } else if (info instanceof TTR_GameState) {
+            game.sendAction(new SetNameAction(this, this.name));
             state = (TTR_GameState) info;
             for (int i = 1; i < 6; i++) {
                 if (state.faceUpTrainCards[i - 1] != null) {

@@ -316,7 +316,7 @@ public class TTR_SurfaceView extends FlashSurfaceView {
             }
         }
         if (state != null) {
-            canvas.drawText("Player " + state.getCurrentPlayer() + "'s Turn", dest.right / 2, dest.bottom / 10, paint);
+            canvas.drawText("Player " + state.getName() + "'s Turn", dest.right / 2, dest.bottom / 10, paint);
             if (state.getPlayerHands().get(0).getRouteCards().size() > 0 && state.getPlayerHands().get(0).getRouteCards().get(0) != null) {
                 ArrayList<RouteCard> routeCards = state.getPlayerHands().get(0).getRouteCards();
                 int top = 0;
