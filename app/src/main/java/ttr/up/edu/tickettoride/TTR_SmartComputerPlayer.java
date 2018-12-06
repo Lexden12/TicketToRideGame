@@ -12,6 +12,7 @@
 package ttr.up.edu.tickettoride;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ttr.up.edu.game.GameComputerPlayer;
 import ttr.up.edu.game.infoMsg.GameInfo;
@@ -55,15 +56,21 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
                 dij = new Dijkstra(state.getGraph(), cities[0], cities[1], getPlayerNum());
                 //attempt to claim any of the shortest routes
                 ArrayList<String> path = dij.getPath();
+                HashMap<String, City> cityGraph = state.getGraph().getCities();
                 if (path != null) {
                     String route = null;
                     for (int i = 0; i < path.size() - 1; i++) {
                         route = path.get(i) + "<->" + path.get(i + 1);
                         game.sendAction(new ClaimRouteGameAction(this, route));
-                        route = path.get(i) + "<->" + path.get(i + 1) + "1";
-                        game.sendAction(new ClaimRouteGameAction(this, route));
-                        route = path.get(i) + "<->" + path.get(i + 1) + "2";
-                        game.sendAction(new ClaimRouteGameAction(this, route));
+                        //verify neither of the dual routes were claimed by the computer
+                        Route r1 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i+1) + "1");
+                        Route r2 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i+1) + "2");
+                        if (r1 != null && r1.getPlayerNum() == -1 && r2 != null && r2.getPlayerNum() == -1) {
+                            route = path.get(i) + "<->" + path.get(i + 1) + "1";
+                            game.sendAction(new ClaimRouteGameAction(this, route));
+                            route = path.get(i) + "<->" + path.get(i + 1) + "2";
+                            game.sendAction(new ClaimRouteGameAction(this, route));
+                        }
                     }
                 }
             }
