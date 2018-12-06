@@ -161,7 +161,7 @@ public class TTR_GameState extends GameState {
      * @return successful completion of the draw
      */
     public Card drawDeck(int player) {
-        if (currentPlayer != player)
+        if (currentPlayer != player || (trainDeck.cards.size() < 2 && trainDeck.discard.size() < 5 && numTrainCardsDrawn == 0))
             return null;
         numTrainCardsDrawn++;
         Card c = trainDeck.draw();

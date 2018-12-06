@@ -117,7 +117,7 @@ public class TTR_LocalGame extends LocalGame {
         }
         int maxScoreIdx = 0;
         for (int i = 0; i < numPlayers; i++) {
-            if (scores[i] > maxScoreIdx)
+            if (scores[i] > scores[maxScoreIdx])
                 maxScoreIdx = i;
         }
         String s = "Player " + maxScoreIdx + " wins!\n" +

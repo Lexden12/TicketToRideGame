@@ -28,15 +28,14 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
             TTR_GameState state = (TTR_GameState) info;
             if (!(state.getCurrentPlayer() == getPlayerNum())) return;
             sleep(500);
-            game.sendAction(new SetNameAction(this, this.name));
+            for(City c:state.getGraph().cities.values()){
+                for(Route r:c.getRoutes().values()){
+                    game.sendAction(new ClaimRouteGameAction(this, c.name + "<->" + r.city.getName()));
+                    game.sendAction(new ClaimRouteGameAction(this, c.name + "<->" + r.city.getName() + "1"));
+                    game.sendAction(new ClaimRouteGameAction(this, c.name + "<->" + r.city.getName() + "2"));
+                }
+            }
             game.sendAction(new DrawTrainDeckGameAction(this));
-            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City1"));
-            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City2"));
-            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Duluth1"));
-            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Duluth2"));
-            game.sendAction(new ClaimRouteGameAction(this, "Omaha<->Kansas City2"));
-            game.sendAction(new ClaimRouteGameAction(this, "Kansas City<->Oklahoma City1"));
-            game.sendAction(new ClaimRouteGameAction(this, "Kansas City<->Oklahoma City2"));
         }
     }
 
