@@ -18,9 +18,11 @@ import java.util.HashMap;
 
 import ttr.up.edu.game.GameHumanPlayer;
 import ttr.up.edu.game.GameMainActivity;
+import ttr.up.edu.game.actionMsg.MyNameIsAction;
 import ttr.up.edu.game.infoMsg.GameInfo;
 import ttr.up.edu.game.infoMsg.IllegalMoveInfo;
 import ttr.up.edu.game.infoMsg.NotYourTurnInfo;
+import ttr.up.edu.game.infoMsg.StartGameInfo;
 
 /**
  * class TTR_GameHumanPlayer
@@ -74,8 +76,9 @@ public class TTR_GameHumanPlayer extends GameHumanPlayer {
             // if the move was out of turn or otherwise illegal, flash the screen
             surfaceView.flash(Color.RED, 100);
         } else if (info instanceof TTR_GameState) {
-            game.sendAction(new SetNameAction(this, this.name));
             state = (TTR_GameState) info;
+            if(!state.isStart)
+                game.sendAction(new SetNameAction(this, this.name, playerNum));
             for (int i = 1; i < 6; i++) {
                 if (state.faceUpTrainCards[i - 1] != null) {
                     draw[i].setVisibility(View.VISIBLE);

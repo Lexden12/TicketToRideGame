@@ -2,6 +2,7 @@ package ttr.up.edu.tickettoride;
 
 import ttr.up.edu.game.GameComputerPlayer;
 import ttr.up.edu.game.infoMsg.GameInfo;
+import ttr.up.edu.game.infoMsg.StartGameInfo;
 
 /**
  * class TTR_GameComputerPlayer
@@ -26,6 +27,8 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         if (info instanceof TTR_GameState) {
             TTR_GameState state = (TTR_GameState) info;
+            if(!state.isStart)
+                game.sendAction(new SetNameAction(this, this.name, playerNum));
             if (!(state.getCurrentPlayer() == getPlayerNum())) return;
             sleep(500);
             for(City c:state.getGraph().cities.values()){
@@ -36,6 +39,8 @@ public class TTR_GameComputerPlayer extends GameComputerPlayer {
                 }
             }
             game.sendAction(new DrawTrainDeckGameAction(this));
+            if(state.getCurrentPlayer() == playerNum)
+                game.sendAction(new DrawRouteDeckGameAction(this));
         }
     }
 

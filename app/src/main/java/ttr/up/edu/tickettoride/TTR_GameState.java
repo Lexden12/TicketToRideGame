@@ -25,6 +25,8 @@ public class TTR_GameState extends GameState {
     private RouteDeck routeDeck;
     private CityGraph graph;
     private int turnsLeft;
+    private int numPlayers;
+    boolean isStart;
 
     //player specific information
     private ArrayList<PlayerHand> playerHands;
@@ -38,12 +40,12 @@ public class TTR_GameState extends GameState {
 
     private RouteCard[] routeCards;
 
-    private String name;
+    private String[] names;
 
     /**
      * Default GameState ctor
      */
-    public TTR_GameState(int numPlayers) {
+    public TTR_GameState() {
         trainDeck = new TrainDeck();
         faceUpTrainCards = new Card[5];
         for (int i = 0; i < 5; i++) {
@@ -59,7 +61,7 @@ public class TTR_GameState extends GameState {
         routeCards = new RouteCard[3];
         graph = new CityGraph();
         turnsLeft = -1;
-        name = null;
+        isStart = false;
     }
 
     /**
@@ -79,7 +81,11 @@ public class TTR_GameState extends GameState {
         currentPlayer = state.currentPlayer;
         graph = state.graph;
         turnsLeft = -1;
-        name = new String(state.getName());
+        names = new String[state.getPlayerHands().size()];
+        for(int i = 0; i < names.length; i++){
+            names[i] = state.getNames()[i];
+        }
+        isStart = state.isStart;
     }
 
     /**
@@ -384,12 +390,24 @@ public class TTR_GameState extends GameState {
         this.graph = graph;
     }
 
-    public String getName() {
-        return name;
+    public String[] getNames() {
+        return names;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name, int player) {
+        if(numPlayers != 0) {
+            this.names[player] = name;
+            for (int i = 0; i < names.length; i++) {
+                if (names[i] == null)
+                    return;
+            }
+            isStart = true;
+        }
+    }
+
+    public void setNumPlayers(int numPlayers) {
+        this.numPlayers = numPlayers;
+        names = new String[numPlayers];
     }
 
     @Override

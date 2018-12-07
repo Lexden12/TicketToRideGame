@@ -25,7 +25,7 @@ public class TTR_LocalGame extends LocalGame {
 
 
     public TTR_LocalGame() {
-        gameState = new TTR_GameState(numPlayers);
+        gameState = new TTR_GameState();
     }
 
     @Override
@@ -36,6 +36,7 @@ public class TTR_LocalGame extends LocalGame {
             hands.add(new PlayerHand(getAssignedPlayerColor(i)));
         }
         gameState.setPlayerHands(hands);
+        gameState.setNumPlayers(numPlayers);
         super.start(players);
     }
 
@@ -131,7 +132,7 @@ public class TTR_LocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof SetNameAction){
-            gameState.setName(((SetNameAction) action).getName());
+            gameState.setName(((SetNameAction) action).getName(),((SetNameAction) action).getPlayerNum());
         }
         else if (action instanceof DrawTrainDeckFaceUpGameAction) {
             if (gameState.drawFaceUp(getPlayerIdx(action.getPlayer()), ((DrawTrainDeckFaceUpGameAction) action).getCard()) == null)

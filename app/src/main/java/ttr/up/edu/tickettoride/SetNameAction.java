@@ -17,18 +17,24 @@ import ttr.up.edu.game.actionMsg.GameAction;
 
 public class SetNameAction extends GameAction {
     private String name;
+    private int playerNum;
     /**
      * constructor for GameAction
      *
      * @param player the player who created the action
      */
-    public SetNameAction(GamePlayer player, String name) {
+    public SetNameAction(GamePlayer player, String name, int playerNum) {
         super(player);
         this.name = name;
+        this.playerNum = playerNum;
     }
 
     //getter
     public String getName() {
         return name;
+    }
+
+    public int getPlayerNum() {
+        return playerNum;
     }
 }
