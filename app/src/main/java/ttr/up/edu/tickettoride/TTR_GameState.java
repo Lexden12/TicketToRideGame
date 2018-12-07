@@ -20,14 +20,13 @@ public class TTR_GameState extends GameState {
 
 
     protected Card[] faceUpTrainCards;
+    boolean isStart;
     //cards and trains available for use
     private TrainDeck trainDeck;
     private RouteDeck routeDeck;
     private CityGraph graph;
     private int turnsLeft;
     private int numPlayers;
-    boolean isStart;
-
     //player specific information
     private ArrayList<PlayerHand> playerHands;
 
@@ -82,7 +81,7 @@ public class TTR_GameState extends GameState {
         graph = state.graph;
         turnsLeft = -1;
         names = new String[state.getPlayerHands().size()];
-        for(int i = 0; i < names.length; i++){
+        for (int i = 0; i < names.length; i++) {
             names[i] = state.getNames()[i];
         }
         isStart = state.isStart;
@@ -202,8 +201,9 @@ public class TTR_GameState extends GameState {
 
     /**
      * Discard a route card
+     *
      * @param player the ID number of the player
-     * @param idx the index of the card to discard
+     * @param idx    the index of the card to discard
      * @return the Card that was discarded
      */
     public Card discardRouteCard(int player, int idx) {
@@ -226,21 +226,20 @@ public class TTR_GameState extends GameState {
     public boolean claimRoute(int player, String route) {
         if (currentPlayer != player || numTrainCardsDrawn != 0 || numRouteCardsDrawn != 0 || route == null)
             return false;
-        if(!route.contains("<->"))
+        if (!route.contains("<->"))
             return false;
         String[] cities = route.split("<->");
         City c1 = graph.cities.get(cities[0]);
         City c2 = graph.cities.get(cities[1]);
         if (cities[1].contains("1") || cities[1].contains("2")) {
             c2 = graph.cities.get(cities[1].substring(0, cities[1].length() - 1));
-            if(cities[1].contains("1")){
+            if (cities[1].contains("1")) {
                 Route r = c1.getRoutes().get(c2.getName() + "2");
-                if(r == null || r.getPlayerNum() == player)
+                if (r == null || r.getPlayerNum() == player)
                     return false;
-            }
-            else{
+            } else {
                 Route r = c1.getRoutes().get(c2.getName() + "1");
-                if(r == null || r.getPlayerNum() == player)
+                if (r == null || r.getPlayerNum() == player)
                     return false;
             }
         }
@@ -395,7 +394,7 @@ public class TTR_GameState extends GameState {
     }
 
     public void setName(String name, int player) {
-        if(numPlayers != 0) {
+        if (numPlayers != 0) {
             this.names[player] = name;
             for (int i = 0; i < names.length; i++) {
                 if (names[i] == null)

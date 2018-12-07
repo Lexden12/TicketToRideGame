@@ -16,7 +16,6 @@ import java.util.HashMap;
 
 import ttr.up.edu.game.GameComputerPlayer;
 import ttr.up.edu.game.infoMsg.GameInfo;
-import ttr.up.edu.game.infoMsg.StartGameInfo;
 
 public class TTR_SmartComputerPlayer extends GameComputerPlayer {
     /**
@@ -32,23 +31,23 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         if (info instanceof TTR_GameState) {
             TTR_GameState state = (TTR_GameState) info;
-            if(!state.isStart)
+            if (!state.isStart)
                 game.sendAction(new SetNameAction(this, this.name, playerNum));
             if (!(state.getCurrentPlayer() == getPlayerNum())) return;
             sleep(500);
 
             //check if there are any route cards left, if not draw one
             boolean remainingRoutes = false;
-            for(RouteCard rc:state.getPlayerHands().get(playerNum).getRouteCards()){
+            for (RouteCard rc : state.getPlayerHands().get(playerNum).getRouteCards()) {
                 String[] cities = rc.getName().split(" - ");
                 City c1 = state.getGraph().cities.get(cities[0]);
                 City c2 = state.getGraph().cities.get(cities[1]);
-                if(!state.getGraph().isConnected(c1, c2, new ArrayList<City>(), playerNum)) {
+                if (!state.getGraph().isConnected(c1, c2, new ArrayList<City>(), playerNum)) {
                     remainingRoutes = true;
                     break;
                 }
             }
-            if(!remainingRoutes)
+            if (!remainingRoutes)
                 game.sendAction(new DrawRouteDeckGameAction(this));
 
             //find the shortest path
@@ -66,8 +65,8 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
                         route = path.get(i) + "<->" + path.get(i + 1);
                         game.sendAction(new ClaimRouteGameAction(this, route));
                         //verify neither of the dual routes were claimed by the computer
-                        Route r1 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i+1) + "1");
-                        Route r2 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i+1) + "2");
+                        Route r1 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i + 1) + "1");
+                        Route r2 = cityGraph.get(path.get(i)).getRoutes().get(path.get(i + 1) + "2");
                         if (r1 != null && r1.getPlayerNum() == -1 && r2 != null && r2.getPlayerNum() == -1) {
                             route = path.get(i) + "<->" + path.get(i + 1) + "1";
                             game.sendAction(new ClaimRouteGameAction(this, route));
@@ -80,7 +79,7 @@ public class TTR_SmartComputerPlayer extends GameComputerPlayer {
 
             //if other options fail, draw a train card
             game.sendAction(new DrawTrainDeckGameAction(this));
-            if(state.getCurrentPlayer() == playerNum)
+            if (state.getCurrentPlayer() == playerNum)
                 game.sendAction(new DrawRouteDeckGameAction(this));
         }
     }
