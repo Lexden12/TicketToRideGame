@@ -18,6 +18,7 @@ import ttr.up.edu.game.actionMsg.GameAction;
 public class SetNameAction extends GameAction {
     private String name;
     private int playerNum;
+
     /**
      * constructor for GameAction
      *

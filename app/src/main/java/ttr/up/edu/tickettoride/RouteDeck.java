@@ -78,6 +78,7 @@ public class RouteDeck {
 
     /**
      * swaps the positions of two cards (used for shuffling)
+     *
      * @param i index of the first card
      * @param j index of the card to switch with the first card
      */
@@ -89,6 +90,7 @@ public class RouteDeck {
 
     /**
      * draw cards from the deck (removes cards from the deck)
+     *
      * @return the list of the cards that were drawn
      */
     public RouteCard draw() {
@@ -104,6 +106,7 @@ public class RouteDeck {
 
     /**
      * add the given cards to the discard pile (when a player claims a route)
+     *
      * @param card the cards which will be discarded
      */
 
