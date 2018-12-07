@@ -121,10 +121,10 @@ public class TTR_LocalGame extends LocalGame {
             if (scores[i] > scores[maxScoreIdx])
                 maxScoreIdx = i;
         }
-        String s = "Player " + maxScoreIdx + " wins!\n" +
+        String s = "Player " + gameState.getNames()[maxScoreIdx] + " wins!\n" +
                 "Scores:\n";
         for (int i = 0; i < numPlayers; i++) {
-            s = s.concat("Player " + i + ":\t" + scores[i] + "\n");
+            s = s.concat("Player " + gameState.getNames()[i] + ":\t" + scores[i] + "\n");
         }
         return s;
     }
